@@ -1,0 +1,5 @@
+package Tests;
+
+class RetanguloTest {
+
+}
