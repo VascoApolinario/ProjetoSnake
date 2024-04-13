@@ -21,6 +21,25 @@ public class Quadrado extends Retangulo {
 
     /**
      * Construtor da classe Quadrado
+     * @param p1 ponto de coordenadas minimox minimoy
+     * @param p2 ponto de coordenadas maximox maximoy
+     */
+    public Quadrado(Ponto p1, Ponto p2) {
+        this(createQuadrado(p1,p2));
+        verificarInvariantes(super.getPontos());
+    }
+
+    private static Ponto[] createQuadrado(Ponto p1, Ponto p2) {
+        Ponto[] vertices = new Ponto[4];
+        vertices[0] = p1;
+        vertices[1] = new Ponto(p1.getX(), p2.getY());
+        vertices[2] = p2;
+        vertices[3] = new Ponto(p2.getX(), p1.getY());
+        return vertices;
+    }
+
+    /**
+     * Construtor da classe Quadrado
      * @param s string com coordenadas
      */
     public Quadrado(String s)
@@ -63,4 +82,16 @@ public class Quadrado extends Retangulo {
     protected Quadrado createInstance(Ponto[] pontos) {
         return new Quadrado(pontos);
     }
+
+    public boolean isInside(Quadrado q)
+    {
+
+        return false;
+    }
+
+    /*
+    public boolean isInside(Circulo c)
+    {
+        return false;
+    }*/
 }
