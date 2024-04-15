@@ -1,3 +1,5 @@
+package FigurasGeo;
+
 import java.util.Arrays;
 /**
  * Classe responsável para representar um quadrado.
@@ -11,7 +13,7 @@ import java.util.Arrays;
  */
 public class Quadrado extends Retangulo {
     /**
-     * Construtor da classe Quadrado
+     * Construtor da classe FigurasGeo.Quadrado
      * @param pontos do quadrado
      */
     public Quadrado(Ponto[] pontos) {
@@ -20,13 +22,17 @@ public class Quadrado extends Retangulo {
     }
 
     /**
-     * Construtor da classe Quadrado
+     * Construtor da classe FigurasGeo.Quadrado
      * @param p1 ponto de coordenadas minimox minimoy
      * @param p2 ponto de coordenadas maximox maximoy
      */
     public Quadrado(Ponto p1, Ponto p2) {
         this(createQuadrado(p1,p2));
         verificarInvariantes(super.getPontos());
+    }
+
+    public Quadrado(int size) {
+        this(createQuadrado(new Ponto(0,0), new Ponto(size,size)));
     }
 
     private static Ponto[] createQuadrado(Ponto p1, Ponto p2) {
@@ -39,7 +45,7 @@ public class Quadrado extends Retangulo {
     }
 
     /**
-     * Construtor da classe Quadrado
+     * Construtor da classe FigurasGeo.Quadrado
      * @param s string com coordenadas
      */
     public Quadrado(String s)
@@ -59,7 +65,7 @@ public class Quadrado extends Retangulo {
         {
             if(Math.abs(sideLenght -pontos[i-1].dist(pontos[i])) > 1e-9)
             {
-                System.out.println("Quadrado:vi");
+                System.out.println("FigurasGeo.Quadrado:vi");
                 System.exit(0);
             }
         }
@@ -71,12 +77,12 @@ public class Quadrado extends Retangulo {
      */
     @Override
     public String toString(){
-        return "Quadrado: " + Arrays.toString(super.getPontos());
+        return "FigurasGeo.Quadrado: " + Arrays.toString(super.getPontos());
     }
     /**
      * Metodo que chama o construtor da sua classe e cria uma nova instância
      * @param pontos do quadrado
-     * @return Quadrado
+     * @return FigurasGeo.Quadrado
      */
     @Override
     protected Quadrado createInstance(Ponto[] pontos) {

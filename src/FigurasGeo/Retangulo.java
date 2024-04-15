@@ -1,3 +1,5 @@
+package FigurasGeo;
+
 import java.util.Arrays;
 /**
  * Classe responsável para representar um retangulo.
@@ -10,7 +12,7 @@ import java.util.Arrays;
  */
 public class Retangulo extends Poligono {
     /**
-     * Construtor da classe Retangulo
+     * Construtor da classe FigurasGeo.Retangulo
      * @param pontos do retangulo
      */
     public Retangulo(Ponto[] pontos) {
@@ -19,7 +21,7 @@ public class Retangulo extends Poligono {
     }
 
     /**
-     * Construtor da classe Retangulo
+     * Construtor da classe FigurasGeo.Retangulo
      * @param s string com coordenadas
      */
     public Retangulo(String s)
@@ -36,7 +38,7 @@ public class Retangulo extends Poligono {
     {
         if(pontos.length != 4)
         {
-            System.out.println("Retangulo:vi");
+            System.out.println("FigurasGeo.Retangulo:vi");
             System.exit(0);
         }
         double angle1;
@@ -49,7 +51,7 @@ public class Retangulo extends Poligono {
             angleBetweenLines = Math.toDegrees(Math.abs(angle1 - angle2))%180;
             if(Math.abs(angleBetweenLines - 90) > 1e-9 )
             {
-                System.out.println("Retangulo:vi");
+                System.out.println("FigurasGeo.Retangulo:vi");
                 System.exit(0);
             }
             angle1 = angle2;
@@ -58,7 +60,7 @@ public class Retangulo extends Poligono {
         angleBetweenLines = Math.toDegrees(Math.abs(angle1-angle2))%180;
         if(Math.abs(angleBetweenLines - 90) > 1e-9 )
         {
-            System.out.println("Retangulo:vi");
+            System.out.println("FigurasGeo.Retangulo:vi");
             System.exit(0);
         }
     }
@@ -69,13 +71,13 @@ public class Retangulo extends Poligono {
      */
     @Override
     public String toString(){
-        return "Retangulo: " + Arrays.toString(super.getPontos());
+        return "FigurasGeo.Retangulo: " + Arrays.toString(super.getPontos());
     }
 
     /**
      * Metodo que chama o construtor da sua classe e cria uma nova instância
      * @param pontos do retangulo
-     * @return Retangulo
+     * @return FigurasGeo.Retangulo
      */
     @Override
     protected Retangulo createInstance(Ponto[] pontos) {

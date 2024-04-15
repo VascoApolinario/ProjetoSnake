@@ -1,3 +1,5 @@
+package FigurasGeo;
+
 import java.util.Arrays;
 /**
  * Classe responsável para representar um triangulo.
@@ -19,7 +21,7 @@ public class Triangulo extends Poligono {
     }
 
     /**
-     * Construtor da classe Triangulo
+     * Construtor da classe FigurasGeo.Triangulo
      * @param s string com as coordenadas
      *
      */
@@ -36,7 +38,7 @@ public class Triangulo extends Poligono {
     {
         if(pontos.length != 3)
         {
-            System.out.println("Triangulo:vi");
+            System.out.println("FigurasGeo.Triangulo:vi");
             System.exit(0);
         }
     }
@@ -47,12 +49,12 @@ public class Triangulo extends Poligono {
      */
     @Override
     public String toString(){
-        return "Triangulo: " + Arrays.toString(super.getPontos());
+        return "FigurasGeo.Triangulo: " + Arrays.toString(super.getPontos());
     }
     /**
      * Metodo que chama o construtor da sua classe e cria uma nova instância
      * @param pontos do triangulo
-     * @return Triangulo
+     * @return FigurasGeo.Triangulo
      */
     @Override
     protected Triangulo createInstance(Ponto[] pontos) {

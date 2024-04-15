@@ -1,3 +1,5 @@
+package FigurasGeo;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -17,7 +19,7 @@ public class Poligono {
     private Ponto centroide;
 
     /**
-     * Construtor da classe Poligono
+     * Construtor da classe FigurasGeo.Poligono
      * @param pontos do poligono
      */
     public Poligono(Ponto[] pontos)
@@ -76,7 +78,7 @@ public class Poligono {
     {
         if(pontos.length < 3) // verifica se existem pontos suficientes para fazer o poligono
         {
-            System.out.println("Poligono:vi");
+            System.out.println("FigurasGeo.Poligono:vi");
             System.exit(0);
         }
         tresPontosColineares(pontos);
@@ -86,7 +88,7 @@ public class Poligono {
             {
                 if(arestas[i].cruzamento(arestas[j]))
                 {
-                    System.out.println("Poligono:vi");
+                    System.out.println("FigurasGeo.Poligono:vi");
                     System.exit(0);
                 }
             }
@@ -106,14 +108,14 @@ public class Poligono {
         {
             reta2 = new Reta(pontos[i - 1], pontos[i]);
             if (reta1.sameSlope(reta2)) {
-                System.out.println("Poligono:vi");
+                System.out.println("FigurasGeo.Poligono:vi");
                 System.exit(0);
             } else
                 reta1 = reta2;
         }
         if(reta1.sameSlope(new Reta(pontos[pontos.length-1],pontos[0])))
         {
-            System.out.println("Poligono:vi");
+            System.out.println("FigurasGeo.Poligono:vi");
             System.exit(0);
         }
     }
@@ -167,7 +169,7 @@ public class Poligono {
      */
     @Override
     public String toString(){
-        return "Poligono de " +this.pontos.length+" vertices: " + Arrays.toString(this.pontos);
+        return "FigurasGeo.Poligono de " +this.pontos.length+" vertices: " + Arrays.toString(this.pontos);
     }
 
     /**

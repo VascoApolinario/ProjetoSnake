@@ -1,3 +1,7 @@
+import FigurasGeo.Poligono;
+import FigurasGeo.Ponto;
+import FigurasGeo.Segmento;
+
 import java.util.ArrayList;
 /**
  * Classe responsável em representar uma trajetoria.

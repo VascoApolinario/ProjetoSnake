@@ -1,3 +1,5 @@
+package FigurasGeo;
+
 import java.util.Objects;
 
 /**
@@ -11,7 +13,7 @@ public class Ponto {
     private double x,y;
 
     /**
-     * Construtor da classe Ponto
+     * Construtor da classe FigurasGeo.Ponto
      * @param  x coordenada x do ponto
      * @param  y coordenada y do ponto
      */
@@ -29,7 +31,7 @@ public class Ponto {
 
     public void invalidPoint()
     {
-        System.out.println("Ponto:vi");
+        System.out.println("FigurasGeo.Ponto:vi");
         System.exit(0);
     }
 

@@ -1,3 +1,6 @@
+import FigurasGeo.Ponto;
+import FigurasGeo.Quadrado;
+
 import java.util.ArrayList;
 
 public class Snake {
@@ -7,12 +10,13 @@ public class Snake {
     /**
      * Construtor
      */
-    public Snake(int headSize, int direction)
+    public Snake(int headSize, int direction, Ponto spawn)
     {
-        //this.head = new Quadrado();
+        this.head = new FigurasGeo.Quadrado(headSize);
         this.direction = direction;
-    }
 
+        head.moveCentroid((int) spawn.getX(), (int) spawn.getY());
+    }
     /**
      * Metodo que faz a cobra mover-se
      */

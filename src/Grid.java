@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+import FigurasGeo.Ponto;
+import FigurasGeo.Quadrado;
 
 public class Grid {
     private Quadrado[][] squares;
@@ -25,4 +26,7 @@ public class Grid {
             }
         }
     }
+
+    public int getHeight() {return height;}
+    public int getWidth() {return width;}
 }

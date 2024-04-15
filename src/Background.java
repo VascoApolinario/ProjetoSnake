@@ -1,3 +1,5 @@
+import FigurasGeo.Ponto;
+
 import javax.swing.*;
 import java.awt.*;
 import java.lang.reflect.Array;
@@ -10,8 +12,8 @@ public class Background {
     private Score score;
 
     public Background() {
-        this.snake = new Snake(0,0);
         this.grid = new Grid(800,600,30);
+        this.snake = new Snake(0,0, new Ponto(this.grid.getWidth()/2,this.grid.getHeight()/2));
         this.score = new Score(0);
     }
 }
