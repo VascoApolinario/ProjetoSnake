@@ -7,10 +7,10 @@ public class Snake {
     /**
      * Construtor
      */
-    public Snake()
+    public Snake(int headSize, int direction)
     {
-        //TODO
-
+        //this.head = new Quadrado();
+        this.direction = direction;
     }
 
     /**
