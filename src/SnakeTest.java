@@ -1,5 +1,3 @@
-package Tests;
-
 class SnakeTest {
 
 }
