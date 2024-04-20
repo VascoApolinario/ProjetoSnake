@@ -33,6 +33,11 @@ public class Obstacle extends Objeto {
 
     }
 
+    @Override
+    String tipo() {
+        return "";
+    }
+
     public boolean isDinamico() {
         return dinamico;
     }

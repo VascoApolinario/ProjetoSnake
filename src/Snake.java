@@ -61,6 +61,11 @@ public class Snake extends Objeto {
 
     }
 
+    @Override
+    String tipo() {
+        return "";
+    }
+
     /**
      * Metodo que faz a cobra crescer de tamanho
      */

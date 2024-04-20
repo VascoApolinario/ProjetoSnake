@@ -26,4 +26,9 @@ public class Food extends Objeto {
     void rotate(int degrees) {
 
     }
+
+    @Override
+    String tipo() {
+        return "";
+    }
 }

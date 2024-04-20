@@ -13,4 +13,5 @@ public abstract class Objeto {
     abstract void spawn(Ponto p);
     abstract void move();
     abstract void rotate(int degrees);
+    abstract String tipo();
 }
