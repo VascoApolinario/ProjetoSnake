@@ -1,4 +1,5 @@
 import FigurasGeo.Ponto;
+
 public abstract class Objeto {
 
     public final void criar(String formato, Ponto spawn) {
@@ -11,6 +12,5 @@ public abstract class Objeto {
     abstract void format(String formato);
     abstract void spawn(Ponto p);
     abstract void move();
-    abstract void rotate();
-
+    abstract void rotate(int degrees);
 }

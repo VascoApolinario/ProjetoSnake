@@ -14,8 +14,19 @@ public class Snake extends Objeto {
     {
         this.head = new FigurasGeo.Quadrado(headSize);
         this.direction = direction;
-
         head.moveCentroid((int) spawn.getX(), (int) spawn.getY());
+    }
+
+    public Quadrado getHead() {
+        return head;
+    }
+
+    public int getDirection() {
+        return direction;
+    }
+
+    public ArrayList<Quadrado> getTail() {
+        return tail;
     }
 
     @Override
@@ -46,7 +57,7 @@ public class Snake extends Objeto {
      * Metodo que faz a cobra virar de direção
      */
     @Override
-    void rotate() {
+    void rotate(int degrees) {
 
     }
 

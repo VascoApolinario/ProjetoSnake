@@ -1,6 +1,6 @@
 import FigurasGeo.Ponto;
 
-public class Food extends Objeto{
+public class Food extends Objeto {
 
     @Override
     void update() {
@@ -23,7 +23,7 @@ public class Food extends Objeto{
     }
 
     @Override
-    void rotate() {
+    void rotate(int degrees) {
 
     }
 }

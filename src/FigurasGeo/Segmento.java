@@ -27,6 +27,15 @@ public class Segmento
         this.r = new Reta(this.p1,this.p2);
     }
 
+    /**
+     * Metodo que retorna comprimento do segmento
+     * @return lenght
+     */
+    public double lenght()
+    {
+        return this.p1.dist(this.p2);
+    }
+
 
     /**
      * Metodo usado para verificar se ocorre cruzamento com o segmento that.

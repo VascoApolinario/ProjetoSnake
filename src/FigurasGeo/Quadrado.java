@@ -37,9 +37,9 @@ public class Quadrado extends Retangulo {
 
     private static Ponto[] createQuadrado(Ponto p1, Ponto p2) {
         Ponto[] vertices = new Ponto[4];
-        vertices[0] = p1;
+        vertices[0] = new Ponto(p1.getX(), p1.getY());
         vertices[1] = new Ponto(p1.getX(), p2.getY());
-        vertices[2] = p2;
+        vertices[2] = new Ponto(p2.getX(), p2.getY());
         vertices[3] = new Ponto(p2.getX(), p1.getY());
         return vertices;
     }
@@ -72,12 +72,21 @@ public class Quadrado extends Retangulo {
     }
 
     /**
+     * Metodo que devolve o tamanho do lado do quadrado
+     * @return sideLenght
+     */
+    public double sideLength()
+    {
+        return getArestas()[0].lenght();
+    }
+
+    /**
      * Metodo que cria a representação em String de um quadrado
      * @return String que representa um quadrado
      */
     @Override
     public String toString(){
-        return "FigurasGeo.Quadrado: " + Arrays.toString(super.getPontos());
+        return "Quadrado: " + Arrays.toString(super.getPontos());
     }
     /**
      * Metodo que chama o construtor da sua classe e cria uma nova instância

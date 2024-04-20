@@ -272,5 +272,8 @@ public class Poligono {
         return move(dx,dy);
     }
 
+    public Ponto getCentroide() {
+        return this.centroide;
+    }
 
 }

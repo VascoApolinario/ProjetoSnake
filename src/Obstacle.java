@@ -1,7 +1,7 @@
 import FigurasGeo.Ponto;
 
 public class Obstacle extends Objeto {
-    private boolean estado;
+    private boolean dinamico;
 
     public Obstacle(String tipo, String coordenadagrid) {
 
@@ -29,8 +29,12 @@ public class Obstacle extends Objeto {
     }
 
     @Override
-    void rotate() {
+    void rotate(int degrees) {
 
+    }
+
+    public boolean isDinamico() {
+        return dinamico;
     }
 }
 
