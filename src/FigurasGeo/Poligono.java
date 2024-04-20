@@ -1,5 +1,6 @@
 package FigurasGeo;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -272,5 +273,16 @@ public class Poligono {
         return move(dx,dy);
     }
 
+    public void draw(Graphics g) {
+        // Draw the polygon
+        int[] xPoints = new int[pontos.length];
+        int[] yPoints = new int[pontos.length];
+        for (int i = 0; i < pontos.length; i++) {
+            xPoints[i] = (int) pontos[i].getX();
+            yPoints[i] = (int) pontos[i].getY();
+        }
+        g.setColor(Color.BLACK);
+        g.drawPolygon(xPoints, yPoints, pontos.length);
+    }
 
 }

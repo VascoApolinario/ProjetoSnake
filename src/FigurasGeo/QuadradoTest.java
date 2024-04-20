@@ -37,4 +37,13 @@ class QuadradoTest {
 
     }
 
+    @Test
+    public  void testIntercept(){
+        Ponto[] pontosA = {new Ponto(1,1),new Ponto(5,1),new Ponto(5,5),new Ponto(1,5)};
+        Ponto[] pontosB = {new Ponto(4,4),new Ponto(6,2),new Ponto(8,4),new Ponto(6,6)};
+        Ponto[] pontosC = {new Ponto(4.8,5.2),new Ponto(7.2,5.2),new Ponto(7.2,2.8),new Ponto(4.8,2.8)};
+        assertFalse(new Quadrado(pontosA).polygonsIntercept(new Quadrado(pontosA)));
+        assertTrue(new Quadrado(pontosB).polygonsIntercept(new Quadrado(pontosC)));
+    }
+
 }

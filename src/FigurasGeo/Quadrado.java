@@ -12,6 +12,11 @@ import java.util.Arrays;
  * @inv os lados têm todos de ter o mesmo comprimento
  */
 public class Quadrado extends Retangulo {
+
+    private double side;
+    private Ponto topRight;
+    private Ponto downLeft;
+
     /**
      * Construtor da classe FigurasGeo.Quadrado
      * @param pontos do quadrado
@@ -19,6 +24,8 @@ public class Quadrado extends Retangulo {
     public Quadrado(Ponto[] pontos) {
         super(pontos);
         verificarInvariantes(pontos);
+        this.side = pontos[0].dist(pontos[1]);
+        setDiagonalPoints(pontos);
     }
 
     /**
@@ -52,6 +59,8 @@ public class Quadrado extends Retangulo {
     {
         super(s);
         verificarInvariantes(super.getPontos());
+        this.side = super.getPontos()[0].dist(super.getPontos()[1]);
+        setDiagonalPoints(super.getPontos());
     }
 
     /**
@@ -69,6 +78,23 @@ public class Quadrado extends Retangulo {
                 System.exit(0);
             }
         }
+    }
+
+    private void setDiagonalPoints(Ponto[] pontos)
+    {
+        double minX = pontos[0].getX();
+        double minY = pontos[0].getY();
+        double maxX = pontos[0].getX();
+        double maxY = pontos[0].getY();
+        for (int i = 1; i < pontos.length;i++)
+        {
+           maxX = Math.max(maxX, pontos[i].getX());
+           minX = Math.min(minX, pontos[i].getX());
+           maxY = Math.max(maxY, pontos[i].getY());
+           minY = Math.min(minY, pontos[i].getY());
+        }
+        this.downLeft = new Ponto(minX, minY);
+        this.topRight = new Ponto(maxX, maxY);
     }
 
     /**
@@ -89,10 +115,16 @@ public class Quadrado extends Retangulo {
         return new Quadrado(pontos);
     }
 
+    public double getSide() {
+            return side;
+    }
+
     public boolean isInside(Quadrado q)
     {
+        if(this.polygonsIntercept(q))
+            return false;
 
-        return false;
+        return this.downLeft.getX() <= q.downLeft.getX() && this.topRight.getX() >= q.topRight.getX() && this.downLeft.getY() <= q.downLeft.getY() && this.topRight.getY() >= q.topRight.getY();
     }
 
     /*
