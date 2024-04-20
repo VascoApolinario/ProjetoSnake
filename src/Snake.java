@@ -3,7 +3,7 @@ import FigurasGeo.Quadrado;
 
 import java.util.ArrayList;
 
-public class Snake {
+public class Snake extends Objeto {
     private Quadrado head;
     private ArrayList<Quadrado> tail;
     private int direction;
@@ -17,9 +17,26 @@ public class Snake {
 
         head.moveCentroid((int) spawn.getX(), (int) spawn.getY());
     }
+
+    @Override
+    void update() {
+
+    }
+
+    @Override
+    void format(String formato) {
+
+    }
+
+    @Override
+    void spawn(Ponto p) {
+
+    }
+
     /**
      * Metodo que faz a cobra mover-se
      */
+    @Override
     public void move()
     {
         //TODO
@@ -28,9 +45,9 @@ public class Snake {
     /**
      * Metodo que faz a cobra virar de direção
      */
-    public void turn(int degrees)
-    {
-        //TODO
+    @Override
+    void rotate() {
+
     }
 
     /**
