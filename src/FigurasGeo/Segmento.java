@@ -36,6 +36,17 @@ public class Segmento
         return this.p1.dist(this.p2);
     }
 
+    public Ponto getP1() {
+        return p1;
+    }
+
+    public Ponto getP2() {
+        return p2;
+    }
+
+    public Reta getR() {
+        return r;
+    }
 
     /**
      * Metodo usado para verificar se ocorre cruzamento com o segmento that.
