@@ -18,6 +18,8 @@ public class Cell extends Quadrado {
         return content;
     }
 
+    public void setContent(Objeto content) {}
+
     public void setEmpty(boolean empty) {
         this.empty = empty;
     }

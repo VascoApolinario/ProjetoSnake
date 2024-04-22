@@ -31,6 +31,7 @@ public class Snake extends Objeto {
 
     @Override
     void update() {
+        tail.getLast();
 
     }
 

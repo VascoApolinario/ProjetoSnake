@@ -1,7 +1,8 @@
 import FigurasGeo.Ponto;
 
 public class Grid {
-    private Cell[][] squares;
+    private Cell[][] cells;
+
     private final int width;
     private final int height;
     private final int squaresize;
@@ -14,18 +15,20 @@ public class Grid {
         int rows = height / squaresize;
         int cols = width / squaresize;
 
-        squares = new Cell[rows][cols];
+        cells = new Cell[rows][cols];
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 Ponto bottomLeft = new Ponto(j * squaresize, (i + 1) * squaresize);
                 Ponto topRight = new Ponto((j + 1) * squaresize, i * squaresize);
 
-                //squares[i][j] = new Cell(bottomLeft, topRight);
+                cells[i][j] = new Cell(bottomLeft, topRight);
             }
         }
     }
 
     public int getHeight() {return height;}
     public int getWidth() {return width;}
+    public Cell[][] getCells() {return cells;}
+    public int getSquaresize() {return squaresize;}
 }

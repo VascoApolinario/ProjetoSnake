@@ -107,7 +107,7 @@ class SnakeTest {
     }
 
     @Test
-    void eat(Food f)
+    void eatTest()
     {
 
     }
