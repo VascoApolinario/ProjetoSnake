@@ -114,12 +114,29 @@ class SnakeTest {
 
     @Test
     void collisionWithTailTest(){ //para testar isto temos que ter uma cobra com tail > 5 (i guess) e faze-la andar num caminho que se suicide
-
+        Snake snake = new Snake(2, 0, new Ponto(4,2));
+        snake.grow();
+        snake.grow();
+        snake.move();
+        snake.grow();
+        snake.move();
+        snake.rotate(90);
+        snake.grow();
+        snake.move();
+        snake.rotate(180);
+        snake.move();
+        snake.rotate(270);
+        snake.move();
+        assertTrue(snake.collisionWithTail());
     }
 
     @Test
     void collisionWithObstacleTest(){
-
+        Snake snake = new Snake(2, 0, new Ponto(4,2));
+        Obstacle obstacle = new Obstacle("Triangulo","6 1 10 1 8 4");
+        assertFalse(snake.collisionWithObstacle(obstacle));
+        snake.move();
+        assertTrue(snake.collisionWithObstacle(obstacle));
     }
 
 
