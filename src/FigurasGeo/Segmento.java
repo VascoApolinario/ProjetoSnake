@@ -19,7 +19,7 @@ public class Segmento
     {
         if(Math.abs(p1.getX() - p2.getX()) < Math.pow(10,-9)  && Math.abs(p1.getY() - p2.getY()) < Math.pow(10,-9))
         {
-            System.out.println("FigurasGeo.Segmento:vi");
+            System.out.println("Segmento:vi");
             System.exit(0);
         }
         this.p1 = new Ponto(p1.getX(),p1.getY());

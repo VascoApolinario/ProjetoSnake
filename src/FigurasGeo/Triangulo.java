@@ -38,7 +38,7 @@ public class Triangulo extends Poligono {
     {
         if(pontos.length != 3)
         {
-            System.out.println("FigurasGeo.Triangulo:vi");
+            System.out.println("Triangulo:vi");
             System.exit(0);
         }
     }
@@ -49,7 +49,7 @@ public class Triangulo extends Poligono {
      */
     @Override
     public String toString(){
-        return "FigurasGeo.Triangulo: " + Arrays.toString(super.getPontos());
+        return "Triangulo: " + Arrays.toString(super.getPontos());
     }
     /**
      * Metodo que chama o construtor da sua classe e cria uma nova instância

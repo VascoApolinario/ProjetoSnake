@@ -16,8 +16,11 @@ class SnakeTest {
     void moveTest() {
         Snake snake = new Snake(20, 0, new Ponto(200,200));
         snake.grow();
+        snake.move();
         snake.grow();
+        snake.move();
         snake.grow();
+        snake.move();
         ArrayList<Ponto> positions = new ArrayList<>();
         positions.add(snake.getHead().getCentroide());
         for (Quadrado q : snake.getTail()) {
@@ -31,7 +34,6 @@ class SnakeTest {
         for (Quadrado q : snake.getTail()) {
             Newpositions.add(q.getCentroide());
         }
-        // CODIGO ATRASADO MENTAL
         ArrayList<Boolean> check = new ArrayList<>();
         int i = 0;
         for (Ponto p : positions) {
@@ -46,7 +48,7 @@ class SnakeTest {
 
     @Test
     void rotateTest() {
-        Snake snake = new Snake(2, 0, new Ponto(2,5));
+        Snake snake = new Snake(2, 0, new Ponto(2,5));  //a cobra n  pode virar se receber uma direção que faz 180ª com a direção atual (so pode 90º)
         snake.rotate(180);
         assertEquals(0,snake.getDirection());
 
@@ -105,13 +107,13 @@ class SnakeTest {
     }
 
     @Test
-    void eat()
+    void eat(Food f)
     {
 
     }
 
     @Test
-    void collisionWithTailTest(){
+    void collisionWithTailTest(){ //para testar isto temos que ter uma cobra com tail > 5 (i guess) e faze-la andar num caminho que se suicide
 
     }
 
@@ -120,9 +122,6 @@ class SnakeTest {
 
     }
 
-    @Test
-    void checkCollisionsTest(){
 
-    }
 }
 

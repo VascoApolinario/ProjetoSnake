@@ -38,7 +38,7 @@ public class Retangulo extends Poligono {
     {
         if(pontos.length != 4)
         {
-            System.out.println("FigurasGeo.Retangulo:vi");
+            System.out.println("Retangulo:vi");
             System.exit(0);
         }
         double angle1;
@@ -51,7 +51,7 @@ public class Retangulo extends Poligono {
             angleBetweenLines = Math.toDegrees(Math.abs(angle1 - angle2))%180;
             if(Math.abs(angleBetweenLines - 90) > 1e-9 )
             {
-                System.out.println("FigurasGeo.Retangulo:vi");
+                System.out.println("Retangulo:vi");
                 System.exit(0);
             }
             angle1 = angle2;
@@ -60,7 +60,7 @@ public class Retangulo extends Poligono {
         angleBetweenLines = Math.toDegrees(Math.abs(angle1-angle2))%180;
         if(Math.abs(angleBetweenLines - 90) > 1e-9 )
         {
-            System.out.println("FigurasGeo.Retangulo:vi");
+            System.out.println("Retangulo:vi");
             System.exit(0);
         }
     }

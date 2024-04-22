@@ -4,7 +4,7 @@ import FigurasGeo.Quadrado;
 public class Cell extends Quadrado {
 
     private boolean empty;
-    private Objeto content;
+    private Objeto content;     //se o conteudo dentro da celula for Objeto printa O
     public Cell(Ponto p1, Ponto p2) {
         super(p1,p2);
         empty = true;

@@ -20,7 +20,7 @@ public class Reta {
     {
         if(Math.abs(p1.getX() - p2.getX()) < Math.pow(10,-9)  && Math.abs(p1.getY() - p2.getY()) < Math.pow(10,-9))
         {
-            System.out.println("FigurasGeo.Reta:vi");
+            System.out.println("Reta:vi");
             System.exit(0);
         }
         if(p1.getX() == p2.getX())

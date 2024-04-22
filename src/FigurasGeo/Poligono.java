@@ -169,7 +169,7 @@ public class Poligono {
      */
     @Override
     public String toString(){
-        return "FigurasGeo.Poligono de " +this.pontos.length+" vertices: " + Arrays.toString(this.pontos);
+        return "Poligono de " +this.pontos.length+" vertices: " + Arrays.toString(this.pontos);
     }
 
     /**

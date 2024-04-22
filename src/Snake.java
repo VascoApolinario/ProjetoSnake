@@ -76,10 +76,11 @@ public class Snake extends Objeto {
 
     /**
      * Metodo que verifica se a cobra consumiu comida. Caso tenha comido é chamado o método grow.
+     * @param f -> Comida a ser comida
      */
-    public void eat()
+    public void eat(Food f)
     {
-        //TODO
+             //TODO
     }
 
     /**
