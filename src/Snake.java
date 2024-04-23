@@ -7,6 +7,7 @@ public class Snake extends Objeto {
     private Quadrado head;
     private ArrayList<Quadrado> tail;
     private int direction;
+    boolean ate;
     /**
      * Construtor
      */
@@ -15,6 +16,7 @@ public class Snake extends Objeto {
         this.head = new FigurasGeo.Quadrado(headSize);
         this.direction = direction;
         head.moveCentroid((int) spawn.getX(), (int) spawn.getY());
+        this.ate = false;
     }
 
     public Quadrado getHead() {
@@ -51,7 +53,19 @@ public class Snake extends Objeto {
     @Override
     public void move()
     {
+        
+        /* o movimento da snake vai ser baseado em mover a cabeça para a direção correta (dependendo da direção)
+        * ter atenção que a snake não se pode mexer 180 graus, só 90º de cada vez, e seguida
+        * remover o primeiro elemento da cauda (o que está mais longe da cabeça)
+        * e adicionar um elemento na posição antiga da cabeça,
+        * */
         //TODO
+        if(ate)
+        {
+            grow();
+            //fazer o comportamento para quando ela comeu,
+            this.ate = false;
+        }
     }
 
     /**
@@ -76,7 +90,7 @@ public class Snake extends Objeto {
     }
 
     /**
-     * Metodo que verifica se a cobra consumiu comida. Caso tenha comido é chamado o método grow.
+     * Metodo que verifica se a cobra consumiu comida. Caso tenha comido ate = 1;
      * @param f -> Comida a ser comida
      */
     public void eat(Food f)

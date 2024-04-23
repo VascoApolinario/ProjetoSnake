@@ -94,7 +94,7 @@ class SnakeTest {
             snake.grow();
             assertTrue(snake.getTail().size() == i+1);
             snake.move();
-            int headSize = (int) snake.getHead().sideLength();
+            int headSize = (int) snake.getHead().getSide();
             int headCentroidX = (int) snake.getHead().getCentroide().getX();
             for(int j = 0; j < snake.getTail().size(); j++)
             {

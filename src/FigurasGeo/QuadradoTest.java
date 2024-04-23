@@ -37,4 +37,25 @@ class QuadradoTest {
 
     }
 
+    @Test
+    public void isInsideTest()
+    {
+        Ponto[] pontosA = {new Ponto(2,1),new Ponto(6,1),new Ponto(6,5),new Ponto(1,5)};
+        Ponto[] pontosB = {new Ponto(3,2),new Ponto(5,2),new Ponto(5,4),new Ponto(3,4)};
+        Ponto[] pontosC = {new Ponto(5,2),new Ponto(7,2),new Ponto(7,4),new Ponto(5,4)};
+        Ponto[] pontosD = {new Ponto(4,0),new Ponto(7,3),new Ponto(4,6),new Ponto(1,3)};
+        Circulo c1 = new Circulo(new Ponto(4,3),1);
+        Circulo c2 = new Circulo(new Ponto(4,3),2);
+        assertTrue(new Quadrado(pontosA).isInside(new Quadrado(pontosB)));
+        assertTrue(new Quadrado(pontosA).isInside(c1));
+        assertTrue(new Quadrado(pontosA).isInside(c2));
+        assertFalse(new Quadrado(pontosA).isInside(new Quadrado(pontosC)));
+
+        assertTrue(new Quadrado(pontosD).isInside(new Quadrado(pontosB)));
+        assertTrue(new Quadrado(pontosD).isInside(c1));
+        assertTrue(new Quadrado(pontosD).isInside(c2));
+        assertFalse(new Quadrado(pontosD).isInside(new Quadrado(pontosA)));
+
+    }
+
 }
