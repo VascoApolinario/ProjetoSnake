@@ -105,7 +105,7 @@ public class Quadrado extends Retangulo {
      */
     @Override
     public String toString(){
-        return "FigurasGeo.Quadrado: " + Arrays.toString(super.getPontos());
+        return "Quadrado: " + Arrays.toString(super.getPontos());
     }
     /**
      * Metodo que chama o construtor da sua classe e cria uma nova instância

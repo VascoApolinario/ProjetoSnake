@@ -1,10 +1,27 @@
-import FigurasGeo.Ponto;
 
-public class Food extends Objeto {
+import FigurasGeo.*;
 
-    public Food()
+public class Food  extends Objeto  {
+
+    private boolean Circulo;
+    private Circulo c;
+    private Quadrado q;
+
+
+    public Food(String tipo, Ponto coordenadas)
     {
+        this.format(tipo);
+        spawn(coordenadas);
+        if (Circulo == false) {q = new Quadrado(tipo);}
+        else {
+            c = new Circulo(tipo);
+        }
+    }
 
+    @Override
+    void format(String formato) {
+        if (formato.equals("Quadrado")) { Circulo = false; }
+        else {Circulo = true; }
     }
 
     @Override
@@ -13,13 +30,7 @@ public class Food extends Objeto {
     }
 
     @Override
-    void format(String formato) {
-
-    }
-
-    @Override
     void spawn(Ponto p) {
-
     }
 
     @Override

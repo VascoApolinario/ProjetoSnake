@@ -133,7 +133,7 @@ class SnakeTest {
     @Test
     void collisionWithObstacleTest(){
         Snake snake = new Snake(2, 0, new Ponto(4,2));
-        Obstacle obstacle = new Obstacle("Triangulo","6 1 10 1 8 4");
+        Obstacle obstacle = new Obstacle("Triangulo 6 1 10 1 8 4",false,0);
         assertFalse(snake.collisionWithObstacle(obstacle));
         snake.move();
         assertTrue(snake.collisionWithObstacle(obstacle));
