@@ -36,6 +36,8 @@ public class Quadrado extends Retangulo {
     public Quadrado(Ponto p1, Ponto p2) {
         this(createQuadrado(p1,p2));
         verificarInvariantes(super.getPontos());
+        this.topRight = new Ponto(p2.getX(), p2.getY());
+        this.downLeft = new Ponto(p1.getX(), p1.getY());
     }
 
     public Quadrado(int size) {
@@ -44,9 +46,9 @@ public class Quadrado extends Retangulo {
 
     private static Ponto[] createQuadrado(Ponto p1, Ponto p2) {
         Ponto[] vertices = new Ponto[4];
-        vertices[0] = p1;
+        vertices[0] = new Ponto(p1.getX(), p1.getY());;
         vertices[1] = new Ponto(p1.getX(), p2.getY());
-        vertices[2] = p2;
+        vertices[2] =  new Ponto(p2.getX(), p2.getY());
         vertices[3] = new Ponto(p2.getX(), p1.getY());
         return vertices;
     }
@@ -117,6 +119,14 @@ public class Quadrado extends Retangulo {
 
     public double getSide() {
         return side;
+    }
+
+    public Ponto getDownLeft() {
+        return downLeft;
+    }
+
+    public Ponto getTopRight() {
+        return topRight;
     }
 
     public boolean isInside(Quadrado q)

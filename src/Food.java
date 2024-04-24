@@ -2,6 +2,11 @@ import FigurasGeo.Ponto;
 
 public class Food extends Objeto {
 
+    public Food()
+    {
+
+    }
+
     @Override
     void update() {
 
