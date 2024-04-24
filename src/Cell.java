@@ -20,7 +20,10 @@ public class Cell extends Quadrado {
         return content;
     }
 
-    public void setContent(Objeto content) {}
+    public void setContent(Objeto content) {
+        this.content = content;
+        this.empty = false;
+    }
 
     public void setEmpty(boolean empty) {
         this.empty = empty;
