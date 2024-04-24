@@ -74,5 +74,9 @@ public class Obstacle extends Objeto {
     public Poligono getPoligono() {
         return poligono;
     }
+
+    public int getDegree() {
+        return degree;
+    }
 }
 
