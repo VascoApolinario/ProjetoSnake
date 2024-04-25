@@ -4,7 +4,7 @@
  * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
  * @version 1, 22/04/2024
  */
-public class Player {
+public class Player implements Comparable<Player> {
     private int score;
     private final String nome;
     private int bestScore;
@@ -66,5 +66,8 @@ public class Player {
     }
 
 
-
+    @Override
+    public int compareTo(Player o) {
+        return Integer.compare(o.bestScore, this.bestScore);
+    }
 }
