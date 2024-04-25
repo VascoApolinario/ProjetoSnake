@@ -23,7 +23,7 @@ class SnakeTest {
         snake.move();
         ArrayList<Ponto> positions = new ArrayList<>();
         positions.add(snake.getHead().getCentroide());
-        for (Quadrado q : snake.getTail()) {
+        for (Quadrado q : snake.getTail().reversed()) {
             positions.add(q.getCentroide());
         }
 
@@ -31,7 +31,7 @@ class SnakeTest {
 
         ArrayList<Ponto> Newpositions = new ArrayList<>();
         Newpositions.add(snake.getHead().getCentroide());
-        for (Quadrado q : snake.getTail()) {
+        for (Quadrado q : snake.getTail().reversed()) {
             Newpositions.add(q.getCentroide());
         }
         ArrayList<Boolean> check = new ArrayList<>();
@@ -92,14 +92,14 @@ class SnakeTest {
         for (int i = 0; i < 6;i++)
         {
             snake.grow();
-            assertTrue(snake.getTail().size() == i+1);
             snake.move();
+            assertTrue(snake.getTail().size() == i+1);
             int headSize = (int) snake.getHead().getSide();
             int headCentroidX = (int) snake.getHead().getCentroide().getX();
             for(int j = 0; j < snake.getTail().size(); j++)
             {
-                int minX = headCentroidX - headSize/2 - headSize*(j+1);
-                int maxX = headCentroidX - headSize/2 - headSize*(j);
+                int minX = 1 + headSize*(j);
+                int maxX = 1 + headSize*(j+1);
                 String expectedString = String.format("Quadrado: [(%d,4), (%d,4), (%d,6), (%d,6)]",minX,maxX,maxX,minX);
                 assertEquals(expectedString,snake.getTail().get(j).toString());
             }

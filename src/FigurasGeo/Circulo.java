@@ -4,9 +4,9 @@ import javax.swing.text.Segment;
 
 public class Circulo {
     private Ponto center;
-    private int radius;
+    private double radius;
 
-    public Circulo(Ponto center, int radius) {
+    public Circulo(Ponto center, double radius) {
         this.center = new Ponto(center.getX(), center.getY());
         this.radius = radius;
     }
@@ -19,7 +19,7 @@ public class Circulo {
         this.center = center;
     }
 
-    public int getRadius() {
+    public double getRadius() {
         return radius;
     }
 
