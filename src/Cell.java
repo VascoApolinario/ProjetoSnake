@@ -5,7 +5,7 @@ public class Cell extends Quadrado {
 
     private boolean empty;
 
-    private Objeto content;     //se o conteudo dentro da celula for Objeto printa O
+8j    private Objeto content;     //se o conteudo dentro da celula for Objeto printa
 
     public Cell(Ponto p1, Ponto p2) {
         super(p1,p2);
