@@ -21,6 +21,5 @@ class FoodTest {
         food.consumir();
         assertEquals(Integer.MAX_VALUE,player.getScore());
 
-
     }
 }
