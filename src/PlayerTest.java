@@ -1,9 +1,7 @@
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
-
     @Test
     void getName() {
         Player p1 = new Player("Jogador1", 150);
@@ -16,7 +14,6 @@ class PlayerTest {
         p1.setBestScore(151);
         assertEquals(p1.getBestScore(),151);
     }
-
     @Test
     void getBestScore() {
         Player p1 = new Player("Jogador1", 150);

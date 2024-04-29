@@ -1,5 +1,5 @@
-import FigurasGeo.Ponto;
-import FigurasGeo.Quadrado;
+
+import FigurasGeo.*;
 
 import java.util.ArrayList;
 
@@ -13,9 +13,10 @@ public class Snake extends Objeto {
      */
     public Snake(int headSize, int direction, Ponto spawn)
     {
-        this.head = new FigurasGeo.Quadrado(headSize);
+        Quadrado cabeca = new FigurasGeo.Quadrado(headSize);
         this.direction = direction;
-        head.moveCentroid((int) spawn.getX(), (int) spawn.getY());
+        this.head = (Quadrado) cabeca.moveCentroid((int) spawn.getX(), (int) spawn.getY());
+        this.tail = new ArrayList<>();
         this.ate = false;
     }
 
@@ -57,23 +58,34 @@ public class Snake extends Objeto {
         double y1 = this.head.getDownLeft().getY();
         double x2 = this.head.getTopRight().getX();
         double y2 = this.head.getTopRight().getY();
+        if(direction == 0)
+            this.head = new Quadrado(new Ponto(x1 + getHead().getSide(),y1),new Ponto(x2+ getHead().getSide(),y2));
+        else if (direction == 90) {
+            this.head = new Quadrado(new Ponto(x1,y1+getHead().getSide()),new Ponto(x2,y2+getHead().getSide()));
+        }
+        else if (direction == 180) {
+            this.head = new Quadrado(new Ponto(x1 - getHead().getSide(),y1),new Ponto(x2 - getHead().getSide(),y2));
+        }
+        else
+        {
+            this.head = new Quadrado(new Ponto(x1,y1-getHead().getSide()),new Ponto(x2,y2-getHead().getSide()));
+        }
+        /*
         switch (direction)
         {
-            case 0: this.head = new Quadrado(new Ponto(x1+ getHead().getSide(),y1),new Ponto(x2+ getHead().getSide(),y2));
+            case 0: this.head = new Quadrado(new Ponto(x1 + getHead().getSide(),y1),new Ponto(x2+ getHead().getSide(),y2));
             case 90: this.head = new Quadrado(new Ponto(x1,y1+getHead().getSide()),new Ponto(x2,y2+getHead().getSide()));
             case 180: this.head = new Quadrado(new Ponto(x1 - getHead().getSide(),y1),new Ponto(x2 - getHead().getSide(),y2));
             case 270: this.head = new Quadrado(new Ponto(x1,y1-getHead().getSide()),new Ponto(x2,y2-getHead().getSide()));
-        }
-        if(!tail.isEmpty())
+        }*/
+
+        if(!ate)
         {
-            if(!ate)
-            {
-                tail.removeFirst();
-            }
-            else
-                this.ate = false;
-            tail.add(new Quadrado(new Ponto(x1,y1),new Ponto(x2,y2)));
+            this.tail.removeFirst();
         }
+        else
+            this.ate = false;
+        this.tail.add(new Quadrado(new Ponto(x1,y1),new Ponto(x2,y2)));
         /* o movimento da snake vai ser baseado em mover a cabeça para a direção correta (dependendo da direção)
         * ter atenção que a snake não se pode mexer 180 graus, só 90º de cada vez, e seguida
         * remover o primeiro elemento da cauda (o que está mais longe da cabeça)
@@ -87,7 +99,7 @@ public class Snake extends Objeto {
      */
     @Override
     void rotate(int degrees) {
-        if(Math.abs(this.direction - degrees)==90)
+        if(Math.abs(this.direction% 180 - degrees %180)==90)
             this.direction = degrees;
     }
 
@@ -121,7 +133,12 @@ public class Snake extends Objeto {
      */
     public boolean collisionWithTail()
     {
-        //TODO
+        for(Quadrado t : this.tail)
+        {
+            if (this.head.isInside(t))
+                return true;
+        }
+
         return false;
     }
 
