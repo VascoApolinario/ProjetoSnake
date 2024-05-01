@@ -137,7 +137,6 @@ public class Quadrado extends Retangulo {
         return this.downLeft.getX() <= q.downLeft.getX() && this.topRight.getX() >= q.topRight.getX() && this.downLeft.getY() <= q.downLeft.getY() && this.topRight.getY() >= q.topRight.getY();
     }
 
-
     public boolean isInside(Circulo c)
     {
         double leftLimit = c.getCenter().getX() - c.getRadius();

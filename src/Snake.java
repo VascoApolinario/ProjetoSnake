@@ -39,14 +39,14 @@ public class Snake extends Objeto {
     }
 
     @Override
-    void format(String formato) {
-
+    Poligono format(String formato) {
+        return null;
     }
-
+    /*
     @Override
     void spawn(Ponto p) {
 
-    }
+    }*/
 
     /**
      * Metodo que faz a cobra mover-se
@@ -70,14 +70,6 @@ public class Snake extends Objeto {
         {
             this.head = new Quadrado(new Ponto(x1,y1-getHead().getSide()),new Ponto(x2,y2-getHead().getSide()));
         }
-        /*
-        switch (direction)
-        {
-            case 0: this.head = new Quadrado(new Ponto(x1 + getHead().getSide(),y1),new Ponto(x2+ getHead().getSide(),y2));
-            case 90: this.head = new Quadrado(new Ponto(x1,y1+getHead().getSide()),new Ponto(x2,y2+getHead().getSide()));
-            case 180: this.head = new Quadrado(new Ponto(x1 - getHead().getSide(),y1),new Ponto(x2 - getHead().getSide(),y2));
-            case 270: this.head = new Quadrado(new Ponto(x1,y1-getHead().getSide()),new Ponto(x2,y2-getHead().getSide()));
-        }*/
 
         if(!ate)
         {
@@ -156,9 +148,15 @@ public class Snake extends Objeto {
     /**
      * Metodo que verifica todas as colisões.
      */
-    public void checkCollisions()
+    public boolean checkCollisions(Grid currentGameGrid)
     {
-        //TODO
+        for(Quadrado t : this.tail)
+        {
+            if (this.head.isInside(t))
+                return true;
+
+        }
+        return false;
     }
 
     /**

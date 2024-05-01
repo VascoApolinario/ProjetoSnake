@@ -8,14 +8,15 @@ public class Obstacle extends Objeto {
     private int degree;
 
     public Obstacle(String formato, boolean dinamico, int degree) {
-        this.format(formato);
+        this.poligono = this.format(formato);
         this.dinamico = dinamico;
         this.degree = degree;
     }
 
     public Obstacle(String formato,Ponto coordenadas, boolean dinamico, int degree) {
         this(formato,dinamico,degree);
-        spawn(coordenadas);
+        this.poligono.moveCentroid((int)coordenadas.getX(),(int)coordenadas.getY());
+        //spawn(coordenadas);
     }
 
     @Override
@@ -26,7 +27,7 @@ public class Obstacle extends Objeto {
     }
 
     @Override
-    void format(String formato) {
+    Poligono format(String formato) {
         String[] aos = formato.split("", 2);
         Class<?>  cl = null;
         try {
@@ -41,16 +42,17 @@ public class Obstacle extends Objeto {
             throw new RuntimeException(e);
         }
         try {
-            Poligono p = (Poligono) constructor.newInstance(aos[1]);
+            return (Poligono) constructor.newInstance(aos[1]);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
-    }
 
+    }
+    /*
     @Override
     void spawn(Ponto p) {
         this.poligono.moveCentroid((int)p.getX(),(int)p.getY());
-    }
+    }*/
 
     @Override
     void move() {
@@ -59,7 +61,8 @@ public class Obstacle extends Objeto {
 
     @Override
     void rotate(int degrees) {
-        this.poligono.rotate(degrees);
+        if(dinamico)
+            this.poligono.rotate(degrees);
     }
 
     @Override

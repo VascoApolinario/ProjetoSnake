@@ -17,6 +17,16 @@ class PoligonoTest {
         assertFalse(new Poligono(pontosA).polygonsIntercept(new Poligono(pontosB)));
         assertTrue(new Poligono(pontosA).polygonsIntercept(new Poligono(pontosC)));
         assertTrue(new Poligono(pontosD).polygonsIntercept(new Poligono(pontosE)));
+        /*
+        Ponto[] pontosF = {new Ponto(0,0),new Ponto(2,0),new Ponto(0,2)};
+        Ponto[] pontosG = {new Ponto(1,0),new Ponto(2,0),new Ponto(2,1),new Ponto(1,1)};
+        Ponto[] pontosH = {new Ponto(0,0),new Ponto(1,0),new Ponto(1,1),new Ponto(0,1)};
+        Ponto[] pontosI = {new Ponto(0,0),new Ponto(2,0),new Ponto(2,2),new Ponto(0,2)};
+        assertTrue(new Poligono(pontosF).polygonsIntercept(new Poligono(pontosG)));
+        assertTrue(new Poligono(pontosF).polygonsIntercept(new Poligono(pontosH)));
+        assertTrue(new Poligono(pontosF).polygonsIntercept(new Poligono(pontosI)));
+         */
+
     }
 
     @Test

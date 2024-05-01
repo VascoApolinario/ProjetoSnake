@@ -12,6 +12,11 @@ public class Cell extends Quadrado {
         empty = true;
     }
 
+    public void updateCell(boolean empty,Objeto cont) {
+        this.setEmpty(empty);
+        this.setContent(cont);
+    }
+
     public boolean isEmpty() {
         return empty;
     }

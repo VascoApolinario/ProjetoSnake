@@ -1,6 +1,6 @@
 
 /**
- * Classe responsável para representar um jogador
+ * Classe responsável por representar um jogador
  * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
  * @version 1, 22/04/2024
  */

@@ -15,10 +15,10 @@ class FoodTest {
         Obstacle obstacle7 = new Obstacle("Quadrado 2 2 3 2 3 3 2 3",false,0);
         Player player = new Player("jogador");
         CircleFood food = new CircleFood(1.5,1.5,0.5);
-        food.consumir();
+        food.consumir(grid);
         assertEquals("(2.5,1.5)",food.getCirculo().getCenter());
         Obstacle obstacle8 = new Obstacle("Quadrado 1 1 2 1 2 2 1 2",false,0);
-        food.consumir();
+        food.consumir(grid);
         assertEquals(Integer.MAX_VALUE,player.getScore());
 
     }
