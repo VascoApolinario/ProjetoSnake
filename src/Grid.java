@@ -31,4 +31,13 @@ public class Grid {
     public int getWidth() {return width;}
     public Cell[][] getCells() {return cells;}
     public int getSquaresize() {return squaresize;}
+
+    public Cell find(Ponto p) {
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                //if ()
+            }
+        }
+        return null;
+    }
 }

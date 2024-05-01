@@ -83,7 +83,7 @@ public class Snake extends Objeto {
         * remover o primeiro elemento da cauda (o que está mais longe da cabeça)
         * e adicionar um elemento na posição antiga da cabeça,
         * */
-        //TODO
+
     }
 
     /**
@@ -106,17 +106,16 @@ public class Snake extends Objeto {
     public void grow()
     {
         this.ate = true;
-        //TODO
     }
 
     /**
      * Metodo que verifica se a cobra consumiu comida. Caso tenha comido ate = 1;
      * @param f -> Comida a ser comida
      */
-    public void eat(Food f)
+    public int eat(Food f)
     {
 
-             //TODO
+        return 1;     //TODO
     }
 
     /**
@@ -154,7 +153,6 @@ public class Snake extends Objeto {
         {
             if (this.head.isInside(t))
                 return true;
-
         }
         return false;
     }
