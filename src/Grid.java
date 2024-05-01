@@ -19,8 +19,8 @@ public class Grid {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                Ponto bottomLeft = new Ponto(j * squaresize, (i + 1) * squaresize);
-                Ponto topRight = new Ponto((j + 1) * squaresize, i * squaresize);
+                Ponto bottomLeft = new Ponto(j * squaresize, i * squaresize);
+                Ponto topRight = new Ponto((j + 1) * squaresize, (i+1) * squaresize);
 
                 cells[i][j] = new Cell(bottomLeft, topRight);
             }

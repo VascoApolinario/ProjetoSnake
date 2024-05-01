@@ -15,7 +15,15 @@ public class Snake extends Objeto {
     {
         Quadrado cabeca = new FigurasGeo.Quadrado(headSize);
         this.direction = direction;
-        this.head = (Quadrado) cabeca.moveCentroid((int) spawn.getX(), (int) spawn.getY());
+        this.head = (Quadrado) cabeca.moveCentroid((int)spawn.getX(),(int)spawn.getY());
+        this.tail = new ArrayList<>();
+        this.ate = false;
+    }
+
+    public Snake(int headSize, int direction)
+    {
+        this.head = new FigurasGeo.Quadrado(headSize);
+        this.direction = direction;
         this.tail = new ArrayList<>();
         this.ate = false;
     }
@@ -34,7 +42,7 @@ public class Snake extends Objeto {
 
     @Override
     void update() {
-        tail.getLast();
+       this.move();
 
     }
 
@@ -71,7 +79,7 @@ public class Snake extends Objeto {
             this.head = new Quadrado(new Ponto(x1,y1-getHead().getSide()),new Ponto(x2,y2-getHead().getSide()));
         }
 
-        if(!ate)
+        if(!ate && !tail.isEmpty())
         {
             this.tail.removeFirst();
         }

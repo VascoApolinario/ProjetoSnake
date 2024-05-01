@@ -9,7 +9,10 @@ public interface IGraficos {
 
     void drawPanel(int width, int height, Grid grid);
     void createFrame();
-    void drawGameElements(Graphics g);
+    void drawGameElements();
+    void drawSnake(Snake snake);
+    void drawObstacles();
+    void drawFood();
 
 
     void drawGrid(Grid grid);
@@ -21,14 +24,10 @@ class Grafica extends JPanel implements IGraficos {
     JPanel gamepanel;
 
 
-
     public Grafica(int width, int height,Grid grid) {
         drawPanel(width,height,grid);
         createFrame();
         drawGrid(grid);
-
-
-
     }
 
 
@@ -52,7 +51,28 @@ class Grafica extends JPanel implements IGraficos {
     }
 
     @Override
-    public void drawGameElements(Graphics g) {
+    public void drawGameElements() {
+
+    }
+
+    @Override
+    public void drawSnake(Snake snake) {
+        Graphics g = gameframe.getGraphics();
+        int headSize = (int)snake.getHead().getSide();
+        int x = (int)snake.getHead().getTopRight().getX();
+        int y = (int)snake.getHead().getDownLeft().getY();
+        g.setColor(new Color(255, 0, 0, 255));
+        g.drawRect(x,y,headSize,headSize);
+
+    }
+
+    @Override
+    public void drawObstacles() {
+
+    }
+
+    @Override
+    public void drawFood() {
 
     }
 
@@ -62,7 +82,7 @@ class Grafica extends JPanel implements IGraficos {
         Graphics g = gamepanel.getGraphics();
         for (int x = 0; x < grid.getCells().length; x++) {
             for (int y = 0; y < grid.getCells()[x].length; y++) {
-                Ponto ponto = grid.getCells()[x][y].getPontos()[1];
+                Ponto ponto = grid.getCells()[x][y].getPontos()[0];
                 int size = (int) grid.getCells()[x][y].getSide();
                 g.setColor(new Color(0,0,0));
                 g.drawRect((int)ponto.getX(),(int)ponto.getY(),size,size);
@@ -89,7 +109,22 @@ class Textual implements IGraficos{
     }
 
     @Override
-    public void drawGameElements(Graphics g) {
+    public void drawGameElements() {
+
+    }
+
+    @Override
+    public void drawSnake(Snake snake) {
+
+    }
+
+    @Override
+    public void drawObstacles() {
+
+    }
+
+    @Override
+    public void drawFood() {
 
     }
 
