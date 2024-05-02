@@ -43,6 +43,11 @@ public class Snake extends Objeto {
     @Override
     void update() {
         this.move();
+        this.grow();
+        if(collisionWithTail()) {
+            System.out.println("GAME OVER!");
+            die();
+        }
     }
 
     @Override
@@ -78,13 +83,16 @@ public class Snake extends Objeto {
             this.head = new Quadrado(new Ponto(x1,y1+getHead().getSide()),new Ponto(x2,y2+getHead().getSide()));
         }
 
-        if(!ate && !tail.isEmpty())
+        if(ate)
         {
+            this.tail.add(new Quadrado(new Ponto(x1,y1),new Ponto(x2,y2)));
+            this.ate = false;
+        }
+        else if(!tail.isEmpty() && !ate)
+        {
+            this.tail.add(new Quadrado(new Ponto(x1,y1),new Ponto(x2,y2)));
             this.tail.removeFirst();
         }
-        else
-            this.ate = false;
-        this.tail.add(new Quadrado(new Ponto(x1,y1),new Ponto(x2,y2)));
         /* o movimento da snake vai ser baseado em mover a cabeça para a direção correta (dependendo da direção)
         * ter atenção que a snake não se pode mexer 180 graus, só 90º de cada vez, e seguida
         * remover o primeiro elemento da cauda (o que está mais longe da cabeça)
@@ -169,6 +177,7 @@ public class Snake extends Objeto {
      */
     public void die()
     {
+        this.tail.clear();
         //TODO
     }
 

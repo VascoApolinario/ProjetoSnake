@@ -1,4 +1,5 @@
 import FigurasGeo.Ponto;
+import FigurasGeo.Quadrado;
 
 import javax.swing.*;
 import java.awt.*;
@@ -74,8 +75,12 @@ class Grafica extends JPanel implements IGraficos {
         g.drawRect(x,y,headSize,headSize);
         g.setColor(new Color(232, 56, 77, 255));
         g.fillRect(x,y,headSize,headSize);
-
-
+        if(!snake.getTail().isEmpty()) {
+            for (Quadrado t : snake.getTail()) {
+                g.setColor(new Color(24, 197, 15, 255));
+                g.fillRect((int) t.getDownLeft().getX(), (int) t.getDownLeft().getY(), (int) t.getSide(), (int) t.getSide());
+            }
+        }
 
     }
 

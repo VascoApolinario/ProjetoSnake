@@ -123,7 +123,7 @@ class SnakeTest {
         snake.grow();
         snake.move();
         assertFalse(snake.collisionWithTail());
-        snake.rotate(90);
+        snake.rotate(270);
         snake.grow();
         snake.move();
         assertFalse(snake.collisionWithTail());
@@ -131,7 +131,7 @@ class SnakeTest {
         snake.grow();
         snake.move();
         assertFalse(snake.collisionWithTail());
-        snake.rotate(270);
+        snake.rotate(90);
         snake.grow();
         snake.move();
         assertTrue(snake.collisionWithTail());
