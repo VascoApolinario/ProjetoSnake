@@ -16,21 +16,23 @@ public class Background {
 
     public Background(int Width, int Height, String tipo) {
         this.grid = new Grid(Width,Height,40);
-        this.snake = new Snake(40,0);
+        this.snake = new Snake(40,0, randomLocation());
         this.player = new Player("PARA MUDAR DPS", 0);
-        this.tipoGraficos = new Grafica(Width,Height,this.grid);
+        this.tipoGraficos = new Grafica(Width,Height,this);
 
     }
 
-    public void updateAll(){
-        this.tipoGraficos.drawGrid(grid);
-        this.tipoGraficos.drawSnake(snake);
+    public void updateAll() {
         snake.update();
+        this.tipoGraficos.repaint();
+
+        /*
         try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            Thread.sleep(100);
+        } catch (InterruptedException ie) {
+            throw new RuntimeException(ie);
         }
+
         //repaint();
 
         /*
@@ -70,5 +72,13 @@ public class Background {
             }
         }
         return p;
+    }
+
+    public Snake getSnake() {
+        return snake;
+    }
+
+    public Grid getGrid() {
+        return grid;
     }
 }

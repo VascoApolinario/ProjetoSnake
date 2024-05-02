@@ -42,8 +42,7 @@ public class Snake extends Objeto {
 
     @Override
     void update() {
-       this.move();
-
+        this.move();
     }
 
     @Override
@@ -69,14 +68,14 @@ public class Snake extends Objeto {
         if(direction == 0)
             this.head = new Quadrado(new Ponto(x1 + getHead().getSide(),y1),new Ponto(x2+ getHead().getSide(),y2));
         else if (direction == 90) {
-            this.head = new Quadrado(new Ponto(x1,y1+getHead().getSide()),new Ponto(x2,y2+getHead().getSide()));
+            this.head = new Quadrado(new Ponto(x1,y1+-getHead().getSide()),new Ponto(x2,y2-getHead().getSide()));
         }
         else if (direction == 180) {
             this.head = new Quadrado(new Ponto(x1 - getHead().getSide(),y1),new Ponto(x2 - getHead().getSide(),y2));
         }
         else
         {
-            this.head = new Quadrado(new Ponto(x1,y1-getHead().getSide()),new Ponto(x2,y2-getHead().getSide()));
+            this.head = new Quadrado(new Ponto(x1,y1+getHead().getSide()),new Ponto(x2,y2+getHead().getSide()));
         }
 
         if(!ate && !tail.isEmpty())
