@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import java.util.ArrayList;
 
 public interface IGraficos {
 
@@ -14,7 +15,7 @@ public interface IGraficos {
     void drawGameElements();
     void drawSnake(Graphics g);
     void drawObstacles();
-    void drawFood();
+    void drawFood(Graphics g);
     void drawGrid(Graphics g);
     void repaint();
 
@@ -57,7 +58,9 @@ class Grafica extends JPanel implements IGraficos {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawGrid(g);
+        drawFood(g);
         drawSnake(g);
+
     }
 
     @Override
@@ -73,7 +76,7 @@ class Grafica extends JPanel implements IGraficos {
         int y = (int)snake.getHead().getDownLeft().getY();
         g.setColor(new Color(24, 197, 15, 255));
         g.drawRect(x,y,headSize,headSize);
-        g.setColor(new Color(232, 56, 77, 255));
+        g.setColor(new Color(20, 57, 2, 255));
         g.fillRect(x,y,headSize,headSize);
         if(!snake.getTail().isEmpty()) {
             for (Quadrado t : snake.getTail()) {
@@ -90,8 +93,26 @@ class Grafica extends JPanel implements IGraficos {
     }
 
     @Override
-    public void drawFood() {
+    public void drawFood(Graphics g) {
+        ArrayList<Food> food = bg.getComida();
+        for(Food f : food)
+        {
+            g.setColor(new Color(227, 8, 8));
+            if(f instanceof CircleFood)
+            {
+                int radius = (int) ((CircleFood) f).getCirculo().getRadius();
+                int x = (int) (((CircleFood) f).getCirculo().getCenter().getX()-radius);
+                int y = (int) (((CircleFood) f).getCirculo().getCenter().getY()-radius);
+                g.fillOval(x,y,2*radius,2*radius);
+            }
+            else if (f instanceof SquareFood) {
+                int side = (int) ((SquareFood) f).getQuadrado().getSide();
+                int x = (int) ((SquareFood) f).getQuadrado().getDownLeft().getX();
+                int y = (int) ((SquareFood) f).getQuadrado().getDownLeft().getY();
+                g.fillRect(x,y,side,side);
 
+            }
+        }
     }
 
 
@@ -142,7 +163,7 @@ class Textual implements IGraficos{
     }
 
     @Override
-    public void drawFood() {
+    public void drawFood(Graphics g) {
 
     }
 

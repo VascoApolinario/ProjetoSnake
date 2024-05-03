@@ -1,5 +1,7 @@
 import FigurasGeo.Ponto;
 
+import java.util.Random;
+
 public class Grid {
     private Cell[][] cells;
 
@@ -25,6 +27,39 @@ public class Grid {
                 cells[i][j] = new Cell(bottomLeft, topRight);
             }
         }
+    }
+
+
+    public Cell pickSpawnPoint(){
+        Random rand = new Random();
+        boolean selected = false;
+        Cell[][] cells = this.getCells();
+        Cell c = null;
+        if(cellAvaiable())
+        {
+            while(!selected){
+                int row = rand.nextInt(this.getHeight()/this.getSquaresize());
+                int column = rand.nextInt(this.getWidth()/this.getSquaresize());
+                if (cells[row][column].isEmpty()) {
+                    c = cells[row][column];
+                    selected = true;
+                }
+            }
+        }
+        return c;
+    }
+
+    public boolean cellAvaiable(){
+        boolean check = false;
+        Cell[][] cells = this.getCells();
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                if (cells[i][j].isEmpty()) {
+                    check = true;
+                }
+            }
+        }
+        return check;
     }
 
     public int getHeight() {return height;}

@@ -15,7 +15,7 @@ public class CircleFood extends Objeto implements Food{
         int cellSize = (int)grid.getCells()[0][0].getSide();
         Cell c = grid.getCells()[(int)(this.circulo.getCenter().getY()/cellSize)][(int)(this.circulo.getCenter().getX()/cellSize)];
         c.updateCell(true,null);
-        Cell spawnPoint = pickSpawnPoint(grid);
+        Cell spawnPoint = grid.pickSpawnPoint();
         this.spawn(spawnPoint);
     }
 
