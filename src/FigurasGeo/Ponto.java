@@ -128,4 +128,53 @@ public class Ponto {
 
         return new Ponto((int) Math.round(finalX), (int) Math.round(finalY));
     }
+
+    /**
+     * Método responsável por verificar se um ponto está dentro ou fora de um poligono
+     * @param poligono
+     * @return
+     */
+
+    public boolean isInside(Poligono poligono) {
+        Ponto topRight;
+        Ponto bottomLeft;
+        Ponto[] pontosPoligono = poligono.getPontos();
+        Segmento[] arestasPoligono = poligono.getArestas();
+        topRight = new Ponto(0, 0);
+        bottomLeft = new Ponto(0, 0);
+        for (int i = 1; i < pontosPoligono.length; i++) {
+            if (pontosPoligono[i].getX() > topRight.getX()) {
+                topRight = new Ponto(pontosPoligono[i].getX(), topRight.getY());
+            }
+            if (pontosPoligono[i].getY() > topRight.getY()) {
+                topRight = new Ponto(topRight.getX(), pontosPoligono[i].getY());
+            }
+            if (pontosPoligono[i].getX() < bottomLeft.getX()) {
+                bottomLeft = new Ponto(pontosPoligono[i].getX(), bottomLeft.getY());
+            }
+            if (pontosPoligono[i].getY() < bottomLeft.getY()) {
+                bottomLeft = new Ponto(bottomLeft.getX(), pontosPoligono[i].getY());
+            }
+        }
+        //verificar se o ponto está no retangulo envolvente
+        if(this.x < bottomLeft.x || this.x > topRight.x)
+            return false;
+        if(this.y < bottomLeft.y || this.y > topRight.y)
+            return false;
+        topRight = new Ponto(topRight.getX() + 1, topRight.getY());
+        // tenho o ponto topRight
+        Segmento segmentoVerificacao = new Segmento(this, topRight);
+        //iterar sobre as arestas todas e ver quando interseta o segmento com a aresta, fazer um counter, se for par o ponto esta fora do poligono, se for impar o ponto esta dentro do poligono
+        int intersectionCounter = 0;
+        for (int i = 0; i < arestasPoligono.length; i++) {
+            if (arestasPoligono[i].cruzamento(segmentoVerificacao))
+                intersectionCounter++;
+        }
+        boolean result;
+        if(intersectionCounter % 2 == 0)
+            result = false;
+        else
+            result = true;
+        return  result;
+    }
 }

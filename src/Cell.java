@@ -1,5 +1,5 @@
-import FigurasGeo.Ponto;
-import FigurasGeo.Quadrado;
+import FigurasGeo.*;
+
 
 public class Cell extends Quadrado {
 
@@ -34,4 +34,16 @@ public class Cell extends Quadrado {
     public void setEmpty(boolean empty) {
         this.empty = empty;
     }
+
+    public boolean isIntersected(Poligono poligono)
+    {
+        Ponto[] pontosQuadradoCelula = super.getPontos();
+        for(Ponto pontoCelula : pontosQuadradoCelula)
+        {
+            if(pontoCelula.isInside(poligono))
+                return true;
+        }
+        return false;
+    }
+
 }

@@ -276,4 +276,6 @@ public class Poligono {
         return this.centroide;
     }
 
+
+
 }
