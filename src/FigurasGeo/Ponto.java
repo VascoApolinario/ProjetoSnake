@@ -88,6 +88,12 @@ public class Ponto {
         return String.format("(%d,%d)", (int)x, (int)y);
     }
 
+    public String toString2()
+    {
+        return String.format("%d %d", (int)x, (int)y);
+    }
+
+
 
     /**
      * Método que verifica se dois pontos são iguais

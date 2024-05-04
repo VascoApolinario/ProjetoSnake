@@ -6,8 +6,9 @@ import FigurasGeo.Quadrado;
 public class CircleFood extends Objeto implements Food{
     private Circulo circulo;
 
-    public CircleFood(double x, double y, double raio) {
-        this.circulo = new Circulo(new Ponto(x,y),raio);
+    public CircleFood(Cell spawn, double raio) {
+        this.circulo = new Circulo(new Ponto(spawn.getCentroide().getX(),spawn.getCentroide().getY()),raio);
+        spawn.updateCell(false,Content.FOOD);
 
     }
 

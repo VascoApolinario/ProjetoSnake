@@ -21,7 +21,7 @@ public class Background {
         this.tipoGraficos = new Grafica(Width,Height,this);
         this.comida = new ArrayList<>();
         this.obstaculos = new ArrayList<>();
-        this.comida.add(new CircleFood(randomLocation().getX(),randomLocation().getY(),15));
+        this.comida.add(new CircleFood(this.grid.pickSpawnPoint(), 15));
         this.comida.add(new SquareFood(30,this.grid.pickSpawnPoint()));
 
     }

@@ -45,5 +45,9 @@ public class Cell extends Quadrado {
         }
         return false;
     }
+    @Override
+    public String toString() {
+        return super.getCentroide().toString2();
+    }
 
 }

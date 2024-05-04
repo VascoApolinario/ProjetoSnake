@@ -29,6 +29,15 @@ public class Grid {
         }
     }
 
+    public Grid(int width, int height, int squaresize, int[] rows, int[] cols)
+    {
+        this(width, height, squaresize);
+
+
+        this.getCells()[1][2].updateCell(false,Content.OBSTACLE);
+
+    }
+
 
     public Cell pickSpawnPoint(){
         Random rand = new Random();

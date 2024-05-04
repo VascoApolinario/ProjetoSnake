@@ -19,6 +19,22 @@ public class Obstacle extends Objeto {
         //spawn(coordenadas);
     }
 
+    public Obstacle(Cell[] centroides, boolean dinamico, int degree) {
+        this(cellsToStringConstructor(centroides), dinamico,degree);
+    }
+
+    private static String cellsToStringConstructor(Cell[] centroides)
+    {
+        StringBuilder formato = new StringBuilder("Poligono");
+        for (Cell centroide : centroides) {
+            formato.append(" ");
+            formato.append(centroide.toString());
+            centroide.setEmpty(false);
+            centroide.setContent(Content.OBSTACLE);
+        }
+        return formato.toString();
+    }
+
     @Override
     void update() {
         if (dinamico) {
