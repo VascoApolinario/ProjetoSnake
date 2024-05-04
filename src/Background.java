@@ -16,7 +16,7 @@ public class Background {
 
     public Background(int Width, int Height, String tipo) {
         this.grid = new Grid(Width,Height,40);
-        this.snake = new Snake(40,0, randomLocation());
+        this.snake = new Snake(40,0, this.grid.pickSpawnPoint());
         this.player = new Player("PARA MUDAR DPS", 0);
         this.tipoGraficos = new Grafica(Width,Height,this);
         this.comida = new ArrayList<>();
@@ -27,7 +27,11 @@ public class Background {
     }
 
     public void updateAll() {
+        snake.move(this.grid);
         snake.update();
+        for (Food f : comida) {
+            snake.eat(f,this.grid);
+        }
         this.tipoGraficos.repaint();
 
         /*

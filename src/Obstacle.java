@@ -55,7 +55,7 @@ public class Obstacle extends Objeto {
     }*/
 
     @Override
-    void move() {
+    void move(Grid g) {
 
     }
 

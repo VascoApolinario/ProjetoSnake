@@ -22,6 +22,30 @@ public class PreProcessamento {
     }
 
 
+    public PreProcessamento(Poligono poligono)
+    {
+        Ponto[] pontosPoligono = poligono.getPontos();
+        Ponto topRight = pontosPoligono[0];
+        Ponto bottomLeft = pontosPoligono[0];
+        for (int i = 1; i < pontosPoligono.length; i++) {
+            if (pontosPoligono[i].getX() > topRight.getX()) {
+                topRight = new Ponto(pontosPoligono[i].getX(), topRight.getY());
+            }
+            if (pontosPoligono[i].getY() > topRight.getY()) {
+                topRight = new Ponto(topRight.getX(), pontosPoligono[i].getY());
+            }
+            if (pontosPoligono[i].getX() < bottomLeft.getX()) {
+                bottomLeft = new Ponto(pontosPoligono[i].getX(), bottomLeft.getY());
+            }
+            if (pontosPoligono[i].getY() < bottomLeft.getY()) {
+                bottomLeft = new Ponto(bottomLeft.getX(), pontosPoligono[i].getY());
+            }
+        }
+        this.downLeft = bottomLeft;
+        this.topRight = topRight;
+    }
+
+
     /**
      * Metodo usado para verificar se dois retângulos se cruzam
      * @param that
@@ -35,4 +59,11 @@ public class PreProcessamento {
             return false;
     }
 
+    public Ponto getDownLeft() {
+        return downLeft;
+    }
+
+    public Ponto getTopRight() {
+        return topRight;
+    }
 }

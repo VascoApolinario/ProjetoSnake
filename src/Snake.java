@@ -20,10 +20,13 @@ public class Snake extends Objeto {
         this.ate = false;
     }
 
-    public Snake(int headSize, int direction)
+    public Snake(int headSize, int direction, Cell spawn)
     {
-        this.head = new FigurasGeo.Quadrado(headSize);
+        Quadrado cabeca = new FigurasGeo.Quadrado(headSize);
         this.direction = direction;
+        this.head = (Quadrado) cabeca.moveCentroid((int)spawn.getCentroide().getX(),(int)spawn.getCentroide().getY());
+        spawn.setEmpty(false);
+        spawn.setContent(Content.HEAD);
         this.tail = new ArrayList<>();
         this.ate = false;
     }
@@ -42,8 +45,7 @@ public class Snake extends Objeto {
 
     @Override
     void update() {
-        this.move();
-        this.grow();
+        //this.move();
         if(collisionWithTail()) {
             System.out.println("GAME OVER!");
             die();
@@ -64,8 +66,9 @@ public class Snake extends Objeto {
      * Metodo que faz a cobra mover-se
      */
     @Override
-    public void move()
+    public void move(Grid g)
     {
+        g.returnCellFromPoint(this.head.getCentroide()).updateCell(true,Content.EMPTY);
         double x1 = this.head.getDownLeft().getX();
         double y1 = this.head.getDownLeft().getY();
         double x2 = this.head.getTopRight().getX();
@@ -82,17 +85,22 @@ public class Snake extends Objeto {
         {
             this.head = new Quadrado(new Ponto(x1,y1+getHead().getSide()),new Ponto(x2,y2+getHead().getSide()));
         }
+        g.returnCellFromPoint(this.head.getCentroide()).updateCell(false,Content.HEAD);
 
         if(ate)
         {
             this.tail.add(new Quadrado(new Ponto(x1,y1),new Ponto(x2,y2)));
+            g.returnCellFromPoint(this.tail.getLast().getCentroide()).updateCell(false,Content.TAIL);
             this.ate = false;
         }
         else if(!tail.isEmpty() && !ate)
         {
             this.tail.add(new Quadrado(new Ponto(x1,y1),new Ponto(x2,y2)));
+            g.returnCellFromPoint(this.tail.getLast().getCentroide()).updateCell(false,Content.TAIL);
+            g.returnCellFromPoint(this.tail.getFirst().getCentroide()).updateCell(true,Content.EMPTY);
             this.tail.removeFirst();
         }
+
         /* o movimento da snake vai ser baseado em mover a cabeça para a direção correta (dependendo da direção)
         * ter atenção que a snake não se pode mexer 180 graus, só 90º de cada vez, e seguida
         * remover o primeiro elemento da cauda (o que está mais longe da cabeça)
@@ -127,10 +135,22 @@ public class Snake extends Objeto {
      * Metodo que verifica se a cobra consumiu comida. Caso tenha comido ate = 1;
      * @param f -> Comida a ser comida
      */
-    public int eat(Food f)
+    public void eat(Food f, Grid grid)
     {
+        if(f instanceof SquareFood)
+        {
+            if(this.head.isInside(((SquareFood) f).getQuadrado())) {
+                this.grow();
+                f.consumir(grid);
+            }
+        }
+        else if (f instanceof CircleFood) {
+            if(this.head.isInside(((CircleFood) f).getCirculo())) {
+                this.grow();
+                f.consumir(grid);
+            }
+        }
 
-        return 1;     //TODO
     }
 
     /**

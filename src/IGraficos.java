@@ -125,6 +125,10 @@ class Grafica extends JPanel implements IGraficos {
                 int size = (int) grid.getCells()[x][y].getSide();
                 g.setColor(new Color(0,0,0));
                 g.drawRect((int)ponto.getX(),(int)ponto.getY(),size,size);
+                if(!grid.getCells()[x][y].isEmpty()) {
+                    g.setColor(new Color(172, 23, 177));
+                    g.fillRect((int) ponto.getX(), (int) ponto.getY(), size, size);
+                }
             }
         }
     }

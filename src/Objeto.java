@@ -11,7 +11,7 @@ public abstract class Objeto {
 
     abstract void update();
     //abstract void spawn(Ponto p);
-    abstract void move();
+    abstract void move(Grid g);
     abstract void rotate(int degrees);
     abstract Poligono format(String formato);
     abstract String tipo();

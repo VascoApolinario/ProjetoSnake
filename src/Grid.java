@@ -46,6 +46,8 @@ public class Grid {
                 }
             }
         }
+        else
+            System.out.println("You have not selected any cells!");
         return c;
     }
 
@@ -62,17 +64,16 @@ public class Grid {
         return check;
     }
 
+    public Cell returnCellFromPoint(Ponto p){
+        int row =(int) p.getY()/this.squaresize;
+        int col =(int) p.getX()/this.squaresize;
+        return this.getCells()[row][col];
+    }
+
     public int getHeight() {return height;}
     public int getWidth() {return width;}
     public Cell[][] getCells() {return cells;}
     public int getSquaresize() {return squaresize;}
 
-    public Cell find(Ponto p) {
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                //if ()
-            }
-        }
-        return null;
-    }
+
 }

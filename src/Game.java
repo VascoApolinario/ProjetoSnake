@@ -15,7 +15,7 @@ public class Game implements ActionListener {
         int Width = 800;
         int Height = 600;
         background = new Background(Width,Height,"Grafico");
-        timer = new Timer(130, this);
+        timer = new Timer(100, this);
         running = true;
 
         StartGame();

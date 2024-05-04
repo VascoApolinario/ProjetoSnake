@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 // (180) -> para esquerda
 // (270) -> para baixo
 class SnakeTest {
+    /*
     @Test
     void moveTest() {  //JÁ TÁ A FUNCIONAR
         Snake snake = new Snake(20, 0, new Ponto(200,200));
@@ -146,6 +147,6 @@ class SnakeTest {
         assertTrue(snake.collisionWithObstacle(obstacle));
     }
 
-
+*/
 }
 

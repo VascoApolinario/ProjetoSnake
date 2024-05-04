@@ -136,39 +136,28 @@ public class Ponto {
      */
 
     public boolean isInside(Poligono poligono) {
-        Ponto topRight;
-        Ponto bottomLeft;
+        PreProcessamento rect = new PreProcessamento(poligono);
         Ponto[] pontosPoligono = poligono.getPontos();
         Segmento[] arestasPoligono = poligono.getArestas();
-        topRight = new Ponto(0, 0);
-        bottomLeft = new Ponto(0, 0);
-        for (int i = 1; i < pontosPoligono.length; i++) {
-            if (pontosPoligono[i].getX() > topRight.getX()) {
-                topRight = new Ponto(pontosPoligono[i].getX(), topRight.getY());
-            }
-            if (pontosPoligono[i].getY() > topRight.getY()) {
-                topRight = new Ponto(topRight.getX(), pontosPoligono[i].getY());
-            }
-            if (pontosPoligono[i].getX() < bottomLeft.getX()) {
-                bottomLeft = new Ponto(pontosPoligono[i].getX(), bottomLeft.getY());
-            }
-            if (pontosPoligono[i].getY() < bottomLeft.getY()) {
-                bottomLeft = new Ponto(bottomLeft.getX(), pontosPoligono[i].getY());
-            }
-        }
+        Ponto bottomLeft = rect.getDownLeft();
+        Ponto topRight = rect.getTopRight();
+
         //verificar se o ponto está no retangulo envolvente
         if(this.x < bottomLeft.x || this.x > topRight.x)
             return false;
         if(this.y < bottomLeft.y || this.y > topRight.y)
             return false;
+
         topRight = new Ponto(topRight.getX() + 1, topRight.getY());
         // tenho o ponto topRight
         Segmento segmentoVerificacao = new Segmento(this, topRight);
         //iterar sobre as arestas todas e ver quando interseta o segmento com a aresta, fazer um counter, se for par o ponto esta fora do poligono, se for impar o ponto esta dentro do poligono
         int intersectionCounter = 0;
         for (int i = 0; i < arestasPoligono.length; i++) {
-            if (arestasPoligono[i].cruzamento(segmentoVerificacao))
+            if (arestasPoligono[i].cruzamento2(segmentoVerificacao))
                 intersectionCounter++;
+            if (arestasPoligono[i].getP1().equals(this) || arestasPoligono[i].getP2().equals(this))
+                intersectionCounter--;
         }
         boolean result;
         if(intersectionCounter % 2 == 0)
@@ -177,4 +166,5 @@ public class Ponto {
             result = true;
         return  result;
     }
+
 }

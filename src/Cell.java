@@ -5,15 +5,16 @@ public class Cell extends Quadrado {
 
     private boolean empty;
 
-    private Objeto content;     //se o conteudo dentro da celula for Objeto printa O
+    private Content content;     //se o conteudo dentro da celula for Objeto printa O
 
 
     public Cell(Ponto p1, Ponto p2) {
         super(p1,p2);
         empty = true;
+        content = Content.EMPTY;
     }
 
-    public void updateCell(boolean empty,Objeto cont) {
+    public void updateCell(boolean empty,Content cont) {
         this.setEmpty(empty);
         this.setContent(cont);
     }
@@ -22,13 +23,12 @@ public class Cell extends Quadrado {
         return empty;
     }
 
-    public Objeto getContent() {
+    public Content getContent() {
         return content;
     }
 
-    public void setContent(Objeto content) {
+    public void setContent(Content content) {
         this.content = content;
-        this.empty = false;
     }
 
     public void setEmpty(boolean empty) {
