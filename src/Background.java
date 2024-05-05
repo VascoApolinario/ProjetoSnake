@@ -49,7 +49,6 @@ public class Background {
                 if (player.getScore() > player.getBestScore()) {
                     player.setBestScore(player.getScore());
                 }
-                player.setScore(0);
                 snake.setStatus(Status.ALIVE);
             }
         }
