@@ -85,6 +85,10 @@ public class Snake extends Objeto {
         {
             this.head = new Quadrado(new Ponto(x1,y1+getHead().getSide()),new Ponto(x2,y2+getHead().getSide()));
         }
+        if (this.checkCollisions(g)) {
+            System.out.println("Game Over!");
+            this.die();
+        }
         g.returnCellFromPoint(this.head.getCentroide()).updateCell(false,Content.HEAD);
 
         if(ate)
@@ -184,10 +188,17 @@ public class Snake extends Objeto {
      */
     public boolean checkCollisions(Grid currentGameGrid)
     {
+        /*
         for(Quadrado t : this.tail)
         {
             if (this.head.isInside(t))
                 return true;
+        }
+         */
+
+        System.out.println(currentGameGrid.returnCellFromPoint(head.getCentroide()).getContent());
+        if (currentGameGrid.returnCellFromPoint(head.getCentroide()).getContent() == Content.OBSTACLE) {
+            return true;
         }
         return false;
     }

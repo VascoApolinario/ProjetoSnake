@@ -24,11 +24,14 @@ public class Background {
         this.comida.add(new CircleFood(this.grid.pickSpawnPoint(), 15));
         this.comida.add(new SquareFood(30,this.grid.pickSpawnPoint()));
 
+        this.obstaculos.add(new Obstacle("Poligono 3 400 300 450 350 330 150", false, 0));
+
     }
 
     public void updateAll() {
         snake.move(this.grid);
         snake.update();
+        this.grid.update(obstaculos);
         for (Food f : comida) {
             snake.eat(f,this.grid);
         }
@@ -93,4 +96,6 @@ public class Background {
     public ArrayList<Food> getComida() {
         return comida;
     }
+
+    public ArrayList<Obstacle> getObstaculos() { return obstaculos;}
 }
