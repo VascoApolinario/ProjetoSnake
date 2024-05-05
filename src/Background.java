@@ -29,6 +29,7 @@ public class Background {
     }
 
     public void reset() {
+        this.grid.update(snake);
         this.snake  = new Snake(40,0, this.grid.returnCellFromPoint(new Ponto(40,300)));
         this.tipoGraficos.getInput().setSnake(snake);
         gameOver = false;
