@@ -224,7 +224,6 @@ public class Snake extends Objeto {
      */
     public void die()
     {
-        this.tail.clear();
         this.alive = SnakeStatus.DEAD;
     }
 
