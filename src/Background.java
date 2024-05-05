@@ -17,7 +17,7 @@ public class Background {
 
     public Background(int Width, int Height, String tipo) {
         this.grid = new Grid(Width,Height,40);
-        this.snake = new Snake(40,0, this.grid.pickSpawnPoint());
+        this.snake = new Snake(40,0, this.grid.returnCellFromPoint(new Ponto(40,300)));
         this.player = new Player("PARA MUDAR DPS", 0);
         //this.tipoGraficos = new Grafica(Width,Height,this);
         this.tipoGraficos = new Textual(Width,Height,this);
