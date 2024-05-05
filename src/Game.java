@@ -10,6 +10,7 @@ public class Game implements ActionListener {
     private Background background;
     private Timer timer;
     private boolean running;
+    private Leaderboard leaderboard;
 
     public Game() {
         int Width = 800;

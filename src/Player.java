@@ -56,15 +56,11 @@ public class Player implements Comparable<Player> {
         this.bestScore = newScore;
     }
 
-
-
-
     @Override
     public String toString()
     {
         return this.nome + " : " + this.score;
     }
-
 
     @Override
     public int compareTo(Player o) {
