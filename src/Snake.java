@@ -199,10 +199,19 @@ public class Snake extends Objeto {
                 return true;
         }
          */
-
         if (currentGameGrid.returnCellFromPoint(head.getCentroide()).getContent() == Content.OBSTACLE) {
             return true;
         }
+        if (!getTail().isEmpty())
+        {
+            for (Quadrado q : getTail())
+            {
+               if (currentGameGrid.returnCellFromPoint(q.getCentroide()).getContent() == Content.OBSTACLE) {
+                   return true;
+               }
+            }
+        }
+
         return false;
     }
 
