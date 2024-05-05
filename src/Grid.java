@@ -70,6 +70,10 @@ public class Grid {
                     if (cell[j].polygonsIntercept(o.getPoligono())) {
                         cell[j].updateCell(false, Content.OBSTACLE);
                     }
+                    else if ((!cell[j].polygonsIntercept(o.getPoligono())) && !cell[j].isEmpty() && !(cell[j].getContent() == Content.FOOD))
+                    {
+                        cell[j].updateCell(true, Content.EMPTY);
+                    }
                 }
             }
         }

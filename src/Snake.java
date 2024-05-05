@@ -200,7 +200,6 @@ public class Snake extends Objeto {
         }
          */
 
-        System.out.println(currentGameGrid.returnCellFromPoint(head.getCentroide()).getContent());
         if (currentGameGrid.returnCellFromPoint(head.getCentroide()).getContent() == Content.OBSTACLE) {
             return true;
         }

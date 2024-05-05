@@ -26,13 +26,16 @@ public class Background {
         this.comida.add(new CircleFood(this.grid.pickSpawnPoint(), 15));
         this.comida.add(new SquareFood(30,this.grid.pickSpawnPoint()));
 
-        this.obstaculos.add(new Obstacle("Poligono 3 400 300 450 350 330 150", false, 0));
+        this.obstaculos.add(new Obstacle("Poligono 3 400 300 450 350 330 150", true, 45));
         this.gameOver = false;
     }
 
     public void updateAll() {
         snake.move(this.grid);
         snake.update();
+        for (Obstacle o : obstaculos) {
+            o.update();
+        }
         this.grid.update(obstaculos);
         for (Food f : comida) {
             snake.eat(f,this.grid);
@@ -50,7 +53,7 @@ public class Background {
                 player.setBestScore(player.getScore());
             }
         }
-        System.out.println(player.getScore());
+        //System.out.println(player.getScore());
         this.tipoGraficos.repaint();
 
         /*

@@ -48,7 +48,6 @@ public class Obstacle extends Objeto {
         Class<?>  cl = null;
         try {
             cl = Class.forName("FigurasGeo." + parts[0]);
-            System.out.println(parts[1]);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -78,8 +77,7 @@ public class Obstacle extends Objeto {
 
     @Override
     void rotate(int degrees) {
-        if(dinamico)
-            this.poligono.rotate(degrees);
+        this.poligono = this.poligono.rotate(degrees);
     }
 
     @Override
