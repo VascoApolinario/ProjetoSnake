@@ -18,8 +18,9 @@ public class Game implements ActionListener {
         background = new Background(Width,Height,"Grafico");
         timer = new Timer(100, this);
         running = true;
-        leaderboard = new Leaderboard("leaderboard.csv");
-        System.out.println(leaderboard);
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+        leaderboard = new Leaderboard("leaderboard.txt");
+        leaderboard.printLeaderboard();
         StartGame();
     }
 

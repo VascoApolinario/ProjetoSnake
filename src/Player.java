@@ -59,7 +59,7 @@ public class Player implements Comparable<Player> {
     @Override
     public String toString()
     {
-        return this.nome + " : " + this.score;
+        return this.nome + " : " + this.bestScore;
     }
 
     @Override
