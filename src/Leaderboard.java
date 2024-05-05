@@ -21,9 +21,15 @@ public class Leaderboard {
                 System.out.println("File does not exist");
             }
         }
-        /*else{
-        System.out.println("File does not exist");
-        }*/
+        else{
+        //System.out.println("File does not exist");
+            try {
+                file.createNewFile();
+            }
+            catch(Exception e) {
+                System.out.println("File does not exist");
+            }
+        }
 
         //System.out.println(leaderboard.size());
     }
