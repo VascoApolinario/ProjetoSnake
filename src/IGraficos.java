@@ -19,6 +19,8 @@ public interface IGraficos {
     void drawFood(Graphics g);
     void drawFood(Graphics g,Cell c,Ponto p);
     void drawGrid(Graphics g);
+    void drawScore(Graphics g);
+    void drawSnakeDirection(Graphics g);
     void repaint();
 
 }
@@ -64,6 +66,8 @@ class Grafica extends JPanel implements IGraficos {
         drawFood(g);
         drawSnake(g);
         drawObstacles(g);
+        drawScore(g);
+        drawSnakeDirection(g);
 
     }
 
@@ -149,7 +153,23 @@ class Grafica extends JPanel implements IGraficos {
         }
     }
 
+    @Override
+    public void drawScore(Graphics g) {
+        int score = this.bg.getPlayer().getScore();
+        g.setColor(Color.black);
+        g.setFont(new Font("Courier New",Font.PLAIN,30));
+        FontMetrics metrics = getFontMetrics(g.getFont());
+        g.drawString("Pontos: " +score +" ",this.getWidth()-metrics.stringWidth("Pontos: " +score+ " "),this.getHeight()-g.getFont().getSize()/3);
+    }
 
+    @Override
+    public void drawSnakeDirection(Graphics g) {
+        int dir = this.bg.getSnake().getDirection();
+        g.setColor(Color.black);
+        g.setFont(new Font("Courier New",Font.PLAIN,30));
+        FontMetrics metrics = getFontMetrics(g.getFont());
+        g.drawString("Dir H: " + dir + " ",0,this.getHeight()-g.getFont().getSize()/3);
+    }
 
 }
 
@@ -158,14 +178,10 @@ class Grafica extends JPanel implements IGraficos {
 class Textual extends JPanel implements IGraficos{
     JFrame gameframe;
     private Background bg;
-    private JTextArea text;
 
     public Textual(int width, int height,Background bg)
     {
         this.bg = bg;
-        //this.text = new JTextArea(height,width);
-        //this.text.setBackground(Color.white);
-        //this.text.setFont(new Font("Comic Sans MS",Font.PLAIN,10));
         drawPanel(width,height);
         createFrame();
     }
@@ -174,6 +190,8 @@ class Textual extends JPanel implements IGraficos{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawGrid(g);
+        drawScore(g);
+        drawSnakeDirection(g);
     }
 
     @Override
@@ -182,7 +200,6 @@ class Textual extends JPanel implements IGraficos{
         this.setBackground(new Color(255,255,255));
         this.setFocusable(true);
         this.addKeyListener(new InputHandler(bg.getSnake()));
-        //this.add(this.text);
     }
 
     @Override
@@ -275,6 +292,25 @@ class Textual extends JPanel implements IGraficos{
         }
     }
 
+    @Override
+    public void drawScore(Graphics g) {
+        int score = this.bg.getPlayer().getScore();
+        g.setColor(Color.black);
+        g.setFont(new Font("Courier New",Font.PLAIN,30));
+        FontMetrics metrics = getFontMetrics(g.getFont());
+        g.drawString("Pontos: " +score + " ",this.getWidth()-metrics.stringWidth("Pontos: " +score + " "),this.getHeight()-g.getFont().getSize()/3);
+    }
+
+
+    @Override
+    public void drawSnakeDirection(Graphics g) {
+        int dir = this.bg.getSnake().getDirection();
+        g.setColor(Color.black);
+        g.setFont(new Font("Courier New",Font.PLAIN,30));
+        FontMetrics metrics = getFontMetrics(g.getFont());
+        g.drawString("Dir H: " + dir + " ",0,this.getHeight()-g.getFont().getSize()/3);
+
+    }
 
 
 }
