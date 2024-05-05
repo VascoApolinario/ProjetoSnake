@@ -20,6 +20,8 @@ public class Snake extends Objeto {
         this.head = (Quadrado) cabeca.moveCentroid((int)spawn.getX(),(int)spawn.getY());
         this.tail = new ArrayList<>();
         this.ate = false;
+        this.alive = true;
+        this.increaseScore = false;
     }
 
     public Snake(int headSize, int direction, Cell spawn)
@@ -31,6 +33,8 @@ public class Snake extends Objeto {
         spawn.setContent(Content.HEAD);
         this.tail = new ArrayList<>();
         this.ate = false;
+        this.alive = true;
+        this.increaseScore = false;
     }
 
     public Quadrado getHead() {
