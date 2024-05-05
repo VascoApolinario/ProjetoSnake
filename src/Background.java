@@ -13,11 +13,12 @@ public class Background {
     private Grid grid;
     private Player player;
     private boolean gameOver;
+    private boolean updateLeaderBoard;
 
     public Background(int Width, int Height, String playername) {
         this.grid = new Grid(Width,Height,40);
         this.snake = new Snake(40,0, this.grid.returnCellFromPoint(new Ponto(40,300)));
-        this.player = new Player("playername", 0);
+        this.player = new Player(playername);
         this.comida = new ArrayList<>();
         this.obstaculos = new ArrayList<>();
         this.comida.add(new CircleFood(this.grid.pickSpawnPoint(), 15));
@@ -26,6 +27,7 @@ public class Background {
         this.obstaculos.add(new Obstacle("Poligono 3 400 300 450 350 330 150", true, 45));
         this.obstaculos.add(new Obstacle("Poligono 3 80 80 80 60 120 60", true, 45));
         this.gameOver = false;
+        this.updateLeaderBoard = false;
     }
 
     public void updateAll() {
@@ -48,10 +50,19 @@ public class Background {
                 gameOver = true;
                 if (player.getScore() > player.getBestScore()) {
                     player.setBestScore(player.getScore());
+                    updateLeaderBoard = true;
                 }
                 snake.setStatus(Status.ALIVE);
             }
         }
+    }
+
+    public void setUpdateLeaderBoard(boolean updateLeaderBoard) {
+        this.updateLeaderBoard = updateLeaderBoard;
+    }
+
+    public boolean getUpdateLeaderBoard() {
+        return updateLeaderBoard;
     }
 
     public Snake getSnake() {

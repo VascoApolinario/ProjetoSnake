@@ -50,7 +50,7 @@ class Grafica extends JPanel implements IGraficos {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         if(!bg.getGameOver()) {
-            drawGrid(g);
+            //drawGrid(g);
             drawFood(g);
             drawSnake(g);
             drawObstacles(g);

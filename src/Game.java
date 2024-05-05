@@ -35,10 +35,21 @@ public class Game implements ActionListener {
         leaderboard = new Leaderboard("leaderboard.txt");
         leaderboard.printLeaderboard();
         StartGame();
-        while (true) {
-            if (background.getGameOver()) {
-                leaderboard.saveToFile();
-            }
+        leaderboard.update(background.getPlayer());
+
+        while(true)
+        {
+            updateLeaderBoard();
+        }
+
+    }
+
+    public void updateLeaderBoard()
+    {
+        if(background.getUpdateLeaderBoard())
+        {
+            background.setUpdateLeaderBoard(false);
+            leaderboard.update(background.getPlayer());
         }
     }
 
@@ -64,6 +75,8 @@ public class Game implements ActionListener {
     }
 
     public void reset(){
+
+        leaderboard.update(background.getPlayer());
         this.background = new Background(800,600, painelInicial.getPlayerName());
         this.graficos.setBG(this.background);
     }
