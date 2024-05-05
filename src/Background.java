@@ -13,6 +13,7 @@ public class Background {
     private Grid grid;
     private Player player;
     private IGraficos tipoGraficos;
+    private boolean gameOver;
 
     public Background(int Width, int Height, String tipo) {
         this.grid = new Grid(Width,Height,40);
@@ -25,7 +26,7 @@ public class Background {
         this.comida.add(new SquareFood(30,this.grid.pickSpawnPoint()));
 
         this.obstaculos.add(new Obstacle("Poligono 3 400 300 450 350 330 150", false, 0));
-
+        this.gameOver = false;
     }
 
     public void updateAll() {
@@ -35,6 +36,20 @@ public class Background {
         for (Food f : comida) {
             snake.eat(f,this.grid);
         }
+        if(snake.increaseScore)
+        {
+            player.setScore(player.getScore()+1);
+            snake.increaseScore = false;
+        }
+        if(!snake.alive)
+        {
+            gameOver = true;
+            if(player.getScore() > player.getBestScore())
+            {
+                player.setBestScore(player.getScore());
+            }
+        }
+        System.out.println(player.getScore());
         this.tipoGraficos.repaint();
 
         /*

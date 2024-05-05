@@ -8,6 +8,8 @@ public class Snake extends Objeto {
     private ArrayList<Quadrado> tail;
     private int direction;
     boolean ate;
+    boolean alive;
+    boolean increaseScore;
     /**
      * Construtor
      */
@@ -146,12 +148,14 @@ public class Snake extends Objeto {
             if(this.head.isInside(((SquareFood) f).getQuadrado())) {
                 this.grow();
                 f.consumir(grid);
+                increaseScore = true;
             }
         }
         else if (f instanceof CircleFood) {
             if(this.head.isInside(((CircleFood) f).getCirculo())) {
                 this.grow();
                 f.consumir(grid);
+                increaseScore = true;
             }
         }
 
@@ -209,6 +213,7 @@ public class Snake extends Objeto {
     public void die()
     {
         this.tail.clear();
+        this.alive = false;
         //TODO
     }
 
