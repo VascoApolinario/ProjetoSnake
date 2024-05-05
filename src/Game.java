@@ -18,7 +18,8 @@ public class Game implements ActionListener {
         background = new Background(Width,Height,"Grafico");
         timer = new Timer(100, this);
         running = true;
-
+        leaderboard = new Leaderboard("\"C:\\Users\\andre\\Desktop\\EngINF\\2º Ano\\POO\\ProjetoSnake\\src\\GameFiles\\leaderboard.csv\"");
+        System.out.println(leaderboard);
         StartGame();
     }
 
@@ -28,6 +29,7 @@ public class Game implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if(running) {
             background.updateAll();
             // Deteção de inputs
