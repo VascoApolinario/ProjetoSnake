@@ -3,5 +3,6 @@ public enum Content {
     TAIL,
     OBSTACLE,
     FOOD,
-    EMPTY
+    EMPTY,
+    DINAMICO
 }

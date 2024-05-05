@@ -64,16 +64,33 @@ public class Grid {
     }
 
     public void update(ArrayList<Obstacle> obstacles) {
+        // ArrayList to keep track of cells that need to be updated as obstacles
+        ArrayList<Cell> cellsToUpdateAsObstacle = new ArrayList<>();
+
+        // First pass: Identify cells that intersect with any obstacles
         for (Obstacle o : obstacles) {
-            for (Cell[] cell : cells) {
-                for (int j = 0; j < cell.length; j++) {
-                    if (cell[j].polygonsIntercept(o.getPoligono())) {
-                        cell[j].updateCell(false, Content.OBSTACLE);
+            for (int i = 0; i < cells.length; i++) {
+                for (int j = 0; j < cells[i].length; j++) {
+                    if (o.getPoligono().polygonsIntercept(cells[i][j])) {
+                        // Add the cell to the list if it's not already included
+                        if (!cellsToUpdateAsObstacle.contains(cells[i][j])) {
+                            cellsToUpdateAsObstacle.add(cells[i][j]);
+                        }
                     }
-                    else if ((!cell[j].polygonsIntercept(o.getPoligono())) && !cell[j].isEmpty() && !((cell[j].getContent() == Content.FOOD) || cell[j].getContent() == Content.HEAD || cell[j].getContent() == Content.TAIL))
-                    {
-                        cell[j].updateCell(true, Content.EMPTY);
-                    }
+                }
+            }
+        }
+
+        // Second pass: Update all cells based on the intersections
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                if (cellsToUpdateAsObstacle.contains(cells[i][j])) {
+                    // Set content to OBSTACLE if intersected by any obstacle
+                    cells[i][j].updateCell(false, Content.OBSTACLE);
+                } else if (!cells[i][j].isEmpty() && cells[i][j].getContent() != Content.FOOD &&
+                        cells[i][j].getContent() != Content.HEAD && cells[i][j].getContent() != Content.TAIL) {
+                    // Clear the cell if it is not affected by any obstacle and not part of the snake or food
+                    cells[i][j].updateCell(false, Content.DINAMICO);
                 }
             }
         }

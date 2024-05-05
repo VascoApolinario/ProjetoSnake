@@ -266,7 +266,7 @@ class Textual extends JPanel implements IGraficos{
                     case FOOD:
                         drawFood(g,c,p);
                         break;
-                    case EMPTY:
+                    case EMPTY, DINAMICO:
                         g.drawString(".",x,y);
                         break;
                 }

@@ -27,6 +27,7 @@ public class Background {
         this.comida.add(new SquareFood(30,this.grid.pickSpawnPoint()));
 
         this.obstaculos.add(new Obstacle("Poligono 3 400 300 450 350 330 150", true, 45));
+        this.obstaculos.add(new Obstacle("Poligono 3 80 80 80 60 120 60", true, 45));
         this.gameOver = false;
     }
 
