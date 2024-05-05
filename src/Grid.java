@@ -28,6 +28,9 @@ public class Grid {
                 Ponto topRight = new Ponto((j + 1) * squaresize, (i+1) * squaresize);
 
                 cells[i][j] = new Cell(bottomLeft, topRight);
+                if(i == 0 || i == rows - 1 || j == 0 || j == cols - 1  || i == rows - 2) {
+                    cells[i][j].updateCell(false,Content.OBSTACLE);
+                }
             }
         }
     }
