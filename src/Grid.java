@@ -1,5 +1,8 @@
 import FigurasGeo.Ponto;
+import FigurasGeo.Quadrado;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Grid {
@@ -58,6 +61,18 @@ public class Grid {
         else
             System.out.println("You have not selected any cells!");
         return c;
+    }
+
+    public void update(ArrayList<Obstacle> obstacles) {
+        for (Obstacle o : obstacles) {
+            for (Cell[] cell : cells) {
+                for (int j = 0; j < cell.length; j++) {
+                    if (cell[j].polygonsIntercept(o.getPoligono())) {
+                        cell[j].updateCell(false, Content.OBSTACLE);
+                    }
+                }
+            }
+        }
     }
 
     public boolean cellAvaiable(){

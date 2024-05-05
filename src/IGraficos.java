@@ -1,3 +1,4 @@
+import FigurasGeo.Poligono;
 import FigurasGeo.Ponto;
 import FigurasGeo.Quadrado;
 
@@ -14,7 +15,7 @@ public interface IGraficos {
     void createFrame();
     void drawGameElements();
     void drawSnake(Graphics g);
-    void drawObstacles();
+    void drawObstacles(Graphics g);
     void drawFood(Graphics g);
     void drawGrid(Graphics g);
     void repaint();
@@ -60,6 +61,7 @@ class Grafica extends JPanel implements IGraficos {
         drawGrid(g);
         drawFood(g);
         drawSnake(g);
+        drawObstacles(g);
 
     }
 
@@ -88,8 +90,15 @@ class Grafica extends JPanel implements IGraficos {
     }
 
     @Override
-    public void drawObstacles() {
-
+    public void drawObstacles(Graphics g) {
+        ArrayList<Obstacle> obstacles = bg.getObstaculos();
+        for (Obstacle o : obstacles) {
+            Poligono po = o.getPoligono();
+            g.setColor(new Color(1, 23, 255, 255));
+            g.fillPolygon(po.getxv(),po.getyv(),po.getPontos().length);
+            g.setColor(new Color(0, 0, 0, 255));
+            g.drawPolygon(po.getxv(),po.getyv(),po.getPontos().length);
+        }
     }
 
     @Override
@@ -162,7 +171,7 @@ class Textual implements IGraficos{
     }
 
     @Override
-    public void drawObstacles() {
+    public void drawObstacles(Graphics g) {
 
     }
 

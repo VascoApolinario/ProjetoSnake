@@ -44,10 +44,11 @@ public class Obstacle extends Objeto {
 
     @Override
     Poligono format(String formato) {
-        String[] aos = formato.split("", 2);
+        String[] parts = formato.split(" ", 2);
         Class<?>  cl = null;
         try {
-            cl = Class.forName((aos[0]));
+            cl = Class.forName("FigurasGeo." + parts[0]);
+            System.out.println(parts[1]);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -58,7 +59,7 @@ public class Obstacle extends Objeto {
             throw new RuntimeException(e);
         }
         try {
-            return (Poligono) constructor.newInstance(aos[1]);
+            return (Poligono) constructor.newInstance(parts[1]);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
