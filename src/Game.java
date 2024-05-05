@@ -17,7 +17,7 @@ public class Game implements ActionListener {
         int Height = 600;
         background = new Background(Width,Height); //MAIS TARDE TEMOS DE ADICIONAR UM ARGUMENTO QUE DIGA AS POSIÇOES CERTAS DA GRID E DOS OBSTACULOS, ETC.
         inputHandler = new InputHandler(this);
-        this.graficos = new Textual(Width,Height,this.background,inputHandler);
+        this.graficos = new Grafica(Width,Height,this.background,inputHandler);
         this.gameFrame = new GameFrame(this.graficos);
         timer = new Timer(100, this);
         running = true;
