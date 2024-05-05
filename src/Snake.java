@@ -8,7 +8,7 @@ public class Snake extends Objeto {
     private ArrayList<Quadrado> tail;
     private int direction;
     boolean ate;
-    boolean alive;
+    private Status status;
     boolean increaseScore;
     /**
      * Construtor
@@ -31,7 +31,7 @@ public class Snake extends Objeto {
         spawn.setContent(Content.HEAD);
         this.tail = new ArrayList<>();
         this.ate = false;
-        this.alive = true;
+        this.status = Status.START;
     }
 
     public Quadrado getHead() {
@@ -226,8 +226,15 @@ public class Snake extends Objeto {
     public void die()
     {
         this.tail.clear();
-        this.alive = false;
+        this.status = Status.DEAD;
         //TODO
+    }
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
 

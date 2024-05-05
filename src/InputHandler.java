@@ -17,24 +17,25 @@ public class InputHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W) {
-            if(!game.isRunning())
-                game.setRunning(true);
+            if(game.getBackground().getSnake().getStatus().equals(Status.START))
+                game.getBackground().getSnake().setStatus(Status.ALIVE);
             game.getBackground().getSnake().rotate(90);
 
         } else if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) {
-            if(!game.isRunning())
-                game.setRunning(true);
+            if(game.getBackground().getSnake().getStatus().equals(Status.START))
+                game.getBackground().getSnake().setStatus(Status.ALIVE);
             game.getBackground().getSnake().rotate(270);
         } else if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) {
-            if(!game.isRunning())
-                game.setRunning(true);
+            if(game.getBackground().getSnake().getStatus().equals(Status.START))
+                game.getBackground().getSnake().setStatus(Status.ALIVE);
             game.getBackground().getSnake().rotate(180);
         } else if (keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D) {
-            if(!game.isRunning())
-                game.setRunning(true);
+            if(game.getBackground().getSnake().getStatus().equals(Status.START))
+                game.getBackground().getSnake().setStatus(Status.ALIVE);
             game.getBackground().getSnake().rotate(0);
         }else if (keyCode == KeyEvent.VK_SPACE){
-            game.reset();
+            if(game.getBackground().getGameOver())
+                game.reset();
         }
     }
 

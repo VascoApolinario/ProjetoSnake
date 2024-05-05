@@ -22,6 +22,7 @@ public interface IGraficos {
     void drawSnakeDirection(Graphics g);
     void drawGameOver(Graphics g);
     void repaint();
+    void setBG(Background bg);
 
 }
 
@@ -160,6 +161,19 @@ class Grafica extends JPanel implements IGraficos {
 
     @Override
     public void drawGameOver(Graphics g) {
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Cascadia Code",Font.BOLD,75));
+        FontMetrics metrics = getFontMetrics(g.getFont());
+        g.drawString("Game Over" , (getWidth() - metrics.stringWidth("Game Over"))/2,getHeight()/2);
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Cascadia Code",Font.PLAIN,40));
+        FontMetrics metrics1 = getFontMetrics(g.getFont());
+        g.drawString("Score: " + this.bg.getPlayer().getScore() , (getWidth() - metrics1.stringWidth("Score: " + this.bg.getPlayer().getScore()))/2, (int) (getHeight()/1.5));
+    }
+
+    @Override
+    public void setBG(Background bg) {
+        this.bg = bg;
     }
 
 }
@@ -309,6 +323,10 @@ class Textual extends JPanel implements IGraficos{
         g.drawString("Score: " + this.bg.getPlayer().getScore() , (getWidth() - metrics1.stringWidth("Score: " + this.bg.getPlayer().getScore()))/2, (int) (getHeight()/1.5));
     }
 
+    @Override
+    public void setBG(Background bg) {
+        this.bg = bg;
+    }
 
 
 }

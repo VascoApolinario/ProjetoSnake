@@ -30,7 +30,8 @@ public class Background {
 
     public void updateAll() {
         if(!gameOver) {
-            snake.move(this.grid);
+            if(snake.getStatus().equals(Status.ALIVE))
+                snake.move(this.grid);
             snake.update();
             for (Obstacle o : obstaculos) {
                 o.update();
@@ -43,13 +44,13 @@ public class Background {
                 player.setScore(player.getScore() + 1);
                 snake.increaseScore = false;
             }
-            if (!snake.alive) {
+            if (snake.getStatus().equals(Status.DEAD)) {
                 gameOver = true;
                 if (player.getScore() > player.getBestScore()) {
                     player.setBestScore(player.getScore());
                 }
                 player.setScore(0);
-                snake.alive = true;
+                snake.setStatus(Status.ALIVE);
             }
         }
     }

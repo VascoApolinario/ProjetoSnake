@@ -20,7 +20,7 @@ public class Game implements ActionListener {
         this.graficos = new Textual(Width,Height,this.background,inputHandler);
         this.gameFrame = new GameFrame(this.graficos);
         timer = new Timer(100, this);
-        running = false;
+        running = true;
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
         leaderboard = new Leaderboard("leaderboard.txt");
         leaderboard.printLeaderboard();
@@ -49,7 +49,8 @@ public class Game implements ActionListener {
     }
 
     public void reset(){
-
+        this.background = new Background(800,600);
+        this.graficos.setBG(this.background);
     }
 
     public Background getBackground() {
