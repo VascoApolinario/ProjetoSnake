@@ -53,6 +53,8 @@ public class Background {
             {
                 player.setBestScore(player.getScore());
             }
+            player.setScore(0);
+            snake.alive = true;
         }
         //System.out.println(player.getScore());
         this.tipoGraficos.repaint();
