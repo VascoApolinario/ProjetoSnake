@@ -173,4 +173,13 @@ public class Ponto {
         return  result;
     }
 
+    public boolean isInside(Circulo c)
+    {
+        return this.dist(c.getCenter()) <= c.getRadius();
+    }
+
+    public boolean isInside(Quadrado q)
+    {
+        return this.x >= q.getDownLeft().getX() && this.x <= q.getTopRight().getX()  && this.y >= q.getDownLeft().getY() && this.y <= q.getTopRight().getY();
+    }
 }

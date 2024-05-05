@@ -19,7 +19,8 @@ public class Background {
         this.grid = new Grid(Width,Height,40);
         this.snake = new Snake(40,0, this.grid.pickSpawnPoint());
         this.player = new Player("PARA MUDAR DPS", 0);
-        this.tipoGraficos = new Grafica(Width,Height,this);
+        //this.tipoGraficos = new Grafica(Width,Height,this);
+        this.tipoGraficos = new Textual(Width,Height,this);
         this.comida = new ArrayList<>();
         this.obstaculos = new ArrayList<>();
         this.comida.add(new CircleFood(this.grid.pickSpawnPoint(), 15));
