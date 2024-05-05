@@ -77,7 +77,7 @@ public class Leaderboard {
             }
     }
 
-    private void saveToFile() {
+    public void saveToFile() {
         try (FileWriter fw = new FileWriter(filename)) {
             update();
             for (Player player : leaderboard) {

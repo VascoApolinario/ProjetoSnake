@@ -14,10 +14,10 @@ public class Background {
     private Player player;
     private boolean gameOver;
 
-    public Background(int Width, int Height) {
+    public Background(int Width, int Height, String playername) {
         this.grid = new Grid(Width,Height,40);
         this.snake = new Snake(40,0, this.grid.returnCellFromPoint(new Ponto(40,300)));
-        this.player = new Player("PARA MUDAR DPS", 0);
+        this.player = new Player("playername", 0);
         this.comida = new ArrayList<>();
         this.obstaculos = new ArrayList<>();
         this.comida.add(new CircleFood(this.grid.pickSpawnPoint(), 15));

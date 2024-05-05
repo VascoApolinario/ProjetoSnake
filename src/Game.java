@@ -11,13 +11,23 @@ public class Game implements ActionListener {
     private InputHandler inputHandler;
     private GameFrame gameFrame;
     private IGraficos graficos;
+    private InitialPanel painelInicial;
 
     public Game() {
         int Width = 800;
         int Height = 600;
-        background = new Background(Width,Height); //MAIS TARDE TEMOS DE ADICIONAR UM ARGUMENTO QUE DIGA AS POSIÇOES CERTAS DA GRID E DOS OBSTACULOS, ETC.
+        painelInicial = new InitialPanel();
+        while (!painelInicial.startGame) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        background = new Background(Width, Height, painelInicial.getPlayerName()); //MAIS TARDE TEMOS DE ADICIONAR UM ARGUMENTO QUE DIGA AS POSIÇOES CERTAS DA GRID E DOS OBSTACULOS, ETC.
         inputHandler = new InputHandler(this);
-        this.graficos = new Grafica(Width,Height,this.background,inputHandler);
+        this.graficos = new Grafica(Width, Height, this.background, inputHandler);
         this.gameFrame = new GameFrame(this.graficos);
         timer = new Timer(100, this);
         running = true;
@@ -25,6 +35,11 @@ public class Game implements ActionListener {
         leaderboard = new Leaderboard("leaderboard.txt");
         leaderboard.printLeaderboard();
         StartGame();
+        while (true) {
+            if (background.getGameOver()) {
+                leaderboard.saveToFile();
+            }
+        }
     }
 
     public void StartGame() {
@@ -49,7 +64,7 @@ public class Game implements ActionListener {
     }
 
     public void reset(){
-        this.background = new Background(800,600);
+        this.background = new Background(800,600, painelInicial.getPlayerName());
         this.graficos.setBG(this.background);
     }
 
