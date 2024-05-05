@@ -18,13 +18,21 @@ public class InputHandler implements KeyListener {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_UP) {
             snake.rotate(90);
+            snake.alive = SnakeStatus.ALIVE;
         } else if (keyCode == KeyEvent.VK_DOWN) {
             snake.rotate(270);
+            snake.alive = SnakeStatus.ALIVE;
         } else if (keyCode == KeyEvent.VK_LEFT) {
             snake.rotate(180);
+            snake.alive = SnakeStatus.ALIVE;
         } else if (keyCode == KeyEvent.VK_RIGHT) {
             snake.rotate(0);
+            snake.alive = SnakeStatus.ALIVE;
         }
+    }
+
+    public void setSnake(Snake snake) {
+        this.snake = snake;
     }
 
     @Override

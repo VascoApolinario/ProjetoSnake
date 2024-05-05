@@ -1,8 +1,5 @@
 import FigurasGeo.Ponto;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -15,7 +12,7 @@ public class Background {
     private IGraficos tipoGraficos;
     private boolean gameOver;
 
-    public Background(int Width, int Height, String tipo) {
+    public Background(int Width, int Height) {
         this.grid = new Grid(Width,Height,40);
         this.snake = new Snake(40,0, this.grid.returnCellFromPoint(new Ponto(40,300)));
         this.player = new Player("PARA MUDAR DPS", 0);
@@ -31,9 +28,21 @@ public class Background {
         this.gameOver = false;
     }
 
+    public void reset() {
+        this.snake  = new Snake(40,0, this.grid.returnCellFromPoint(new Ponto(40,300)));
+        this.tipoGraficos.getInput().setSnake(snake);
+        gameOver = false;
+    }
+
     public void updateAll() {
-        snake.move(this.grid);
-        snake.update();
+        if (snake.alive.equals(SnakeStatus.ALIVE)) {
+            snake.move(this.grid);
+            snake.update();
+        }
+        if (snake.alive.equals(SnakeStatus.DEAD) && (!snake.getHead().getCentroide().equals(new Ponto(40,300))))
+        {
+            gameOver = true;
+        }
         for (Obstacle o : obstaculos) {
             o.update();
         }
@@ -46,16 +55,9 @@ public class Background {
             player.setScore(player.getScore()+1);
             snake.increaseScore = false;
         }
-        if(!snake.alive)
-        {
-            gameOver = true;
-            if(player.getScore() > player.getBestScore())
-            {
-                player.setBestScore(player.getScore());
-            }
-            player.setScore(0);
-            snake.alive = true;
-        }
+
+        /*
+         */
         //System.out.println(player.getScore());
         this.tipoGraficos.repaint();
 
@@ -123,5 +125,9 @@ public class Background {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
     }
 }

@@ -4,9 +4,6 @@ import FigurasGeo.Quadrado;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.util.ArrayList;
 
 public interface IGraficos {
@@ -23,12 +20,14 @@ public interface IGraficos {
     void drawSnakeDirection(Graphics g);
     void repaint();
 
+    InputHandler getInput();
 }
 
 
 class Grafica extends JPanel implements IGraficos {
     JFrame gameframe;
     private Background bg;
+    private InputHandler input;
 
 
 
@@ -36,6 +35,7 @@ class Grafica extends JPanel implements IGraficos {
         this.bg = bg;
         drawPanel(width,height);
         createFrame();
+        input = new InputHandler(bg.getSnake());
 
     }
 
@@ -44,7 +44,7 @@ class Grafica extends JPanel implements IGraficos {
         this.setPreferredSize(new Dimension(width,height));
         this.setBackground(new Color(255,255,255));
         this.setFocusable(true);
-        this.addKeyListener(new InputHandler(bg.getSnake()));
+        this.addKeyListener(input);
     }
 
     @Override
@@ -171,6 +171,11 @@ class Grafica extends JPanel implements IGraficos {
         g.drawString("Dir H: " + dir + " ",0,this.getHeight()-g.getFont().getSize()/3);
     }
 
+    @Override
+    public InputHandler getInput() {
+        return input;
+    }
+
 }
 
 
@@ -178,12 +183,16 @@ class Grafica extends JPanel implements IGraficos {
 class Textual extends JPanel implements IGraficos{
     JFrame gameframe;
     private Background bg;
+    private InputHandler input;
 
     public Textual(int width, int height,Background bg)
     {
+
         this.bg = bg;
+        input = new InputHandler(bg.getSnake());
         drawPanel(width,height);
         createFrame();
+
     }
 
     @Override
@@ -199,7 +208,7 @@ class Textual extends JPanel implements IGraficos{
         this.setPreferredSize(new Dimension(width,height));
         this.setBackground(new Color(255,255,255));
         this.setFocusable(true);
-        this.addKeyListener(new InputHandler(bg.getSnake()));
+        this.addKeyListener(input);
     }
 
     @Override
@@ -315,6 +324,9 @@ class Textual extends JPanel implements IGraficos{
 
     }
 
+    public InputHandler getInput() {
+        return input;
+    }
 
 }
 

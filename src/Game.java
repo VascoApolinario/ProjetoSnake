@@ -1,10 +1,7 @@
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class Game implements ActionListener {
     private Background background;
@@ -15,7 +12,7 @@ public class Game implements ActionListener {
     public Game() {
         int Width = 800;
         int Height = 600;
-        background = new Background(Width,Height,"Grafico");
+        background = new Background(Width,Height);
         timer = new Timer(100, this);
         running = true;
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
@@ -33,8 +30,19 @@ public class Game implements ActionListener {
 
         if(running) {
             background.updateAll();
-            // Deteção de inputs
-            // Draw dos objetos no background
+            this.restart();
+        }
+    }
+
+    public void restart() {
+        if ((background.getSnake().alive.equals(SnakeStatus.DEAD)) && background.isGameOver()) {
+            System.out.println("Game Over!");
+            if(background.getPlayer().getScore() > background.getPlayer().getBestScore())
+            {
+                background.getPlayer().setBestScore(background.getPlayer().getScore());
+            }
+            background.getPlayer().setScore(0);
+            background.reset();
         }
     }
 
