@@ -4,5 +4,6 @@ public enum Content {
     OBSTACLE,
     FOOD,
     EMPTY,
-    DINAMICO
+    DINAMICO,
+    BORDER
 }

@@ -29,7 +29,7 @@ public class Grid {
 
                 cells[i][j] = new Cell(bottomLeft, topRight);
                 if(i == 0 || i == rows - 1 || j == 0 || j == cols - 1  || i == rows - 2) {
-                    cells[i][j].updateCell(false,Content.OBSTACLE);
+                    cells[i][j].updateCell(false,Content.BORDER);
                 }
             }
         }
@@ -84,8 +84,7 @@ public class Grid {
             for (int j = 0; j < cells[i].length; j++) {
                 if (cellsToUpdateAsObstacle.contains(cells[i][j])) {
                     cells[i][j].updateCell(false, Content.OBSTACLE);
-                } else if (!cells[i][j].isEmpty() && cells[i][j].getContent() != Content.FOOD &&
-                        cells[i][j].getContent() != Content.HEAD && cells[i][j].getContent() != Content.TAIL) {
+                } else if (!cells[i][j].isEmpty() && cells[i][j].getContent() != Content.FOOD && cells[i][j].getContent() != Content.BORDER && cells[i][j].getContent() != Content.HEAD && cells[i][j].getContent() != Content.TAIL) {
                     cells[i][j].updateCell(false, Content.DINAMICO);
                 }
             }

@@ -202,6 +202,10 @@ public class Snake extends Objeto {
         if (currentGameGrid.returnCellFromPoint(head.getCentroide()).getContent() == Content.OBSTACLE) {
             return true;
         }
+
+        if (currentGameGrid.returnCellFromPoint(head.getCentroide()).getContent() == Content.BORDER) {
+            return true;
+        }
         if (!getTail().isEmpty())
         {
             for (Quadrado q : getTail())
