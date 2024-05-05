@@ -285,4 +285,25 @@ public class Poligono {
         g.drawPolygon(xPoints, yPoints, pontos.length);
     }
 
+<<<<<<< Updated upstream
+=======
+    public int[] getxv() {
+        int[] vx = new int[this.pontos.length];
+        for (int i = 0; i < this.pontos.length; i++) {
+            vx[i] = (int) pontos[i].getX();
+        }
+        return vx;
+    }
+
+    public int[] getyv() {
+        int[] vy = new int[this.pontos.length];
+        for (int i = 0; i < this.pontos.length; i++) {
+            vy[i] = (int) pontos[i].getY();
+        }
+        return vy;
+    }
+
+
+
+>>>>>>> Stashed changes
 }

@@ -128,4 +128,57 @@ public class Ponto {
 
         return new Ponto((int) Math.round(finalX), (int) Math.round(finalY));
     }
+<<<<<<< Updated upstream
+=======
+
+    /**
+     * Método responsável por verificar se um ponto está dentro ou fora de um poligono
+     * @param poligono
+     * @return
+     */
+
+    public boolean isInside(Poligono poligono) {
+        PreProcessamento rect = new PreProcessamento(poligono);
+        Ponto[] pontosPoligono = poligono.getPontos();
+        Segmento[] arestasPoligono = poligono.getArestas();
+        Ponto bottomLeft = rect.getDownLeft();
+        Ponto topRight = rect.getTopRight();
+
+        //verificar se o ponto está no retangulo envolvente
+        if(this.x < bottomLeft.x || this.x > topRight.x)
+            return false;
+        if(this.y < bottomLeft.y || this.y > topRight.y)
+            return false;
+
+        topRight = new Ponto(topRight.getX() + 1, topRight.getY());
+        // tenho o ponto topRight
+        Segmento segmentoVerificacao = new Segmento(this, topRight);
+        //iterar sobre as arestas todas e ver quando interseta o segmento com a aresta, fazer um counter, se for par o ponto esta fora do poligono, se for impar o ponto esta dentro do poligono
+        int intersectionCounter = 0;
+        for (int i = 0; i < arestasPoligono.length; i++) {
+            if (arestasPoligono[i].cruzamento2(segmentoVerificacao))
+                intersectionCounter++;
+            if (arestasPoligono[i].getP1().equals(this) || arestasPoligono[i].getP2().equals(this))
+                intersectionCounter--;
+        }
+        boolean result;
+        if(intersectionCounter % 2 == 0)
+            result = false;
+        else
+            result = true;
+        return  result;
+    }
+
+
+    public boolean isInside(Circulo c)
+    {
+        return this.dist(c.getCenter()) <= c.getRadius();
+    }
+
+    public boolean isInside(Quadrado q)
+    {
+        return this.x >= q.getDownLeft().getX() && this.x <= q.getTopRight().getX()  && this.y >= q.getDownLeft().getY() && this.y <= q.getTopRight().getY();
+    }
+
+>>>>>>> Stashed changes
 }
