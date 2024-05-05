@@ -20,7 +20,7 @@ public class Game implements ActionListener {
         running = true;
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
         leaderboard = new Leaderboard("leaderboard.txt");
-        leaderboard.printLeaderboard();
+        //leaderboard.printLeaderboard();
         StartGame();
     }
 
