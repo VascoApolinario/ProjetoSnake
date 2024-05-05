@@ -2,10 +2,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class InputHandler implements KeyListener {
-    private Snake snake;
+    private Game game;
 
-    public InputHandler(Snake snake) {
-        this.snake = snake;
+    public InputHandler(Game game) {
+        this.game = game;
     }
 
     @Override
@@ -17,13 +17,24 @@ public class InputHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W) {
-            snake.rotate(90);
+            if(!game.isRunning())
+                game.setRunning(true);
+            game.getBackground().getSnake().rotate(90);
+
         } else if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) {
-            snake.rotate(270);
+            if(!game.isRunning())
+                game.setRunning(true);
+            game.getBackground().getSnake().rotate(270);
         } else if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) {
-            snake.rotate(180);
+            if(!game.isRunning())
+                game.setRunning(true);
+            game.getBackground().getSnake().rotate(180);
         } else if (keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D) {
-            snake.rotate(0);
+            if(!game.isRunning())
+                game.setRunning(true);
+            game.getBackground().getSnake().rotate(0);
+        }else if (keyCode == KeyEvent.VK_SPACE){
+            game.reset();
         }
     }
 

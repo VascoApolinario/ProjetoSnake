@@ -11,8 +11,7 @@ import java.util.ArrayList;
 
 public interface IGraficos {
 
-    void drawPanel(int width, int height);
-    void createFrame();
+    void drawPanel(int width, int height, InputHandler inputHandler);
     void drawGameElements();
     void drawSnake(Graphics g);
     void drawObstacles(Graphics g);
@@ -21,43 +20,30 @@ public interface IGraficos {
     void drawGrid(Graphics g);
     void drawScore(Graphics g);
     void drawSnakeDirection(Graphics g);
+    void drawGameOver(Graphics g);
     void repaint();
 
 }
 
 
 class Grafica extends JPanel implements IGraficos {
-    JFrame gameframe;
     private Background bg;
 
 
 
-    public Grafica(int width, int height,Background bg) {
+    public Grafica(int width, int height,Background bg, InputHandler inputHandler) {
         this.bg = bg;
-        drawPanel(width,height);
-        createFrame();
-
+        drawPanel(width,height,inputHandler);
     }
 
 
-    public void drawPanel(int width, int height) {
+    public void drawPanel(int width, int height,InputHandler inputHandler) {
         this.setPreferredSize(new Dimension(width,height));
         this.setBackground(new Color(255,255,255));
         this.setFocusable(true);
-        this.addKeyListener(new InputHandler(bg.getSnake()));
+        this.addKeyListener(inputHandler);
     }
 
-    @Override
-    public void createFrame() {
-        this.gameframe = new JFrame();
-        this.gameframe.add(this);
-        this.gameframe.setTitle("SNAKE");
-        this.gameframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.gameframe.setResizable(false);
-        this.gameframe.pack();
-        this.gameframe.setVisible(true);
-        this.gameframe.setLocationRelativeTo(null);
-    }
 
     @Override
     public void paintComponent(Graphics g) {
@@ -68,6 +54,7 @@ class Grafica extends JPanel implements IGraficos {
         drawObstacles(g);
         drawScore(g);
         drawSnakeDirection(g);
+        drawGameOver(g);
 
     }
 
@@ -171,47 +158,42 @@ class Grafica extends JPanel implements IGraficos {
         g.drawString("Dir H: " + dir + " ",0,this.getHeight()-g.getFont().getSize()/3);
     }
 
+    @Override
+    public void drawGameOver(Graphics g) {
+    }
+
 }
 
 
 
 class Textual extends JPanel implements IGraficos{
-    JFrame gameframe;
     private Background bg;
 
-    public Textual(int width, int height,Background bg)
+    public Textual(int width, int height,Background bg,InputHandler inputHandler)
     {
         this.bg = bg;
-        drawPanel(width,height);
-        createFrame();
+        drawPanel(width,height,inputHandler);
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        drawGrid(g);
-        drawScore(g);
-        drawSnakeDirection(g);
+        if (!bg.getGameOver()){
+                drawGrid(g);
+                drawScore(g);
+                drawSnakeDirection(g);
+
+        }
+        else
+            drawGameOver(g);
     }
 
     @Override
-    public void drawPanel(int width, int height) {
+    public void drawPanel(int width, int height, InputHandler inputHandler) {
         this.setPreferredSize(new Dimension(width,height));
-        this.setBackground(new Color(255,255,255));
+        this.setBackground(new Color(255, 255, 255));
         this.setFocusable(true);
-        this.addKeyListener(new InputHandler(bg.getSnake()));
-    }
-
-    @Override
-    public void createFrame() {
-        this.gameframe = new JFrame();
-        this.gameframe.add(this);
-        this.gameframe.setTitle("SNAKE");
-        this.gameframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.gameframe.setResizable(false);
-        this.gameframe.pack();
-        this.gameframe.setVisible(true);
-        this.gameframe.setLocationRelativeTo(null);
+        this.addKeyListener(inputHandler);
     }
 
     @Override
@@ -268,8 +250,8 @@ class Textual extends JPanel implements IGraficos{
             for (int y = 10; y < this.getHeight()- grid.getSquaresize(); y+=10) {
                 Ponto p = new Ponto(x,y);
                 Cell c = grid.returnCellFromPoint(p);
-                g.setColor(Color.black);
-                g.setFont(new Font("Comic Sans MS",Font.PLAIN,10));
+                g.setColor(Color.BLACK);
+                g.setFont(new Font("Cascadia Code",Font.PLAIN,10));
                 switch (c.getContent()) {
                     case HEAD:
                         g.drawString("H",x,y);
@@ -298,7 +280,7 @@ class Textual extends JPanel implements IGraficos{
     @Override
     public void drawScore(Graphics g) {
         int score = this.bg.getPlayer().getScore();
-        g.setColor(Color.black);
+        g.setColor(Color.BLACK);
         g.setFont(new Font("Courier New",Font.PLAIN,30));
         FontMetrics metrics = getFontMetrics(g.getFont());
         g.drawString("Pontos: " +score + " ",this.getWidth()-metrics.stringWidth("Pontos: " +score + " "),this.getHeight()-g.getFont().getSize()/3);
@@ -308,12 +290,25 @@ class Textual extends JPanel implements IGraficos{
     @Override
     public void drawSnakeDirection(Graphics g) {
         int dir = this.bg.getSnake().getDirection();
-        g.setColor(Color.black);
+        g.setColor(Color.BLACK);
         g.setFont(new Font("Courier New",Font.PLAIN,30));
         FontMetrics metrics = getFontMetrics(g.getFont());
         g.drawString("Dir H: " + dir + " ",0,this.getHeight()-g.getFont().getSize()/3);
 
     }
+
+    @Override
+    public void drawGameOver(Graphics g) {
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Cascadia Code",Font.BOLD,75));
+        FontMetrics metrics = getFontMetrics(g.getFont());
+        g.drawString("Game Over" , (getWidth() - metrics.stringWidth("Game Over"))/2,getHeight()/2);
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Cascadia Code",Font.PLAIN,40));
+        FontMetrics metrics1 = getFontMetrics(g.getFont());
+        g.drawString("Score: " + this.bg.getPlayer().getScore() , (getWidth() - metrics1.stringWidth("Score: " + this.bg.getPlayer().getScore()))/2, (int) (getHeight()/1.5));
+    }
+
 
 
 }

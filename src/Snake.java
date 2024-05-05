@@ -31,6 +31,7 @@ public class Snake extends Objeto {
         spawn.setContent(Content.HEAD);
         this.tail = new ArrayList<>();
         this.ate = false;
+        this.alive = true;
     }
 
     public Quadrado getHead() {
