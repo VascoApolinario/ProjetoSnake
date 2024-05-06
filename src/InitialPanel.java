@@ -30,7 +30,7 @@ public class InitialPanel extends JPanel implements ActionListener {
         startGame = false;
         janela = new JFrame();
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        janela.setSize(600, 550);
+        janela.setSize(600, 500);
         janela.setLayout(new FlowLayout());
         janela.setLocationRelativeTo(null);
         janela.setTitle("OBJECT ORIENTED PROGRAMMED SNAKE");
@@ -111,14 +111,14 @@ public class InitialPanel extends JPanel implements ActionListener {
             }
 
         });
-        leaderboardSpinner.setValue(5);
+        leaderboardSpinner.setValue(10);
 
         players = new JLabel(" players.");
         players.setFont(new Font("Courier New", Font.PLAIN, 20));
 
 
         printLeaderboardScroll = new JScrollPane(printLeaderboard);
-        printLeaderboardScroll.setPreferredSize(new Dimension(550,250));
+        printLeaderboardScroll.setPreferredSize(new Dimension(550,200));
         printLeaderboardScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 
