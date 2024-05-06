@@ -122,11 +122,24 @@ public class Leaderboard {
     }
 
     public void printLeaderboard() {
-        this.update();
+        this.sort();
         for(Player player : leaderboard)
         {
             System.out.println(player.toString());
         }
+    }
+
+    public String printLeaderboard(int n)
+    {
+        this.sort();
+        String result = "";
+        for(int i = 0; i < n; i++)
+        {
+            if(i<leaderboard.size()) {
+                result = result + "RANK #"+ i + " BEST SCORE : "+ leaderboard.get(i).getBestScore() + " NAME : " +leaderboard.get(i).getNome() + "\n";
+            }
+        }
+        return result;
     }
 
     /*

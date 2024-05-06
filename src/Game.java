@@ -16,7 +16,9 @@ public class Game implements ActionListener {
     public Game() {
         int Width = 800;
         int Height = 600;
-        painelInicial = new InitialPanel();
+        leaderboard = new Leaderboard("leaderboard.txt");
+        leaderboard.printLeaderboard();
+        painelInicial = new InitialPanel(leaderboard);
         while (!painelInicial.startGame) {
             try {
                 Thread.sleep(100);
@@ -32,8 +34,6 @@ public class Game implements ActionListener {
         timer = new Timer(100, this);
         running = true;
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
-        leaderboard = new Leaderboard("leaderboard.txt");
-        leaderboard.printLeaderboard();
         StartGame();
         leaderboard.update(background.getPlayer());
 

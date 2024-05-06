@@ -15,9 +15,12 @@ public class InitialPanel extends JPanel implements ActionListener {
     private JTextField textField1;
     private JPanel panel1;
     private JLabel insertUserName;
-    private JLabel nameRestricion;
+    private JLabel nameRestriction;
+    private JLabel leaderboardText;
+    private JTextArea printLeaderboard;
+    private JScrollPane printLeaderboardScroll;
 
-    public InitialPanel(){
+    public InitialPanel(Leaderboard leaderboardCopy){
         startGame = false;
         janela = new JFrame();
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,22 +30,43 @@ public class InitialPanel extends JPanel implements ActionListener {
         janela.setTitle("OBJECT ORIENTED PROGRAMMED SNAKE");
         playerName = "";
 
-        insertUserName = new JLabel("Insert Player Name: ");
-        nameRestricion = new JLabel("NOTE: Your name should not contain space characters!!");
+        insertUserName = new JLabel("INSERT PLAYER NAME: ");
+        insertUserName.setFont(new Font("Courier New", Font.BOLD, 16));
+        nameRestriction = new JLabel("NOTE: Your name should not contain space characters!!");
+
+        nameRestriction.setFont(new Font("Courier New", Font.BOLD, 12));
 
 
         playernameField = new JTextField();
-        playernameField.setPreferredSize(new Dimension(250, 40));
-        playernameField.setFont(new Font("Courier New", Font.PLAIN, 20));
+        playernameField.setPreferredSize(new Dimension(225, 35));
+        playernameField.setFont(new Font("Courier New", Font.PLAIN, 18));
 
         submeter = new JButton("START GAME");
         submeter.addActionListener(this);
-        submeter.setFont(new Font("Courier New", Font.PLAIN, 20));
+        submeter.setFont(new Font("Courier New", Font.PLAIN, 18));
+
+        leaderboardText = new JLabel("LEADERBOARD");
+        leaderboardText.setFont(new Font("Courier New", Font.BOLD, 40));
+
 
         janela.add(insertUserName);
         janela.add(playernameField);
         janela.add(submeter);
-        janela.add(nameRestricion);
+        janela.add(nameRestriction);
+        janela.add(leaderboardText);
+
+        printLeaderboard = new JTextArea();
+        printLeaderboard.setPreferredSize(new Dimension(500,250));
+        printLeaderboard.setFont(new Font("Courier New", Font.BOLD, 16));
+        printLeaderboard.setEditable(false);
+        printLeaderboard.setText(leaderboardCopy.printLeaderboard(100));
+
+        printLeaderboardScroll = new JScrollPane(printLeaderboard);
+        printLeaderboardScroll.setPreferredSize(new Dimension(550,400));
+        printLeaderboardScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+        janela.add(printLeaderboardScroll);
+        //janela.add(printLeaderboardScroll);
         //janela.pack();
         janela.setVisible(true);
     }
@@ -53,11 +77,11 @@ public class InitialPanel extends JPanel implements ActionListener {
             playerName = playernameField.getText();
             if(this.playerName.contains(" "))
             {
-                nameRestricion.setText("ERROR: Make sure your name doesn't contain space characters!");
+                nameRestriction.setText("ERROR: Make sure your name doesn't contain space characters!");
             }
             else if(this.playerName.isEmpty())
             {
-                nameRestricion.setText("ERROR: Please insert player name before starting the game!");
+                nameRestriction.setText("ERROR: Please insert player name before starting the game!");
             }
             else {
                 startGame = true;
