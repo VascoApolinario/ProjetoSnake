@@ -136,7 +136,7 @@ public class Leaderboard {
         for(int i = 0; i < n; i++)
         {
             if(i<leaderboard.size()) {
-                result = result + "RANK #"+ i + " BEST SCORE : "+ leaderboard.get(i).getBestScore() + " NAME : " +leaderboard.get(i).getNome() + "\n";
+                result = result + "RANK #"+ (i+1) + " BEST SCORE : "+ leaderboard.get(i).getBestScore() + " NAME : " +leaderboard.get(i).getNome() + "\n";
             }
         }
         return result;

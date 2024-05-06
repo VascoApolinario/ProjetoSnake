@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +22,8 @@ public class InitialPanel extends JPanel implements ActionListener {
     private JTextArea printLeaderboard;
     private JScrollPane printLeaderboardScroll;
     private JSpinner leaderboardSpinner;
+    private JLabel showTopPlayers;
+    private JLabel players;
 
     public InitialPanel(Leaderboard leaderboardCopy){
         startGame = false;
@@ -47,8 +51,7 @@ public class InitialPanel extends JPanel implements ActionListener {
         submeter.setFont(new Font("Courier New", Font.PLAIN, 18));
 
         leaderboardText = new JLabel("LEADERBOARD");
-        leaderboardText.setFont(new Font("Courier New", Font.BOLD, 40));
-
+        leaderboardText.setFont(new Font("Courier New", Font.BOLD, 70));
 
         janela.add(insertUserName);
         janela.add(playernameField);
@@ -70,20 +73,35 @@ public class InitialPanel extends JPanel implements ActionListener {
             }
         };
 
-        leaderboardSpinner = new JSpinner(model);
-        leaderboardSpinner.setPreferredSize(new Dimension(50,25));
-        leaderboardSpinner.setValue(5);
+        showTopPlayers = new JLabel("Show the top ");
+        showTopPlayers.setFont(new Font("Courier New", Font.PLAIN, 20));
 
         printLeaderboard = new JTextArea();
         printLeaderboard.setFont(new Font("Courier New", Font.BOLD, 16));
         printLeaderboard.setEditable(false);
-        printLeaderboard.setText(leaderboardCopy.printLeaderboard(100));
+
+        leaderboardSpinner = new JSpinner(model);
+        leaderboardSpinner.setPreferredSize(new Dimension(50,25));
+        leaderboardSpinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                printLeaderboard.setText(leaderboardCopy.printLeaderboard((Integer) leaderboardSpinner.getValue()));
+            }
+
+        });
+        leaderboardSpinner.setValue(5);
+
+        players = new JLabel(" players.");
+        players.setFont(new Font("Courier New", Font.PLAIN, 20));
+
 
         printLeaderboardScroll = new JScrollPane(printLeaderboard);
         printLeaderboardScroll.setPreferredSize(new Dimension(550,300));
         printLeaderboardScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
+        janela.add(showTopPlayers);
         janela.add(leaderboardSpinner);
+        janela.add(players);
         janela.add(printLeaderboardScroll);
         //janela.add(printLeaderboardScroll);
         //janela.pack();
