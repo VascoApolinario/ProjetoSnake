@@ -103,14 +103,14 @@ public class Leaderboard {
         int i;
         for(i = 0; i < leaderboard.size(); i++) {
             if(player.getNome().equals(leaderboard.get(i).getNome())) {
-                System.out.println("Player already exists 1 ");
+                //System.out.println("Player already exists 1 ");
                 exists = true;
                 break;
             }
         }
         if(exists)
         {
-            System.out.println("Player already exists 2 ");
+            //System.out.println("Player already exists 2 ");
             if(player.getBestScore() > leaderboard.get(i).getBestScore()) {
                 leaderboard.get(i).setBestScore(player.getBestScore());
             }

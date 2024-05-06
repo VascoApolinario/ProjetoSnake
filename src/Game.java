@@ -37,20 +37,6 @@ public class Game implements ActionListener {
         StartGame();
         leaderboard.update(background.getPlayer());
 
-        while(true)
-        {
-            updateLeaderBoard();
-        }
-
-    }
-
-    public void updateLeaderBoard()
-    {
-        if(background.getUpdateLeaderBoard())
-        {
-            background.setUpdateLeaderBoard(false);
-            leaderboard.update(background.getPlayer());
-        }
     }
 
     public void StartGame() {
@@ -69,6 +55,11 @@ public class Game implements ActionListener {
             background.updateAll();
             // Deteção de inputs
             // Draw dos objetos no background
+        }
+        if(background.getUpdateLeaderBoard())
+        {
+            background.setUpdateLeaderBoard(false);
+            leaderboard.update(background.getPlayer());
         }
         this.graficos.repaint();
         //reset();
