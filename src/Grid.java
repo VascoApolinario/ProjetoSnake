@@ -90,6 +90,13 @@ public class Grid {
             }
         }
     }
+    public void update(Snake snake) {
+
+        this.returnCellFromPoint(snake.getHead().getCentroide()).updateCell(true, Content.EMPTY);
+        for (Quadrado q : snake.getTail()) {
+            this.returnCellFromPoint(q.getCentroide()).updateCell(true, Content.EMPTY);
+        }
+    }
 
     public boolean cellAvaiable(){
         boolean check = false;
