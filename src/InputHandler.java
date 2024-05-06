@@ -2,10 +2,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class InputHandler implements KeyListener {
-    private Snake snake;
+    private Game game;
 
-    public InputHandler(Snake snake) {
-        this.snake = snake;
+    public InputHandler(Game game) {
+        this.game = game;
     }
 
     @Override
@@ -17,22 +17,26 @@ public class InputHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W) {
-            snake.rotate(90);
-            snake.alive = SnakeStatus.ALIVE;
-        } else if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) {
-            snake.rotate(270);
-            snake.alive = SnakeStatus.ALIVE;
-        } else if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) {
-            snake.rotate(180);
-            snake.alive = SnakeStatus.ALIVE;
-        } else if (keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D) {
-            snake.rotate(0);
-            snake.alive = SnakeStatus.ALIVE;
-        }
-    }
+            if(game.getBackground().getSnake().getStatus().equals(Status.START))
+                game.getBackground().getSnake().setStatus(Status.ALIVE);
+            game.getBackground().getSnake().rotate(90);
 
-    public void setSnake(Snake snake) {
-        this.snake = snake;
+        } else if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) {
+            if(game.getBackground().getSnake().getStatus().equals(Status.START))
+                game.getBackground().getSnake().setStatus(Status.ALIVE);
+            game.getBackground().getSnake().rotate(270);
+        } else if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) {
+            if(game.getBackground().getSnake().getStatus().equals(Status.START))
+                game.getBackground().getSnake().setStatus(Status.ALIVE);
+            game.getBackground().getSnake().rotate(180);
+        } else if (keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D) {
+            if(game.getBackground().getSnake().getStatus().equals(Status.START))
+                game.getBackground().getSnake().setStatus(Status.ALIVE);
+            game.getBackground().getSnake().rotate(0);
+        }else if (keyCode == KeyEvent.VK_SPACE){
+            if(game.getBackground().getGameOver())
+                game.reset();
+        }
     }
 
     @Override

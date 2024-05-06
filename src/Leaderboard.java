@@ -45,7 +45,17 @@ public class Leaderboard {
         }
     }
 
+    public void update(Player player) {
+        add(player);
+        Collections.sort(leaderboard);
+        saveToFile();
+    }
+
     public void update() {
+        saveToFile();
+    }
+
+    public void sort(){
         Collections.sort(leaderboard);
     }
 
@@ -79,7 +89,7 @@ public class Leaderboard {
 
     public void saveToFile() {
         try (FileWriter fw = new FileWriter(filename)) {
-            update();
+            sort();
             for (Player player : leaderboard) {
                 fw.write(player.getNome() + " " + player.getBestScore() + "\n");
             }
@@ -89,7 +99,25 @@ public class Leaderboard {
     }
 
     public void add(Player player) {
-        leaderboard.add(player);
+        boolean exists = false;
+        int i;
+        for(i = 0; i < leaderboard.size(); i++) {
+            if(player.getNome().equals(leaderboard.get(i).getNome())) {
+                System.out.println("Player already exists 1 ");
+                exists = true;
+                break;
+            }
+        }
+        if(exists)
+        {
+            System.out.println("Player already exists 2 ");
+            if(player.getBestScore() > leaderboard.get(i).getBestScore()) {
+                leaderboard.get(i).setBestScore(player.getBestScore());
+            }
+        }
+        else{
+            leaderboard.add(new Player(player.getNome(), player.getBestScore()));
+        }
         saveToFile();
     }
 

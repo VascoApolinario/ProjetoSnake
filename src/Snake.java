@@ -8,7 +8,7 @@ public class Snake extends Objeto {
     private ArrayList<Quadrado> tail;
     private int direction;
     boolean ate;
-    SnakeStatus alive;
+    private Status status;
     boolean increaseScore;
     /**
      * Construtor
@@ -20,7 +20,6 @@ public class Snake extends Objeto {
         this.head = (Quadrado) cabeca.moveCentroid((int)spawn.getX(),(int)spawn.getY());
         this.tail = new ArrayList<>();
         this.ate = false;
-        this.alive = SnakeStatus.START;
     }
 
     public Snake(int headSize, int direction, Cell spawn)
@@ -32,7 +31,7 @@ public class Snake extends Objeto {
         spawn.setContent(Content.HEAD);
         this.tail = new ArrayList<>();
         this.ate = false;
-        this.alive = SnakeStatus.START;
+        this.status = Status.START;
     }
 
     public Quadrado getHead() {
@@ -51,6 +50,7 @@ public class Snake extends Objeto {
     void update() {
         //this.move();
         if(collisionWithTail()) {
+            System.out.println("GAME OVER!");
             die();
         }
     }
@@ -89,6 +89,7 @@ public class Snake extends Objeto {
             this.head = new Quadrado(new Ponto(x1,y1+getHead().getSide()),new Ponto(x2,y2+getHead().getSide()));
         }
         if (this.checkCollisions(g)) {
+            System.out.println("Game Over!");
             this.die();
         }
         g.returnCellFromPoint(this.head.getCentroide()).updateCell(false,Content.HEAD);
@@ -224,7 +225,16 @@ public class Snake extends Objeto {
      */
     public void die()
     {
-        this.alive = SnakeStatus.DEAD;
+        this.tail.clear();
+        this.status = Status.DEAD;
+        //TODO
+    }
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
 
