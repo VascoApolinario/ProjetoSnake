@@ -7,9 +7,10 @@ public class Snake extends Objeto {
     private Quadrado head;
     private ArrayList<Quadrado> tail;
     private int direction;
-    boolean ate;
+    private boolean ate;
     private Status status;
     boolean increaseScore;
+    private boolean rotateDelay;
     /**
      * Construtor
      */
@@ -31,6 +32,7 @@ public class Snake extends Objeto {
         spawn.setContent(Content.HEAD);
         this.tail = new ArrayList<>();
         this.ate = false;
+        this.rotateDelay = false;
         this.status = Status.START;
     }
 
@@ -108,6 +110,9 @@ public class Snake extends Objeto {
             this.tail.removeFirst();
         }
 
+        if(this.rotateDelay)
+            this.rotateDelay = false;
+
         /* o movimento da snake vai ser baseado em mover a cabeça para a direção correta (dependendo da direção)
         * ter atenção que a snake não se pode mexer 180 graus, só 90º de cada vez, e seguida
         * remover o primeiro elemento da cauda (o que está mais longe da cabeça)
@@ -121,8 +126,11 @@ public class Snake extends Objeto {
      */
     @Override
     void rotate(int degrees) {
-        if(Math.abs(this.direction% 180 - degrees %180)==90)
-            this.direction = degrees;
+        if(!this.rotateDelay) {
+            if (Math.abs(this.direction % 180 - degrees % 180) == 90)
+                this.direction = degrees;
+            this.rotateDelay = true;
+        }
     }
 
     @Override
