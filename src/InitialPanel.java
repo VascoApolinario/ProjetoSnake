@@ -30,7 +30,7 @@ public class InitialPanel extends JPanel implements ActionListener {
         startGame = false;
         janela = new JFrame();
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        janela.setSize(600, 700);
+        janela.setSize(600, 550);
         janela.setLayout(new FlowLayout());
         janela.setLocationRelativeTo(null);
         janela.setTitle("OBJECT ORIENTED PROGRAMMED SNAKE");
@@ -118,7 +118,7 @@ public class InitialPanel extends JPanel implements ActionListener {
 
 
         printLeaderboardScroll = new JScrollPane(printLeaderboard);
-        printLeaderboardScroll.setPreferredSize(new Dimension(550,300));
+        printLeaderboardScroll.setPreferredSize(new Dimension(550,250));
         printLeaderboardScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 
