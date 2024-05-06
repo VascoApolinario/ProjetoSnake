@@ -21,6 +21,7 @@ public interface IGraficos {
     void drawScore(Graphics g);
     void drawSnakeDirection(Graphics g);
     void drawGameOver(Graphics g);
+    void drawBorder(Graphics g);
     void repaint();
     void setBG(Background bg);
 
@@ -51,6 +52,7 @@ class Grafica extends JPanel implements IGraficos {
         super.paintComponent(g);
         if(!bg.getGameOver()) {
             //drawGrid(g);
+            drawBorder(g);
             drawFood(g);
             drawSnake(g);
             drawObstacles(g);
@@ -182,6 +184,26 @@ class Grafica extends JPanel implements IGraficos {
     }
 
     @Override
+    public void drawBorder(Graphics g) {
+        Grid grid = this.bg.getGrid();
+        g.setColor(Color.black);
+        int x1 = (int) grid.getCells()[0][0].getTopRight().getX();
+        int y1 = (int) grid.getCells()[0][0].getTopRight().getY();
+        int x2 = (int) grid.getCells()[0][grid.getCells()[0].length-1].getDownLeft().getX();
+        int y2 = y1;
+        g.drawLine(x1,y1,x2,y2);
+        x1 = x2;
+        y2 = (int) grid.getCells()[grid.getCells().length-2][grid.getCells()[0].length-1].getDownLeft().getY();
+        g.drawLine(x1,y1,x2,y2);
+        y1 = y2;
+        x2 = (int) grid.getCells()[0][0].getTopRight().getX();
+        g.drawLine(x1,y1,x2,y2);
+        x1 = x2;
+        y2 = (int) grid.getCells()[0][0].getTopRight().getY();
+        g.drawLine(x1,y1,x2,y2);
+    }
+
+    @Override
     public void setBG(Background bg) {
         this.bg = bg;
     }
@@ -295,6 +317,9 @@ class Textual extends JPanel implements IGraficos{
                     case BORDER:
                         g.drawString("+",x,y);
                         break;
+                    case EATING:
+                        g.drawString("#",x,y);
+                        break;
                 }
 
             }
@@ -331,6 +356,11 @@ class Textual extends JPanel implements IGraficos{
         g.setFont(new Font("Cascadia Code",Font.PLAIN,40));
         FontMetrics metrics1 = getFontMetrics(g.getFont());
         g.drawString("Score: " + this.bg.getPlayer().getScore() , (getWidth() - metrics1.stringWidth("Score: " + this.bg.getPlayer().getScore()))/2, (int) (getHeight()/1.5));
+    }
+
+    @Override
+    public void drawBorder(Graphics g) {
+
     }
 
     @Override

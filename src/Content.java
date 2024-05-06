@@ -5,5 +5,6 @@ public enum Content {
     FOOD,
     EMPTY,
     DINAMICO,
-    BORDER
+    BORDER,
+    EATING
 }
