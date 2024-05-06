@@ -317,6 +317,9 @@ class Textual extends JPanel implements IGraficos{
                     case BORDER:
                         g.drawString("+",x,y);
                         break;
+                    case EATING:
+                        g.drawString("#",x,y);
+                        break;
                 }
 
             }

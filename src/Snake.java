@@ -152,10 +152,12 @@ public class Snake extends Objeto {
      */
     public void eat(Food f, Grid grid)
     {
+
         if(f instanceof SquareFood)
         {
             if(this.head.isInside(((SquareFood) f).getQuadrado())) {
                 this.grow();
+                grid.returnCellFromPoint(this.head.getCentroide()).setContent(Content.EATING);
                 f.consumir(grid);
                 increaseScore = true;
             }
@@ -163,6 +165,7 @@ public class Snake extends Objeto {
         else if (f instanceof CircleFood) {
             if(this.head.isInside(((CircleFood) f).getCirculo())) {
                 this.grow();
+                grid.returnCellFromPoint(this.head.getCentroide()).setContent(Content.EATING);
                 f.consumir(grid);
                 increaseScore = true;
             }
