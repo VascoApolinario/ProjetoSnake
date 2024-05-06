@@ -2,6 +2,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 
 public class Game implements ActionListener {
     private String level;
@@ -29,7 +30,10 @@ public class Game implements ActionListener {
         }
 
         //background = new Background(Width, Height, painelInicial.getPlayerName()); //MAIS TARDE TEMOS DE ADICIONAR UM ARGUMENTO QUE DIGA AS POSIÇOES CERTAS DA GRID E DOS OBSTACULOS, ETC.
-        background = new Background("level1.txt", painelInicial.getPlayerName());
+        if(checkLevelFile())
+            background = new Background(painelInicial.getSelectedLevel() + ".txt", painelInicial.getPlayerName());
+        else
+            background = new Background(800,600, painelInicial.getPlayerName());
         inputHandler = new InputHandler(this);
         this.graficos = new Textual(Width, Height, this.background, inputHandler);
         this.gameFrame = new GameFrame(this.graficos);
@@ -39,6 +43,13 @@ public class Game implements ActionListener {
         StartGame();
         leaderboard.update(background.getPlayer());
 
+    }
+
+    public boolean checkLevelFile(){
+        String level = this.painelInicial.getSelectedLevel();
+        level = level + ".txt";
+        File levelFile = new File(level);
+        return levelFile.exists();
     }
 
     public void StartGame() {

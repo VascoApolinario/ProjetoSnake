@@ -10,12 +10,11 @@ import java.awt.event.ActionListener;
 public class InitialPanel extends JPanel implements ActionListener {
 
     private JFrame janela;
-    private JButton submeter;
+    private JButton startGameButton;
     private JTextField playernameField;
     private String playerName;
+    private String selectedLevel;
     public boolean startGame;
-    private JTextField textField1;
-    private JPanel panel1;
     private JLabel insertUserName;
     private JLabel nameRestriction;
     private JLabel leaderboardText;
@@ -24,6 +23,8 @@ public class InitialPanel extends JPanel implements ActionListener {
     private JSpinner leaderboardSpinner;
     private JLabel showTopPlayers;
     private JLabel players;
+    private JLabel selectLevel;
+    private JComboBox<String> levelComboBox;
 
     public InitialPanel(Leaderboard leaderboardCopy){
         startGame = false;
@@ -46,18 +47,39 @@ public class InitialPanel extends JPanel implements ActionListener {
         playernameField.setPreferredSize(new Dimension(225, 35));
         playernameField.setFont(new Font("Courier New", Font.PLAIN, 18));
 
-        submeter = new JButton("START GAME");
-        submeter.addActionListener(this);
-        submeter.setFont(new Font("Courier New", Font.PLAIN, 18));
+        startGameButton = new JButton("START GAME");
+        startGameButton.addActionListener(this);
+        startGameButton.setFont(new Font("Courier New", Font.PLAIN, 18));
+
+        janela.add(insertUserName);
+        janela.add(playernameField);
+        janela.add(startGameButton);
+        janela.add(nameRestriction);
+
+        selectLevel = new JLabel("Select Level: ");
+        selectLevel.setFont(new Font("Courier New", Font.PLAIN, 30));
+
+        String[] levels = new String[]{"level1"};
+
+        levelComboBox = new JComboBox<>(levels);
+        levelComboBox.addActionListener(this);
+        levelComboBox.setFont(new Font("Courier New", Font.PLAIN, 18));
+        levelComboBox.setSelectedIndex(0);
+
+        janela.add(selectLevel);
+        janela.add(levelComboBox);
+
+
+
+
+
+
+
 
         leaderboardText = new JLabel("LEADERBOARD");
         leaderboardText.setFont(new Font("Courier New", Font.BOLD, 70));
 
-        janela.add(insertUserName);
-        janela.add(playernameField);
-        janela.add(submeter);
-        janela.add(nameRestriction);
-        janela.add(leaderboardText);
+
 
         SpinnerModel model = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1) {
             @Override
@@ -99,6 +121,9 @@ public class InitialPanel extends JPanel implements ActionListener {
         printLeaderboardScroll.setPreferredSize(new Dimension(550,300));
         printLeaderboardScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
+
+
+        janela.add(leaderboardText);
         janela.add(showTopPlayers);
         janela.add(leaderboardSpinner);
         janela.add(players);
@@ -109,7 +134,7 @@ public class InitialPanel extends JPanel implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == submeter)
+        if(e.getSource() == startGameButton)
         {
             playerName = playernameField.getText();
             if(this.playerName.contains(" "))
@@ -125,6 +150,14 @@ public class InitialPanel extends JPanel implements ActionListener {
                 janela.dispose();
             }
         }
+        if(e.getSource() == levelComboBox)
+        {
+            selectedLevel = (String) levelComboBox.getSelectedItem();
+        }
+    }
+
+    public String getSelectedLevel() {
+        return selectedLevel;
     }
 
     public String getPlayerName() {
