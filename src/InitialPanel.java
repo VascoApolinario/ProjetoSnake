@@ -19,6 +19,7 @@ public class InitialPanel extends JPanel implements ActionListener {
     private JLabel leaderboardText;
     private JTextArea printLeaderboard;
     private JScrollPane printLeaderboardScroll;
+    private JSpinner leaderboardSpinner;
 
     public InitialPanel(Leaderboard leaderboardCopy){
         startGame = false;
@@ -55,16 +56,34 @@ public class InitialPanel extends JPanel implements ActionListener {
         janela.add(nameRestriction);
         janela.add(leaderboardText);
 
+        SpinnerModel model = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1) {
+            @Override
+            public Object getNextValue() {
+                Object value = super.getNextValue();
+                return (value instanceof Integer) ? value : getMinimum();
+            }
+
+            @Override
+            public Object getPreviousValue() {
+                Object value = super.getPreviousValue();
+                return (value instanceof Integer) ? value : getMinimum();
+            }
+        };
+
+        leaderboardSpinner = new JSpinner(model);
+        leaderboardSpinner.setPreferredSize(new Dimension(50,25));
+        leaderboardSpinner.setValue(5);
+
         printLeaderboard = new JTextArea();
-        printLeaderboard.setPreferredSize(new Dimension(500,250));
         printLeaderboard.setFont(new Font("Courier New", Font.BOLD, 16));
         printLeaderboard.setEditable(false);
         printLeaderboard.setText(leaderboardCopy.printLeaderboard(100));
 
         printLeaderboardScroll = new JScrollPane(printLeaderboard);
-        printLeaderboardScroll.setPreferredSize(new Dimension(550,400));
+        printLeaderboardScroll.setPreferredSize(new Dimension(550,300));
         printLeaderboardScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
+        janela.add(leaderboardSpinner);
         janela.add(printLeaderboardScroll);
         //janela.add(printLeaderboardScroll);
         //janela.pack();

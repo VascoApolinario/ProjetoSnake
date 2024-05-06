@@ -29,7 +29,7 @@ public class Game implements ActionListener {
         }
 
         //background = new Background(Width, Height, painelInicial.getPlayerName()); //MAIS TARDE TEMOS DE ADICIONAR UM ARGUMENTO QUE DIGA AS POSIÇOES CERTAS DA GRID E DOS OBSTACULOS, ETC.
-        background = new Background(level, painelInicial.getPlayerName());
+        background = new Background("level1.txt", painelInicial.getPlayerName());
         inputHandler = new InputHandler(this);
         this.graficos = new Textual(Width, Height, this.background, inputHandler);
         this.gameFrame = new GameFrame(this.graficos);
@@ -70,7 +70,7 @@ public class Game implements ActionListener {
     public void reset(){
 
         leaderboard.update(background.getPlayer());
-        this.background = new Background(level, painelInicial.getPlayerName());
+        this.background = new Background("level1.txt", painelInicial.getPlayerName());
         this.graficos.setBG(this.background);
     }
 
