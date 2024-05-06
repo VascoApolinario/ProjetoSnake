@@ -55,6 +55,10 @@ public class InitialPanel extends JPanel implements ActionListener {
             {
                 nameRestricion.setText("ERROR: Make sure your name doesn't contain space characters!");
             }
+            else if(this.playerName.isEmpty())
+            {
+                nameRestricion.setText("ERROR: Please insert player name before starting the game!");
+            }
             else {
                 startGame = true;
                 janela.dispose();
