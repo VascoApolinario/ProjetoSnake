@@ -52,7 +52,6 @@ public class Snake extends Objeto {
     void update() {
         //this.move();
         if(collisionWithTail()) {
-            System.out.println("GAME OVER!");
             die();
         }
     }
@@ -91,7 +90,7 @@ public class Snake extends Objeto {
             this.head = new Quadrado(new Ponto(x1,y1+getHead().getSide()),new Ponto(x2,y2+getHead().getSide()));
         }
         if (this.checkCollisions(g)) {
-            System.out.println("Game Over!");
+            //System.out.println("Game Over!");
             this.die();
         }
         g.returnCellFromPoint(this.head.getCentroide()).updateCell(false,Content.HEAD);

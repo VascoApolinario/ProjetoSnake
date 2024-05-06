@@ -19,7 +19,7 @@ public class Game implements ActionListener {
         int Width = 800;
         int Height = 600;
         leaderboard = new Leaderboard("leaderboard.txt");
-        leaderboard.printLeaderboard();
+        //leaderboard.printLeaderboard();
         painelInicial = new InitialPanel(leaderboard);
         while (!painelInicial.startGame) {
             try {
@@ -81,7 +81,7 @@ public class Game implements ActionListener {
     public void reset(){
 
         leaderboard.update(background.getPlayer());
-        this.background = new Background("level1.txt", painelInicial.getPlayerName());
+        this.background = new Background(painelInicial.getSelectedLevel() + ".txt", painelInicial.getPlayerName());
         this.graficos.setBG(this.background);
     }
 
