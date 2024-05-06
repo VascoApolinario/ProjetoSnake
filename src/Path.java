@@ -70,4 +70,8 @@ public class Path {
         }
         return 0;
     }
+
+    public Ponto[] getPontos() {
+        return pontos;
+    }
 }
