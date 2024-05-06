@@ -3,8 +3,10 @@ import FigurasGeo.Ponto;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Background {
     private ArrayList<Obstacle> obstaculos;
@@ -29,6 +31,48 @@ public class Background {
         this.gameOver = false;
         this.updateLeaderBoard = false;
     }
+
+    public Background(String filename, String playername) {
+        this.obstaculos = new ArrayList<>();
+        this.comida = new ArrayList<>();
+        this.gameOver = false;
+        this.updateLeaderBoard = false;
+        this.player = new Player(playername);
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            String[] dimensions = br.readLine().split(",");
+            int Width = Integer.parseInt(dimensions[0].trim());
+            int Height = Integer.parseInt(dimensions[1].trim());
+            this.grid = new Grid(Width, Height, 40);
+
+            String line;
+            while ((line = br.readLine()) != null && !line.isEmpty()) {
+                line = line.trim(); // Ensure whitespace is not causing issues
+                if (line.startsWith("Poligono")) {
+                    String[] parts = line.split(", ");
+                    boolean isFixed = Boolean.parseBoolean(parts[1].trim());
+                    int rotation = Integer.parseInt(parts[2].trim());
+                    this.obstaculos.add(new Obstacle(parts[0], isFixed, rotation));
+                } else if (line.startsWith("Snake")) {
+                    String[] coords = line.replace("Snake ", "").split(",");
+                    int x = Integer.parseInt(coords[0].trim());
+                    int y = Integer.parseInt(coords[1].trim());
+                    this.snake = new Snake(40, 0, this.grid.returnCellFromPoint(new Ponto(x, y)));
+                } else if (line.startsWith("CircleFood")) {
+                    int radius = Integer.parseInt(line.replace("CircleFood,", "").trim());
+                    this.comida.add(new CircleFood(this.grid.pickSpawnPoint(), radius));
+                } else if (line.startsWith("SquareFood")) {
+                    int size = Integer.parseInt(line.replace("SquareFood,", "").trim());
+                    this.comida.add(new SquareFood(size, this.grid.pickSpawnPoint()));
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
+    }
+
 
     public void updateAll() {
         if(!gameOver) {

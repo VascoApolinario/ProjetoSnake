@@ -1,0 +1,8 @@
+800,600
+Poligono 3 80 80 80 60 120 60, true, 45
+Snake 40,300
+CircleFood,15
+SquareFood,30
+SquareFood,30
+SquareFood,30
+SquareFood,30

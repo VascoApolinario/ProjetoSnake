@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Game implements ActionListener {
+    private String level;
     private Background background;
     private Timer timer;
     private boolean running;
@@ -27,7 +28,8 @@ public class Game implements ActionListener {
             }
         }
 
-        background = new Background(Width, Height, painelInicial.getPlayerName()); //MAIS TARDE TEMOS DE ADICIONAR UM ARGUMENTO QUE DIGA AS POSIÇOES CERTAS DA GRID E DOS OBSTACULOS, ETC.
+        //background = new Background(Width, Height, painelInicial.getPlayerName()); //MAIS TARDE TEMOS DE ADICIONAR UM ARGUMENTO QUE DIGA AS POSIÇOES CERTAS DA GRID E DOS OBSTACULOS, ETC.
+        background = new Background(level, painelInicial.getPlayerName());
         inputHandler = new InputHandler(this);
         this.graficos = new Textual(Width, Height, this.background, inputHandler);
         this.gameFrame = new GameFrame(this.graficos);
@@ -68,7 +70,7 @@ public class Game implements ActionListener {
     public void reset(){
 
         leaderboard.update(background.getPlayer());
-        this.background = new Background(800,600, painelInicial.getPlayerName());
+        this.background = new Background(level, painelInicial.getPlayerName());
         this.graficos.setBG(this.background);
     }
 
