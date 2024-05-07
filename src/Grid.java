@@ -1,7 +1,6 @@
 import FigurasGeo.Ponto;
 import FigurasGeo.Quadrado;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -67,29 +66,29 @@ public class Grid {
     }
 
     public void update(ArrayList<Obstacle> obstacles) {
-        ArrayList<Cell> cellsToUpdateAsObstacle = new ArrayList<>();
-
         for (Obstacle o : obstacles) {
-            for (int i = 0; i < cells.length; i++) {
-                for (int j = 0; j < cells[i].length; j++) {
-                    if (o.getPoligono().polygonsIntercept(cells[i][j])) {
-                        if (!cellsToUpdateAsObstacle.contains(cells[i][j])) {
-                            cellsToUpdateAsObstacle.add(cells[i][j]);
+            this.update(o);
+        }
+    }
+
+    public void update(Obstacle o) {
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                if (o.getPoligono().polygonsIntercept(cells[i][j])) {
+                    cells[i][j].updateCell(false, Content.OBSTACLE);
+                }
+                if (o.isDinamico()) {
+                    for (int k = 1; k <= 360 / o.getDegree(); k++) {
+                        if ((cells[i][j].polygonsIntercept(o.getPoligono().rotate(o.getDegree() * k))) && (!cells[i][j].polygonsIntercept(o.getPoligono()))) {
+                            cells[i][j].updateCell(false, Content.DINAMICO);
                         }
                     }
                 }
             }
         }
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                if (cellsToUpdateAsObstacle.contains(cells[i][j])) {
-                    cells[i][j].updateCell(false, Content.OBSTACLE);
-                } else if (!cells[i][j].isEmpty() && cells[i][j].getContent() != Content.FOOD && cells[i][j].getContent() != Content.BORDER && cells[i][j].getContent() != Content.HEAD && cells[i][j].getContent() != Content.TAIL) {
-                    cells[i][j].updateCell(false, Content.DINAMICO);
-                }
-            }
-        }
     }
+
+
     public void update(Snake snake) {
 
         this.returnCellFromPoint(snake.getHead().getCentroide()).updateCell(true, Content.EMPTY);
@@ -121,6 +120,4 @@ public class Grid {
     public int getWidth() {return width;}
     public Cell[][] getCells() {return cells;}
     public int getSquaresize() {return squaresize;}
-
-
 }

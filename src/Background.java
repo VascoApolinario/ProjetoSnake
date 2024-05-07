@@ -27,11 +27,11 @@ public class Background {
         this.player = new Player(playername);
         this.comida = new ArrayList<>();
         this.obstaculos = new ArrayList<>();
-        this.comida.add(new CircleFood(this.grid.pickSpawnPoint(), 15));
-        this.comida.add(new SquareFood(30,this.grid.pickSpawnPoint()));
-
         this.obstaculos.add(new Obstacle("Poligono 3 400 300 450 350 330 150", true, 45));
         this.obstaculos.add(new Obstacle("Poligono 3 80 80 80 60 120 60", true, 45));
+        this.grid.update(obstaculos);
+        this.comida.add(new CircleFood(this.grid.pickSpawnPoint(), 15));
+        this.comida.add(new SquareFood(30,this.grid.pickSpawnPoint()));
         this.gameOver = false;
         this.updateLeaderBoard = false;
         this.autoSnake = new AutoSnake();
