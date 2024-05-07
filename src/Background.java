@@ -17,8 +17,9 @@ public class Background {
     private boolean gameOver;
     private boolean updateLeaderBoard;
     private AutoSnake autoSnake;
+    private boolean activateAutoSnake;
 
-    public Background(int Width, int Height, String playername) {
+    public Background(int Width, int Height, String playername, Boolean activateAutoSnake) {
         this.grid = new Grid(Width,Height,40);
         this.snake = new Snake(40,0, this.grid.returnCellFromPoint(new Ponto(40,300)));
         this.player = new Player(playername);
@@ -31,9 +32,11 @@ public class Background {
         this.obstaculos.add(new Obstacle("Poligono 3 80 80 80 60 120 60", true, 45));
         this.gameOver = false;
         this.updateLeaderBoard = false;
+        this.autoSnake = new AutoSnake();
+        this.activateAutoSnake = activateAutoSnake;
     }
 
-    public Background(String filename, String playername) {
+    public Background(String filename, String playername, boolean activateAutoSnake) {
         this.obstaculos = new ArrayList<>();
         this.comida = new ArrayList<>();
         this.gameOver = false;
@@ -73,13 +76,17 @@ public class Background {
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
         }
+        this.activateAutoSnake = activateAutoSnake;
         this.autoSnake = new AutoSnake();
     }
 
 
     public void updateAll() {
         if(!gameOver) {
-            autoSnake.Start(this.snake,this);
+            if(activateAutoSnake)
+            {
+                autoSnake.Start(this.snake,this);
+            }
             if(snake.getStatus().equals(Status.ALIVE))
                 snake.move(this.grid);
             snake.update();
