@@ -6,26 +6,28 @@ import java.util.ArrayList;
 public class AutoSnake {
     private Path snakepath;
     private boolean searching;
+    private int count;
 
     public AutoSnake() {
         this.searching = true;
+        this.count = 1;
     }
 
     public void Start(Snake snake, Background background){
-        snake.setStatus(Status.ALIVE);
-        if(snake.getStatus().equals(Status.ALIVE)) {
+
             if (searching) {
-                snakepath = Search(background);
-                searching = false;
+                this.snakepath = Search(background);
+                this.searching = false;
+
             } else {
                 if (snakepath != null) {
+                    snake.setStatus(Status.ALIVE);
                     followPath(snake, this.snakepath);
                 } else {
                     End(snake);
                 }
 
             }
-        }
 
 
     }
@@ -58,11 +60,11 @@ public class AutoSnake {
             for(int i = 0; i < options.length; i++)
             {
                 pontos[1] = new Ponto(options[0],bg.getSnake().getHead().getCentroide().getY());
-                if(pontos[1].equals(pontos[2])){
+                if(pontos[1].equals(pontos[2]) || pontos[1].equals(pontos[0])){
                     Ponto[] pts = new Ponto[2];
                     pts[0] = pontos[0];
                     pts[1] = pontos[2];
-                    path = new Path(pontos);
+                    path = new Path(pts);
                 }
                 else
                     path = new Path(pontos);
@@ -89,65 +91,43 @@ public class AutoSnake {
         return true;
     }
 
-    //falta quando a snake chega ao ultimo ponto
+
     public void followPath(Snake snake,Path path){
-        if(snake.getHead().getCentroide().equals(path.getPontos()[2]))
-        {
-            this.searching = true;
-            this.snakepath = null;
-        }
-       if(snake.getDirection() == 0 || snake.getDirection() == 180) // se a cobra estiver numa direção horizontal
-       {
-           if(path.getPontos()[1].getY() < snake.getHead().getCentroide().getY()) // se o y do 2º ponto está em cima da snake
-           {
-               snake.rotate(90);
-           }
-           else if(path.getPontos()[1].getY() > snake.getHead().getCentroide().getY()) // se o y do 2º ponto está abaixo da snake
-           {
-               snake.rotate(270);
-           }
 
-           if(path.getPontos()[1].equals(snake.getHead().getCentroide())) //a snake ja chegou no segundo ponto
-           {
-               if(path.getPontos()[2].getY() < snake.getHead().getCentroide().getY()) // se o y do ultimo ponto está em cima da snake
-               {
-                   snake.rotate(90);
-               }
-               else if(path.getPontos()[2].getY() > snake.getHead().getCentroide().getY()) // se o y do ultimo ponto está abaixo da snake
-               {
-                   snake.rotate(270);
-               }
-           }
-
-       }
-       else // se a cobra estiver numa direção vertical
-       {
-           if(path.getPontos()[1].getX() < snake.getHead().getCentroide().getX()) // se o x do 2º ponto está à esquerda da snake
-           {
-               snake.rotate(180);
-           }
-           else if(path.getPontos()[1].getX() > snake.getHead().getCentroide().getX()) // se o x do 2º ponto está à direita da snake
-           {
-               snake.rotate(0);
-           }
-
-           if(path.getPontos()[1].equals(snake.getHead().getCentroide())) //a snake ja chegou no segundo ponto
-           {
-               if(path.getPontos()[2].getX() < snake.getHead().getCentroide().getX()) // se o x do ultimo ponto está à esquerda da snake
-               {
-                   snake.rotate(180);
-               }
-               else if(path.getPontos()[2].getX() > snake.getHead().getCentroide().getX()) // se o x do ultimo ponto está à direita da snake
-               {
-                   snake.rotate(0);
-               }
-           }
-
-       }
+            if(snake.getHead().getCentroide().equals(path.getPontos()[count]))
+            {
+                count++;
+            }
+            if(count >= path.getPontos().length) {
+                this.searching = true;
+                this.count = 1;
+            }
+            if(snake.getDirection() == 0 || snake.getDirection() == 180) // se a cobra estiver numa direção horizontal
+            {
+                if (path.getPontos()[count].getY() < snake.getHead().getCentroide().getY()) // se o y do 2º ponto está em cima da snake
+                {
+                    snake.rotate(90);
+                } else if (path.getPontos()[count].getY() > snake.getHead().getCentroide().getY()) // se o y do 2º ponto está abaixo da snake
+                {
+                    snake.rotate(270);
+                }
+            }
+            else
+            {
+                if(path.getPontos()[count].getX() < snake.getHead().getCentroide().getX()) // se o x do 2º ponto está à esquerda da snake
+                {
+                    snake.rotate(180);
+                }
+                else if(path.getPontos()[count].getX() > snake.getHead().getCentroide().getX()) // se o x do 2º ponto está à direita da snake
+                {
+                    snake.rotate(0);
+                }
+            }
     }
-
-
-
-
 }
+
+
+
+
+
 
