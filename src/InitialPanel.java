@@ -4,7 +4,8 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 
 public class InitialPanel extends JPanel implements ActionListener {
@@ -15,6 +16,7 @@ public class InitialPanel extends JPanel implements ActionListener {
     private String playerName;
     private String selectedLevel;
     public boolean startGame;
+    public boolean autoSnake;
     private JLabel insertUserName;
     private JLabel nameRestriction;
     private JLabel leaderboardText;
@@ -25,6 +27,7 @@ public class InitialPanel extends JPanel implements ActionListener {
     private JLabel players;
     private JLabel selectLevel;
     private JComboBox<String> levelComboBox;
+    private JCheckBox activateAutoSnake;
 
     public InitialPanel(Leaderboard leaderboardCopy){
         startGame = false;
@@ -39,6 +42,20 @@ public class InitialPanel extends JPanel implements ActionListener {
         insertUserName = new JLabel("INSERT PLAYER NAME: ");
         insertUserName.setFont(new Font("Courier New", Font.BOLD, 16));
         nameRestriction = new JLabel("NOTE: Your name should not contain space characters!!");
+        activateAutoSnake = new JCheckBox("Enable Automatic Mode");
+        activateAutoSnake.setFont(new Font("Courier New", Font.PLAIN, 25));
+        activateAutoSnake.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    autoSnake = true;
+                } else {
+                    autoSnake = false;
+                }
+            }
+        });
+        activateAutoSnake.setSelected(false);
+        autoSnake = false;
 
         nameRestriction.setFont(new Font("Courier New", Font.BOLD, 12));
 
@@ -55,6 +72,7 @@ public class InitialPanel extends JPanel implements ActionListener {
         janela.add(playernameField);
         janela.add(startGameButton);
         janela.add(nameRestriction);
+        janela.add(activateAutoSnake);
 
         selectLevel = new JLabel("Select Level: ");
         selectLevel.setFont(new Font("Courier New", Font.PLAIN, 30));
@@ -166,6 +184,10 @@ public class InitialPanel extends JPanel implements ActionListener {
 
     public boolean getStartGameStatus() {
         return startGame;
+    }
+
+    public boolean getAutoSnake() {
+        return autoSnake;
     }
 
 }
