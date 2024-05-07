@@ -54,8 +54,8 @@ public class InitialPanel extends JPanel implements ActionListener {
                 }
             }
         });
-        activateAutoSnake.setSelected(false);
-        autoSnake = false;
+        activateAutoSnake.setSelected(true);
+        autoSnake = true;
 
         nameRestriction.setFont(new Font("Courier New", Font.BOLD, 12));
 
