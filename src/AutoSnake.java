@@ -4,26 +4,37 @@ import FigurasGeo.Quadrado;
 import java.util.ArrayList;
 
 public class AutoSnake {
-    private Background bg;
     private Path snakepath;
     private boolean searching;
 
-    public AutoSnake(Background background) {
-        this.bg = background;
+    public AutoSnake() {
         this.searching = true;
+    }
+
+    public void Start(Snake snake, Background background){
+        snake.setStatus(Status.ALIVE);
+        if(snake.getStatus().equals(Status.ALIVE)) {
+            if (searching) {
+                snakepath = Search(background);
+                searching = false;
+            } else {
+                if (snakepath != null) {
+                    followPath(snake, this.snakepath);
+                } else {
+                    End(snake);
+                }
+
+            }
+        }
 
 
     }
 
-    public void Start(){
-        bg.getSnake().setStatus(Status.ALIVE);
+    public void End(Snake snake){
+        System.out.println("END!");
     }
 
-    public void End(){
-
-    }
-
-    public Path Search(){
+    public Path Search(Background bg){
         Path path = null;
         for (Food food : bg.getComida()) {
             double x = 0;
@@ -47,8 +58,15 @@ public class AutoSnake {
             for(int i = 0; i < options.length; i++)
             {
                 pontos[1] = new Ponto(options[0],bg.getSnake().getHead().getCentroide().getY());
-                path = new Path(pontos);
-                if(validPath(path))
+                if(pontos[1].equals(pontos[2])){
+                    Ponto[] pts = new Ponto[2];
+                    pts[0] = pontos[0];
+                    pts[1] = pontos[2];
+                    path = new Path(pontos);
+                }
+                else
+                    path = new Path(pontos);
+                if(validPath(path,bg))
                     break;
             }
 
@@ -58,7 +76,7 @@ public class AutoSnake {
 
 
 
-    public boolean validPath(Path p){
+    public boolean validPath(Path p,Background bg){
         for (Obstacle obstacle : bg.getObstaculos()) {
             if(p.interseta(obstacle.getPoligono()) == 1)
                 return false;
@@ -73,6 +91,11 @@ public class AutoSnake {
 
     //falta quando a snake chega ao ultimo ponto
     public void followPath(Snake snake,Path path){
+        if(snake.getHead().getCentroide().equals(path.getPontos()[2]))
+        {
+            this.searching = true;
+            this.snakepath = null;
+        }
        if(snake.getDirection() == 0 || snake.getDirection() == 180) // se a cobra estiver numa direção horizontal
        {
            if(path.getPontos()[1].getY() < snake.getHead().getCentroide().getY()) // se o y do 2º ponto está em cima da snake

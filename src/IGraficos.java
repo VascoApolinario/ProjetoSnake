@@ -51,7 +51,7 @@ class Grafica extends JPanel implements IGraficos {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         if(!bg.getGameOver()) {
-            //drawGrid(g);
+            drawGrid(g);
             drawBorder(g);
             drawFood(g);
             drawSnake(g);
@@ -142,13 +142,13 @@ class Grafica extends JPanel implements IGraficos {
                     g.setColor(new Color(43, 26, 2));
                     g.fillRect((int) ponto.getX(), (int) ponto.getY(), size, size);
                 }
-                /*
+
                 if(!grid.getCells()[x][y].isEmpty()) {
                     g.setColor(new Color(172, 23, 177));
                     g.fillRect((int) ponto.getX(), (int) ponto.getY(), size, size);
                 }
 
-                 */
+
             }
         }
     }

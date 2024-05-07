@@ -3,7 +3,6 @@ import FigurasGeo.Ponto;
 
 public abstract class Objeto {
 
-
     public final void criar(String formato, Ponto spawn) {
         //spawn(spawn);
     }

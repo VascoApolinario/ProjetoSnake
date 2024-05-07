@@ -16,6 +16,7 @@ public class Background {
     private Player player;
     private boolean gameOver;
     private boolean updateLeaderBoard;
+    private AutoSnake autoSnake;
 
     public Background(int Width, int Height, String playername) {
         this.grid = new Grid(Width,Height,40);
@@ -38,6 +39,7 @@ public class Background {
         this.gameOver = false;
         this.updateLeaderBoard = false;
         this.player = new Player(playername);
+
 
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String[] dimensions = br.readLine().split(",");
@@ -71,11 +73,13 @@ public class Background {
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
         }
+        this.autoSnake = new AutoSnake();
     }
 
 
     public void updateAll() {
         if(!gameOver) {
+            autoSnake.Start(this.snake,this);
             if(snake.getStatus().equals(Status.ALIVE))
                 snake.move(this.grid);
             snake.update();
