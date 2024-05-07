@@ -111,9 +111,17 @@ public class Grid {
     }
 
     public Cell returnCellFromPoint(Ponto p){
-        int row =(int) p.getY()/this.squaresize;
-        int col =(int) p.getX()/this.squaresize;
+        int row =returnRowFromPoint(p);
+        int col =returnColFromPoint(p);
         return this.getCells()[row][col];
+    }
+
+    public int returnRowFromPoint(Ponto p){
+        return (int) p.getY()/this.squaresize;
+    }
+
+    public int returnColFromPoint(Ponto p){
+        return (int) p.getX()/this.squaresize;
     }
 
     public int getHeight() {return height;}

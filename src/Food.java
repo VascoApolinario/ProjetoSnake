@@ -8,5 +8,6 @@ public interface Food {
     void consumir(Grid grid);
     void update();
     void spawn(Cell c);
+    Ponto getLocation();
 }
 

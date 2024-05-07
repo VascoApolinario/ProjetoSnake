@@ -7,10 +7,11 @@ Vasco 25
 TESTE 22
 asdasd 16
 Andre 16
-a 7
+a 16
 jskmdasd 5
 o 5
 pila 5
+s 5
 ASDIUHSADSAD 4
 ADSASDASD 4
 hbuijdasn 4

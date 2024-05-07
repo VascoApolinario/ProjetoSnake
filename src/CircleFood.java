@@ -33,6 +33,11 @@ public class CircleFood extends Objeto implements Food{
     }
 
     @Override
+    public Ponto getLocation() {
+        return this.circulo.getCenter();
+    }
+
+    @Override
     void move(Grid g) {
 
     }

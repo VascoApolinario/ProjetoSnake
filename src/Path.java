@@ -1,5 +1,6 @@
 import FigurasGeo.Poligono;
 import FigurasGeo.Ponto;
+import FigurasGeo.Quadrado;
 import FigurasGeo.Segmento;
 
 import java.util.ArrayList;
@@ -74,4 +75,5 @@ public class Path {
     public Ponto[] getPontos() {
         return pontos;
     }
+
 }

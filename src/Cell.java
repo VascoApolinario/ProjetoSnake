@@ -34,7 +34,7 @@ public class Cell extends Quadrado {
     public void setEmpty(boolean empty) {
         this.empty = empty;
     }
-    
+
     @Override
     public String toString() {
         return super.getCentroide().toString2();

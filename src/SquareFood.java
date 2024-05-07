@@ -33,6 +33,11 @@ public class SquareFood extends Objeto implements Food{
     }
 
     @Override
+    public Ponto getLocation() {
+        return this.quadrado.getCentroide();
+    }
+
+    @Override
     void move(Grid g) {
 
     }
