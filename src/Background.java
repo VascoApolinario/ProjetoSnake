@@ -18,6 +18,8 @@ public class Background {
     private boolean updateLeaderBoard;
     private AutoSnake autoSnake;
     private boolean activateAutoSnake;
+    private int Width;
+    private int Height;
 
     public Background(int Width, int Height, String playername, Boolean activateAutoSnake) {
         this.grid = new Grid(Width,Height,40);
@@ -46,23 +48,25 @@ public class Background {
 
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String[] dimensions = br.readLine().split(",");
-            int Width = Integer.parseInt(dimensions[0].trim());
-            int Height = Integer.parseInt(dimensions[1].trim());
-            this.grid = new Grid(Width, Height, 40);
+             this.Width = Integer.parseInt(dimensions[0].trim());
+             this.Height = Integer.parseInt(dimensions[1].trim());
+            int cellsize = Integer.parseInt(dimensions[2].trim());
+            this.grid = new Grid(Width, Height, cellsize);
 
             String line;
             while ((line = br.readLine()) != null && !line.isEmpty()) {
-                line = line.trim(); // Ensure whitespace is not causing issues
+                line = line.trim();
                 if (line.startsWith("Poligono")) {
                     String[] parts = line.split(", ");
                     boolean isFixed = Boolean.parseBoolean(parts[1].trim());
                     int rotation = Integer.parseInt(parts[2].trim());
                     this.obstaculos.add(new Obstacle(parts[0], isFixed, rotation));
+                    this.grid.update(this.obstaculos);
                 } else if (line.startsWith("Snake")) {
                     String[] coords = line.replace("Snake ", "").split(",");
                     int x = Integer.parseInt(coords[0].trim());
                     int y = Integer.parseInt(coords[1].trim());
-                    this.snake = new Snake(40, 0, this.grid.returnCellFromPoint(new Ponto(x, y)));
+                    this.snake = new Snake(cellsize, 0, this.grid.returnCellFromPoint(new Ponto(x, y)));
                 } else if (line.startsWith("CircleFood")) {
                     int radius = Integer.parseInt(line.replace("CircleFood,", "").trim());
                     this.comida.add(new CircleFood(this.grid.pickSpawnPoint(), radius));
@@ -140,5 +144,12 @@ public class Background {
 
     public boolean getGameOver() {
         return gameOver;
+    }
+
+    public int getWidth() {
+        return this.Width;
+    }
+    public int getHeight() {
+        return this.Height;
     }
 }

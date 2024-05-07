@@ -16,8 +16,6 @@ public class Game implements ActionListener {
     private InitialPanel painelInicial;
 
     public Game() {
-        int Width = 800;
-        int Height = 600;
         leaderboard = new Leaderboard("leaderboard.txt");
         //leaderboard.printLeaderboard();
         painelInicial = new InitialPanel(leaderboard);
@@ -35,7 +33,7 @@ public class Game implements ActionListener {
         else
             background = new Background(800,600, painelInicial.getPlayerName(),painelInicial.getAutoSnake());
         inputHandler = new InputHandler(this);
-        this.graficos = new Grafica(Width, Height, this.background, inputHandler);
+        this.graficos = new Textual(background.getWidth(), background.getHeight(), this.background, inputHandler);
         this.gameFrame = new GameFrame(this.graficos);
         timer = new Timer(100, this);
         running = true;

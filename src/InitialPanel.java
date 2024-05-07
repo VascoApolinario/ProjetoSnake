@@ -77,7 +77,7 @@ public class InitialPanel extends JPanel implements ActionListener {
         selectLevel = new JLabel("Select Level: ");
         selectLevel.setFont(new Font("Courier New", Font.PLAIN, 30));
 
-        String[] levels = new String[]{"level1"};
+        String[] levels = new String[]{"level1", "level2"};
 
         levelComboBox = new JComboBox<>(levels);
         levelComboBox.addActionListener(this);
