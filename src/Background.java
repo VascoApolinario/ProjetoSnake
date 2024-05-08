@@ -103,9 +103,7 @@ public class Background {
             }
             this.grid.update(obstaculos);
             for (Food f : comida) {
-                if (grid.cellAvaiable()) {
-                    snake.eat(f, this.grid);
-                }
+                snake.eat(f, this.grid);
             }
             if (snake.increaseScore) {
                 player.setScore(player.getScore() + 1);
