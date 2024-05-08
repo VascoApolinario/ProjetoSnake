@@ -87,6 +87,10 @@ public class Background {
 
     public void updateAll() {
         if(!gameOver) {
+            if(!grid.cellAvaiable()) {
+                player.setScore(Integer.MAX_VALUE);
+                gameOver = true;
+            }
             if(activateAutoSnake)
             {
                 autoSnake.Start(this.snake,this);
@@ -107,11 +111,14 @@ public class Background {
             }
             if (snake.getStatus().equals(Status.DEAD)) {
                 gameOver = true;
-                if (player.getScore() > player.getBestScore()) {
-                    player.setBestScore(player.getScore());
-                    updateLeaderBoard = true;
-                }
                 snake.setStatus(Status.ALIVE);
+            }
+        }
+        else
+        {
+            if (player.getScore() > player.getBestScore()) {
+                player.setBestScore(player.getScore());
+                updateLeaderBoard = true;
             }
         }
     }

@@ -1,8 +1,8 @@
+a 2147483647
 PlayerGamer 420
 Jogador01 100
 asd 51
-a 31
-Diogo 26
+Diogo 40
 Vasco 25
 1 23
 TESTE 22

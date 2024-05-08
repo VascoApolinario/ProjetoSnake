@@ -54,7 +54,7 @@ public class Grid {
             while(!selected){
                 int row = rand.nextInt(this.getHeight()/this.getSquaresize());
                 int column = rand.nextInt(this.getWidth()/this.getSquaresize());
-                if (cells[row][column].isEmpty()) {
+                if (cells[row][column].getContent().equals(Content.EMPTY)) {
                     c = cells[row][column];
                     selected = true;
                 }
@@ -102,7 +102,7 @@ public class Grid {
         Cell[][] cells = this.getCells();
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
-                if (cells[i][j].isEmpty()) {
+                if (cells[i][j].getContent().equals(Content.EMPTY)) {
                     check = true;
                 }
             }

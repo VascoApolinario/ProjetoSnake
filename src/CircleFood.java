@@ -3,6 +3,8 @@ import FigurasGeo.Poligono;
 import FigurasGeo.Ponto;
 import FigurasGeo.Quadrado;
 
+import java.util.Random;
+
 public class CircleFood extends Objeto implements Food{
     private Circulo circulo;
 
@@ -28,7 +30,8 @@ public class CircleFood extends Objeto implements Food{
     @Override
     public void spawn(Cell c) {
         c.updateCell(false,Content.FOOD);
-        this.circulo = new Circulo(c.getCentroide(),this.circulo.getRadius());  //podia-se fazer o raio aleatorio entre um valor minimo visivel e o tamanho da cabeça da snake
+        Random rand = new Random();
+        this.circulo = new Circulo(c.getCentroide(),rand.nextInt((int)c.getSide()/4,(int)c.getSide()/2));  //podia-se fazer o raio aleatorio entre um valor minimo visivel e o tamanho da cabeça da snake
 
     }
 

@@ -292,8 +292,8 @@ class Textual extends JPanel implements IGraficos{
     @Override
     public void drawGrid(Graphics g) {
         Grid grid = bg.getGrid();
-        for (int x = 10; x < this.getWidth(); x+=10) {
-            for (int y = 10; y < this.getHeight()- grid.getSquaresize(); y+=10) {
+        for (int x = 0; x < this.getWidth(); x+=10) {
+            for (int y = 0; y < this.getHeight()- grid.getSquaresize(); y+=10) {
                 Ponto p = new Ponto(x,y);
                 Cell c = grid.returnCellFromPoint(p);
                 g.setColor(Color.BLACK);

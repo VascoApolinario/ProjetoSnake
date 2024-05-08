@@ -2,6 +2,7 @@ import FigurasGeo.Ponto;
 import FigurasGeo.Quadrado;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class AutoSnake {
     private Path snakepath;
@@ -49,6 +50,8 @@ public class AutoSnake {
 
     public Path Search(Background bg, Snake snake){
         Path path = null;
+        Random random = new Random();
+        //Food food = bg.getComida().get(random.nextInt(bg.getComida().size()));
         Food food = getCloserFood(bg,snake);
         double x = 0;
         double y = 0;
