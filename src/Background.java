@@ -87,10 +87,6 @@ public class Background {
 
     public void updateAll() {
         if(!gameOver) {
-            if(!grid.cellAvaiable()) {
-                player.setScore(Integer.MAX_VALUE);
-                gameOver = true;
-            }
             if(activateAutoSnake)
             {
                 autoSnake.Start(this.snake,this);
@@ -114,6 +110,10 @@ public class Background {
             if (snake.getStatus().equals(Status.DEAD)) {
                 gameOver = true;
                 snake.setStatus(Status.ALIVE);
+            }
+            if(!grid.cellAvaiable()) {
+                player.setScore(Integer.MAX_VALUE);
+                gameOver = true;
             }
         }
         else

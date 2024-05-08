@@ -370,6 +370,9 @@ class Textual extends JPanel implements IGraficos{
         if(c.getContent() == Content.BORDER)
             return Content.BORDER;
 
+        if(c.getContent() == Content.EATING)
+            return Content.EATING;
+
         return Content.EMPTY;
     }
 

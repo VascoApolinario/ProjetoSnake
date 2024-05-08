@@ -1,3 +1,6 @@
 320,200,40
 Snake 40,60
 SquareFood,30
+SquareFood,30
+SquareFood,30
+SquareFood,30
