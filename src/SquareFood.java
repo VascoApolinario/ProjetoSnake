@@ -1,6 +1,7 @@
 import FigurasGeo.Poligono;
 import FigurasGeo.Ponto;
 import FigurasGeo.Quadrado;
+import Enum.Content;
 
 public class SquareFood extends Objeto implements Food{
 
@@ -15,7 +16,7 @@ public class SquareFood extends Objeto implements Food{
     @Override
     public void consumir(Grid grid) {
         int cellSize = (int)grid.getCells()[0][0].getSide();
-        grid.returnCellFromPoint(this.getQuadrado().getCentroide()).updateCell(true,Content.EMPTY);
+        grid.returnCellFromPoint(this.getQuadrado().getCentroide()).updateCell(true, Content.EMPTY);
         Cell spawnPoint = grid.pickSpawnPoint();
         this.spawn(spawnPoint);
     }
@@ -28,7 +29,7 @@ public class SquareFood extends Objeto implements Food{
 
     @Override
     public void spawn(Cell c) {
-        c.updateCell(false,Content.FOOD);
+        c.updateCell(false, Content.FOOD);
         this.quadrado = (Quadrado) this.quadrado.moveCentroid((int)c.getCentroide().getX(),(int)c.getCentroide().getY());
     }
 

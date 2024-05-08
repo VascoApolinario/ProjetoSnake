@@ -1,5 +1,6 @@
 import FigurasGeo.Ponto;
 import FigurasGeo.Quadrado;
+import Enum.*;
 
 import java.util.ArrayList;
 import java.util.Random;

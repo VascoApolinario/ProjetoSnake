@@ -2,6 +2,7 @@
 import FigurasGeo.*;
 
 import java.util.ArrayList;
+import Enum.*;
 
 public class Snake extends Objeto {
     private Quadrado head;
@@ -72,7 +73,7 @@ public class Snake extends Objeto {
     @Override
     public void move(Grid g)
     {
-        g.returnCellFromPoint(this.head.getCentroide()).updateCell(true,Content.EMPTY);
+        g.returnCellFromPoint(this.head.getCentroide()).updateCell(true, Content.EMPTY);
         double x1 = this.head.getDownLeft().getX();
         double y1 = this.head.getDownLeft().getY();
         double x2 = this.head.getTopRight().getX();
@@ -93,19 +94,19 @@ public class Snake extends Objeto {
             //System.out.println("Game Over!");
             this.die();
         }
-        g.returnCellFromPoint(this.head.getCentroide()).updateCell(false,Content.HEAD);
+        g.returnCellFromPoint(this.head.getCentroide()).updateCell(false, Content.HEAD);
 
         if(ate)
         {
             this.tail.add(new Quadrado(new Ponto(x1,y1),new Ponto(x2,y2)));
-            g.returnCellFromPoint(this.tail.getLast().getCentroide()).updateCell(false,Content.TAIL);
+            g.returnCellFromPoint(this.tail.getLast().getCentroide()).updateCell(false, Content.TAIL);
             this.ate = false;
         }
         else if(!tail.isEmpty() && !ate)
         {
             this.tail.add(new Quadrado(new Ponto(x1,y1),new Ponto(x2,y2)));
-            g.returnCellFromPoint(this.tail.getLast().getCentroide()).updateCell(false,Content.TAIL);
-            g.returnCellFromPoint(this.tail.getFirst().getCentroide()).updateCell(true,Content.EMPTY);
+            g.returnCellFromPoint(this.tail.getLast().getCentroide()).updateCell(false, Content.TAIL);
+            g.returnCellFromPoint(this.tail.getFirst().getCentroide()).updateCell(true, Content.EMPTY);
             this.tail.removeFirst();
         }
 
