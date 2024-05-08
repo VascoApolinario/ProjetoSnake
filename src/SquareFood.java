@@ -15,7 +15,6 @@ public class SquareFood extends Objeto implements Food{
     @Override
     public void consumir(Grid grid) {
         int cellSize = (int)grid.getCells()[0][0].getSide();
-        grid.returnCellFromPoint(this.getQuadrado().getCentroide()).updateCell(true,Content.EMPTY);
         Cell spawnPoint = grid.pickSpawnPoint();
         this.spawn(spawnPoint);
     }
