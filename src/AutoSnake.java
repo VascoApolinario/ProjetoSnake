@@ -50,39 +50,37 @@ public class AutoSnake {
     public Path Search(Background bg, Snake snake){
         Path path = null;
         Food food = getCloserFood(bg,snake);
-            double x = 0;
-            double y = 0;
-            double[] options = new double[2];
-            Ponto[] pontos = new Ponto[3];
-            pontos[0] = bg.getSnake().getHead().getCentroide();
-            if(food instanceof SquareFood){
-                x = ((SquareFood) food).getQuadrado().getCentroide().getX();
-                y = ((SquareFood) food).getQuadrado().getCentroide().getY();
-                pontos[2] = ((SquareFood) food).getQuadrado().getCentroide();
-            }
-            else if (food instanceof CircleFood) {
-                x  = ((CircleFood) food).getCirculo().getCenter().getX();
-                y  = ((CircleFood) food).getCirculo().getCenter().getY();
-                pontos[2] = ((CircleFood) food).getCirculo().getCenter();
-            }
-            options[0] = x;
-            options[1] = y;
+        double x = 0;
+        double y = 0;
+        ArrayList<Ponto> pontos = new ArrayList<>();
+        pontos.add(bg.getSnake().getHead().getCentroide());
+        x = food.getLocation().getX();
+        y = food.getLocation().getY();
+        Ponto intermedio;
+        Ponto ultimo = new Ponto(x, y);
+        intermedio = new Ponto(x,bg.getSnake().getHead().getCentroide().getY());
+        if(!intermedio.equals(pontos.getFirst()) && !intermedio.equals(ultimo))
+        {
+            pontos.add(intermedio);
+        }
+        pontos.add(ultimo);
+        path = new Path( pontos.toArray(new Ponto[0]));
+        if(validPath(path,bg))
+            return path;
 
-            for(int i = 0; i < options.length; i++)
-            {
-                pontos[1] = new Ponto(options[0],bg.getSnake().getHead().getCentroide().getY());
-                if(pontos[1].equals(pontos[2]) || pontos[1].equals(pontos[0])){
-                    Ponto[] pts = new Ponto[2];
-                    pts[0] = pontos[0];
-                    pts[1] = pontos[2];
-                    path = new Path(pts);
-                }
-                else
-                    path = new Path(pontos);
-                if(validPath(path,bg))
-                    break;
-            }
-        return path;
+        pontos.clear();
+        pontos.add(bg.getSnake().getHead().getCentroide());
+        intermedio = new Ponto(bg.getSnake().getHead().getCentroide().getX(),y);
+        if(!intermedio.equals(pontos.getFirst()) && !intermedio.equals(ultimo))
+        {
+            pontos.add(intermedio);
+        }
+        pontos.add(ultimo);
+        path = new Path( pontos.toArray(new Ponto[0]));
+        if(validPath(path,bg))
+            return path;
+        else
+            return null;
     }
 
 
@@ -105,7 +103,7 @@ public class AutoSnake {
         int row = background.getGrid().returnRowFromPoint(snake.getHead().getCentroide());
         int col = background.getGrid().returnColFromPoint(snake.getHead().getCentroide());
 
-        if(snake.getHead().getCentroide().equals(path.getPontos()[count]))
+        if(count < path.getPontos().length && snake.getHead().getCentroide().equals(path.getPontos()[count]))
         {
             count++;
         }
@@ -116,21 +114,21 @@ public class AutoSnake {
         }
         if(snake.getDirection() == 0 || snake.getDirection() == 180) // se a cobra estiver numa direção horizontal
         {
-            if (path.getPontos()[count].getY() < snake.getHead().getCentroide().getY() && !background.getGrid().getCells()[row-1][col].getContent().equals(Content.OBSTACLE)) // se o y do 2º ponto está em cima da snake
+            if (path.getPontos()[count].getY() < snake.getHead().getCentroide().getY() && !background.getGrid().getCells()[row-1][col].getContent().equals(Content.OBSTACLE) && !background.getGrid().getCells()[row-1][col].getContent().equals(Content.TAIL)) // se o y do 2º ponto está em cima da snake
             {
                 snake.rotate(90);
-            } else if (path.getPontos()[count].getY() > snake.getHead().getCentroide().getY() && !background.getGrid().getCells()[row+1][col].getContent().equals(Content.OBSTACLE)) // se o y do 2º ponto está abaixo da snake
+            } else if (path.getPontos()[count].getY() > snake.getHead().getCentroide().getY() && !background.getGrid().getCells()[row+1][col].getContent().equals(Content.OBSTACLE) && !background.getGrid().getCells()[row+1][col].getContent().equals(Content.TAIL)) // se o y do 2º ponto está abaixo da snake
             {
                 snake.rotate(270);
             }
         }
         else
         {
-            if(path.getPontos()[count].getX() < snake.getHead().getCentroide().getX() && !background.getGrid().getCells()[row][col-1].getContent().equals(Content.OBSTACLE)) // se o x do 2º ponto está à esquerda da snake
+            if(path.getPontos()[count].getX() < snake.getHead().getCentroide().getX() && !background.getGrid().getCells()[row][col-1].getContent().equals(Content.OBSTACLE) && !background.getGrid().getCells()[row][col-1].getContent().equals(Content.TAIL)) // se o x do 2º ponto está à esquerda da snake
             {
                 snake.rotate(180);
             }
-            else if(path.getPontos()[count].getX() > snake.getHead().getCentroide().getX() && !background.getGrid().getCells()[row][col+1].getContent().equals(Content.OBSTACLE)) // se o x do 2º ponto está à direita da snake
+            else if(path.getPontos()[count].getX() > snake.getHead().getCentroide().getX() && !background.getGrid().getCells()[row][col+1].getContent().equals(Content.OBSTACLE) && !background.getGrid().getCells()[row][col+1].getContent().equals(Content.TAIL)) // se o x do 2º ponto está à direita da snake
             {
                 snake.rotate(0);
             }
