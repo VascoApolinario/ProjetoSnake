@@ -1,5 +1,6 @@
 package FigurasGeo;
-
+import javax.swing.text.AbstractDocument;
+import java.sql.SQLData;
 import java.util.Objects;
 
 /**
@@ -136,6 +137,8 @@ public class Ponto {
     }
 
 
+
+
     public boolean isInside(Circulo c)
     {
         return this.dist(c.getCenter()) <= c.getRadius();
@@ -145,4 +148,6 @@ public class Ponto {
     {
         return this.x >= q.getDownLeft().getX() && this.x <= q.getTopRight().getX()  && this.y >= q.getDownLeft().getY() && this.y <= q.getTopRight().getY();
     }
+
+
 }

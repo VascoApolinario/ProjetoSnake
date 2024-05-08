@@ -1,6 +1,7 @@
 import FigurasGeo.Poligono;
 import FigurasGeo.Ponto;
 import FigurasGeo.Quadrado;
+import FigurasGeo.Segmento;
 
 import javax.swing.*;
 import java.awt.*;
@@ -156,29 +157,31 @@ class Grafica extends JPanel implements IGraficos {
     @Override
     public void drawScore(Graphics g) {
         int score = this.bg.getPlayer().getScore();
-        g.setColor(Color.black);
-        g.setFont(new Font("Courier New",Font.PLAIN,30));
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Courier New",Font.PLAIN,getWidth()/30));
         FontMetrics metrics = getFontMetrics(g.getFont());
-        g.drawString("Pontos: " +score +" ",this.getWidth()-metrics.stringWidth("Pontos: " +score+ " "),this.getHeight()-g.getFont().getSize()/3);
+        g.drawString("Pontos: " +score + " ",this.getWidth()-metrics.stringWidth("Pontos: " +score + " "),this.getHeight()-g.getFont().getSize()/3);
     }
+
 
     @Override
     public void drawSnakeDirection(Graphics g) {
         int dir = this.bg.getSnake().getDirection();
-        g.setColor(Color.black);
-        g.setFont(new Font("Courier New",Font.PLAIN,30));
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Courier New",Font.PLAIN,getWidth()/30));
         FontMetrics metrics = getFontMetrics(g.getFont());
         g.drawString("Dir H: " + dir + " ",0,this.getHeight()-g.getFont().getSize()/3);
+
     }
 
     @Override
     public void drawGameOver(Graphics g) {
         g.setColor(Color.BLACK);
-        g.setFont(new Font("Cascadia Code",Font.BOLD,75));
+        g.setFont(new Font("Cascadia Code",Font.BOLD,getWidth()/10));
         FontMetrics metrics = getFontMetrics(g.getFont());
         g.drawString("Game Over" , (getWidth() - metrics.stringWidth("Game Over"))/2,getHeight()/2);
         g.setColor(Color.BLACK);
-        g.setFont(new Font("Cascadia Code",Font.PLAIN,40));
+        g.setFont(new Font("Cascadia Code",Font.PLAIN,getWidth()/20));
         FontMetrics metrics1 = getFontMetrics(g.getFont());
         g.drawString("Score: " + this.bg.getPlayer().getScore() , (getWidth() - metrics1.stringWidth("Score: " + this.bg.getPlayer().getScore()))/2, (int) (getHeight()/1.5));
     }
@@ -295,6 +298,90 @@ class Textual extends JPanel implements IGraficos{
         for (int x = 0; x < this.getWidth(); x+=10) {
             for (int y = 0; y < this.getHeight()- grid.getSquaresize(); y+=10) {
                 Ponto p = new Ponto(x,y);
+                Content conteudo = getContentFromPointArea(p);
+
+                g.setColor(Color.BLACK);
+                g.setFont(new Font("Cascadia Code",Font.PLAIN,10));
+                switch (conteudo) {
+                    case HEAD:
+                        g.drawString("H",x,y);
+                        break;
+                    case TAIL:
+                        g.drawString("T",x,y);
+                        break;
+                    case OBSTACLE:
+                        g.drawString("O",x,y);
+                        break;
+                    case FOOD:
+                        g.drawString("F",x,y);
+                        break;
+                    case EMPTY, DINAMICO:
+                        g.drawString(".",x,y);
+                        break;
+                    case BORDER:
+                        g.drawString("+",x,y);
+                        break;
+                    case EATING:
+                        g.drawString("#",x,y);
+                        break;
+                }
+
+            }
+        }
+    }
+
+    private Content getContentFromPointArea(Ponto p) {
+        Quadrado q =  new Quadrado(p, new Ponto(p.getX()+10,p.getY()+10));
+        Cell c = bg.getGrid().returnCellFromPoint(p);
+        for(Obstacle obstacle : bg.getObstaculos())
+        {
+            if(q.polygonsIntercept(obstacle.getPoligono()))
+                return Content.OBSTACLE;
+        }
+        for(Segmento seg : bg.getSnake().getHead().getArestas())
+        {
+            if(seg.pertenceSeg(p))
+            {
+                return Content.HEAD;
+            }
+        }
+        for(Quadrado tail : bg.getSnake().getTail())
+        {
+            for(Segmento seg : tail.getArestas()) {
+                if (seg.pertenceSeg(p))
+                    return Content.TAIL;
+            }
+        }
+        for(Food food : bg.getComida())
+        {
+            if(food instanceof SquareFood)
+            {
+                SquareFood sf = (SquareFood) food;
+                if(q.polygonsIntercept(sf.getQuadrado()))
+                    return Content.FOOD;
+            }
+            else
+            {
+                CircleFood cf = (CircleFood) food;
+                if(cf.getCirculo().collidesWithPolygon(q))
+                    return Content.FOOD;
+            }
+        }
+        if(c.getContent() == Content.BORDER)
+            return Content.BORDER;
+
+        return Content.EMPTY;
+    }
+
+
+
+
+    /*@Override
+    public void drawGrid(Graphics g) {
+        Grid grid = bg.getGrid();
+        for (int x = 0; x < this.getWidth(); x+=10) {
+            for (int y = 0; y < this.getHeight()- grid.getSquaresize(); y+=10) {
+                Ponto p = new Ponto(x,y);
                 Cell c = grid.returnCellFromPoint(p);
                 g.setColor(Color.BLACK);
                 g.setFont(new Font("Cascadia Code",Font.PLAIN,10));
@@ -324,13 +411,13 @@ class Textual extends JPanel implements IGraficos{
 
             }
         }
-    }
+    }*/
 
     @Override
     public void drawScore(Graphics g) {
         int score = this.bg.getPlayer().getScore();
         g.setColor(Color.BLACK);
-        g.setFont(new Font("Courier New",Font.PLAIN,30));
+        g.setFont(new Font("Courier New",Font.PLAIN,getWidth()/30));
         FontMetrics metrics = getFontMetrics(g.getFont());
         g.drawString("Pontos: " +score + " ",this.getWidth()-metrics.stringWidth("Pontos: " +score + " "),this.getHeight()-g.getFont().getSize()/3);
     }
@@ -340,7 +427,7 @@ class Textual extends JPanel implements IGraficos{
     public void drawSnakeDirection(Graphics g) {
         int dir = this.bg.getSnake().getDirection();
         g.setColor(Color.BLACK);
-        g.setFont(new Font("Courier New",Font.PLAIN,30));
+        g.setFont(new Font("Courier New",Font.PLAIN,getWidth()/30));
         FontMetrics metrics = getFontMetrics(g.getFont());
         g.drawString("Dir H: " + dir + " ",0,this.getHeight()-g.getFont().getSize()/3);
 
@@ -349,11 +436,11 @@ class Textual extends JPanel implements IGraficos{
     @Override
     public void drawGameOver(Graphics g) {
         g.setColor(Color.BLACK);
-        g.setFont(new Font("Cascadia Code",Font.BOLD,75));
+        g.setFont(new Font("Cascadia Code",Font.BOLD,getWidth()/10));
         FontMetrics metrics = getFontMetrics(g.getFont());
         g.drawString("Game Over" , (getWidth() - metrics.stringWidth("Game Over"))/2,getHeight()/2);
         g.setColor(Color.BLACK);
-        g.setFont(new Font("Cascadia Code",Font.PLAIN,40));
+        g.setFont(new Font("Cascadia Code",Font.PLAIN,getWidth()/20));
         FontMetrics metrics1 = getFontMetrics(g.getFont());
         g.drawString("Score: " + this.bg.getPlayer().getScore() , (getWidth() - metrics1.stringWidth("Score: " + this.bg.getPlayer().getScore()))/2, (int) (getHeight()/1.5));
     }

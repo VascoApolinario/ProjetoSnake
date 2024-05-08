@@ -146,4 +146,5 @@ public class Quadrado extends Retangulo {
 
         return this.downLeft.getX() <= leftLimit && this.topRight.getX() >= rightLimit && this.downLeft.getY() <= downLimit && this.topRight.getY() >= upLimit;
     }
+
 }

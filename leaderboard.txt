@@ -3,11 +3,13 @@ PlayerGamer 420
 Jogador01 100
 asd 51
 Diogo 40
+asdasd 33
+asasd 28
 Vasco 25
 1 23
 TESTE 22
-asdasd 16
 Andre 16
+asdad 6
 jskmdasd 5
 o 5
 pila 5
@@ -29,3 +31,5 @@ asdasdasd 0
 ol 0
 da 0
 sa 0
+aasd 0
+qwe 0

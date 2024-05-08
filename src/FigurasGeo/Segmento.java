@@ -120,6 +120,35 @@ public class Segmento
         }
     }
 
+    public boolean pertenceSeg(double x, double y) {
+        double Minx = Math.min(p1.getX(), p2.getX());
+        double Maxx = Math.max(p1.getX(), p2.getX());
+        double Miny = Math.min(p1.getY(), p2.getY());
+        double Maxy = Math.max(p1.getY(), p2.getY());
+
+
+        boolean dentroX = x >= Minx && x <= Maxx;
+        boolean dentroY = y >= Miny && y <= Maxy;
+        return dentroX && dentroY;
+
+    }
+
+    public boolean pertenceSeg(Ponto p) {
+        double x = p.getX();
+        double y = p.getY();
+
+        double Minx = Math.min(p1.getX(), p2.getX());
+        double Maxx = Math.max(p1.getX(), p2.getX());
+        double Miny = Math.min(p1.getY(), p2.getY());
+        double Maxy = Math.max(p1.getY(), p2.getY());
+
+
+        boolean dentroX = x >= Minx && x <= Maxx;
+        boolean dentroY = y >= Miny && y <= Maxy;
+        return dentroX && dentroY;
+
+    }
+
 
 
 

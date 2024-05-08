@@ -30,7 +30,7 @@ public class Snake extends Objeto {
         this.head = (Quadrado) cabeca.moveCentroid((int)spawn.getCentroide().getX(),(int)spawn.getCentroide().getY());
         spawn.setEmpty(false);
         spawn.setContent(Content.HEAD);
-        this.tail = new ArrayList<>();
+        this.tail = new ArrayList<Quadrado>();
         this.ate = false;
         this.rotateDelay = false;
         this.status = Status.START;
