@@ -23,7 +23,7 @@ public class Background {
 
     public Background(int Width, int Height, String playername, Boolean activateAutoSnake) {
         this.grid = new Grid(Width,Height,40);
-        this.snake = new Snake(40,0, this.grid.returnCellFromPoint(new Ponto(40,300)));
+        this.snake = new Snake(40, this.grid.returnCellFromPoint(new Ponto(40,300)));
         this.player = new Player(playername);
         this.comida = new ArrayList<>();
         this.obstaculos = new ArrayList<>();
@@ -64,9 +64,9 @@ public class Background {
                     this.grid.update(this.obstaculos);
                 } else if (line.startsWith("Snake")) {
                     String[] coords = line.replace("Snake ", "").split(",");
-                    int x = Integer.parseInt(coords[0].trim());
-                    int y = Integer.parseInt(coords[1].trim());
-                    this.snake = new Snake(cellsize, 0, this.grid.returnCellFromPoint(new Ponto(x, y)));
+                    //int x = Integer.parseInt(coords[0].trim());
+                    //int y = Integer.parseInt(coords[1].trim());
+                    this.snake = new Snake(cellsize, this.grid.pickSpawnPoint());
                 } else if (line.startsWith("CircleFood")) {
                     int radius = Integer.parseInt(line.replace("CircleFood,", "").trim());
                     this.comida.add(new CircleFood(this.grid.pickSpawnPoint(), radius));

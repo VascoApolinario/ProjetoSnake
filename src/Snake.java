@@ -2,6 +2,7 @@
 import FigurasGeo.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Snake extends Objeto {
     private Quadrado head;
@@ -23,10 +24,10 @@ public class Snake extends Objeto {
         this.ate = false;
     }
 
-    public Snake(int headSize, int direction, Cell spawn)
+    public Snake(int headSize, Cell spawn)
     {
         Quadrado cabeca = new FigurasGeo.Quadrado(headSize);
-        this.direction = direction;
+        this.direction = getRandomDirection();
         this.head = (Quadrado) cabeca.moveCentroid((int)spawn.getCentroide().getX(),(int)spawn.getCentroide().getY());
         spawn.setEmpty(false);
         spawn.setContent(Content.HEAD);
@@ -34,6 +35,20 @@ public class Snake extends Objeto {
         this.ate = false;
         this.rotateDelay = false;
         this.status = Status.START;
+    }
+
+    public int getRandomDirection()
+    {
+        Random rand = new Random();
+        int n = rand.nextInt(4);
+        if(n == 0)
+            return 0;
+        else if(n == 1)
+            return 90;
+        else if(n == 2)
+            return 180;
+        else
+            return 270;
     }
 
     public Quadrado getHead() {
