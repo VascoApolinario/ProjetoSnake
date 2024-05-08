@@ -1,5 +1,5 @@
 import FigurasGeo.*;
-import Enum.*;
+
 
 public class Cell extends Quadrado {
 
@@ -14,7 +14,7 @@ public class Cell extends Quadrado {
         content = Content.EMPTY;
     }
 
-    public void updateCell(boolean empty, Content cont) {
+    public void updateCell(boolean empty,Content cont) {
         this.setEmpty(empty);
         this.setContent(cont);
     }

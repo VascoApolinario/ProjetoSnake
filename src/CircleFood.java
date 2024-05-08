@@ -1,7 +1,8 @@
 import FigurasGeo.Circulo;
 import FigurasGeo.Poligono;
 import FigurasGeo.Ponto;
-import Enum.Content;
+import FigurasGeo.Quadrado;
+
 import java.util.Random;
 
 public class CircleFood extends Objeto implements Food{
@@ -9,14 +10,14 @@ public class CircleFood extends Objeto implements Food{
 
     public CircleFood(Cell spawn, double raio) {
         this.circulo = new Circulo(new Ponto(spawn.getCentroide().getX(),spawn.getCentroide().getY()),raio);
-        spawn.updateCell(false, Content.FOOD);
+        spawn.updateCell(false,Content.FOOD);
 
     }
 
     @Override
     public void consumir(Grid grid) {
         int cellSize = (int)grid.getCells()[0][0].getSide();
-        grid.returnCellFromPoint(this.getCirculo().getCenter()).updateCell(true, Content.EMPTY);
+        grid.returnCellFromPoint(this.getCirculo().getCenter()).updateCell(true,Content.EMPTY);
         Cell spawnPoint = grid.pickSpawnPoint();
         this.spawn(spawnPoint);
     }
@@ -28,7 +29,7 @@ public class CircleFood extends Objeto implements Food{
 
     @Override
     public void spawn(Cell c) {
-        c.updateCell(false, Content.FOOD);
+        c.updateCell(false,Content.FOOD);
         Random rand = new Random();
         this.circulo = new Circulo(c.getCentroide(),rand.nextInt((int)c.getSide()/4,(int)c.getSide()/2));  //podia-se fazer o raio aleatorio entre um valor minimo visivel e o tamanho da cabeça da snake
 

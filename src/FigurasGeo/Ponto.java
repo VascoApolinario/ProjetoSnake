@@ -1,8 +1,5 @@
 package FigurasGeo;
-import Enum.Content;
 
-
-import javax.swing.text.AbstractDocument;
 import java.util.Objects;
 
 /**
@@ -147,9 +144,5 @@ public class Ponto {
     public boolean isInside(Quadrado q)
     {
         return this.x >= q.getDownLeft().getX() && this.x <= q.getTopRight().getX()  && this.y >= q.getDownLeft().getY() && this.y <= q.getTopRight().getY();
-    }
-    public Content getContent()
-    {
-
     }
 }

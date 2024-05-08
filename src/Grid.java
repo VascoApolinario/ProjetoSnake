@@ -3,7 +3,6 @@ import FigurasGeo.Quadrado;
 
 import java.util.ArrayList;
 import java.util.Random;
-import Enum.*;
 
 public class Grid {
     private Cell[][] cells;
@@ -29,7 +28,7 @@ public class Grid {
 
                 cells[i][j] = new Cell(bottomLeft, topRight);
                 if(i == 0 || i == rows - 1 || j == 0 || j == cols - 1  || i == rows - 2) {
-                    cells[i][j].updateCell(false, Content.BORDER);
+                    cells[i][j].updateCell(false,Content.BORDER);
                 }
             }
         }
@@ -40,7 +39,7 @@ public class Grid {
         this(width, height, squaresize);
 
 
-        this.getCells()[1][2].updateCell(false, Content.OBSTACLE);
+        this.getCells()[1][2].updateCell(false,Content.OBSTACLE);
 
     }
 

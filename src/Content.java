@@ -1,5 +1,3 @@
-package Enum;
-
 public enum Content {
     HEAD,
     TAIL,

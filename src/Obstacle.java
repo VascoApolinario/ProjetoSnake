@@ -1,7 +1,6 @@
 import FigurasGeo.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import Enum.Content;
 
 public class Obstacle extends Objeto {
     private boolean dinamico;
