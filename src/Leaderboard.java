@@ -1,9 +1,10 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Scanner;
 
-public class Leaderboard {
+public class Leaderboard implements Iterable<Player>{
     private ArrayList<Player> leaderboard;
     private String filename;
 
@@ -32,6 +33,29 @@ public class Leaderboard {
         }
 
         //System.out.println(leaderboard.size());
+    }
+
+    public Iterator<Player> iterator() {
+        return new LeaderboardIterator(this);
+    }
+
+    public class LeaderboardIterator implements Iterator<Player> {
+        private int currentIndex = 0;
+        private final Leaderboard leaderboard;
+
+        public LeaderboardIterator(Leaderboard leaderboard) {
+            this.leaderboard = leaderboard;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < leaderboard.getLeaderboard().size();
+        }
+
+        @Override
+        public Player next() {
+            return leaderboard.getLeaderboard().get(currentIndex++);
+        }
     }
 
 
@@ -90,7 +114,7 @@ public class Leaderboard {
     public void saveToFile() {
         try (FileWriter fw = new FileWriter(filename)) {
             sort();
-            for (Player player : leaderboard) {
+            for (Player player : this) {
                 fw.write(player.getNome() + " " + player.getBestScore() + "\n");
             }
         } catch (IOException e) {
