@@ -331,12 +331,23 @@ class Textual extends JPanel implements IGraficos{
     }
 
     private Content getContentFromPointArea(Ponto p) {
-        Quadrado q =  new Quadrado(p, new Ponto(p.getX()+10,p.getY()+10));
+        Quadrado q =  new Quadrado(p, new Ponto(p.getX()+11,p.getY()+11));
         Cell c = bg.getGrid().returnCellFromPoint(p);
         for(Obstacle obstacle : bg.getObstaculos())
         {
-            if(q.polygonsIntercept(obstacle.getPoligono()))
+            if(obstacle.getPoligono().polygonsInterceptIncludingSegment(q))
+            {
                 return Content.OBSTACLE;
+            }
+            /*Segmento[] arestas = obstacle.getPoligono().getArestas();
+            for(Segmento segQuad : arestas)
+            {
+                for(Segmento segObs : obstacle.getPoligono().getArestas())
+                {
+                    if(segQuad.cruzamentoIncluiSeg(segObs))
+                        return Content.OBSTACLE;
+                }
+            }*/
         }
         for(Segmento seg : bg.getSnake().getHead().getArestas())
         {
