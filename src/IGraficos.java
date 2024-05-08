@@ -335,7 +335,7 @@ class Textual extends JPanel implements IGraficos{
         Cell c = bg.getGrid().returnCellFromPoint(p);
         for(Obstacle obstacle : bg.getObstaculos())
         {
-            if(obstacle.getPoligono().polygonsInterceptIncludingSegment(q))
+            if(obstacle.getPoligono().polygonsIntercept(q))
             {
                 return Content.OBSTACLE;
             }
