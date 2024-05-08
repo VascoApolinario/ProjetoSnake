@@ -33,7 +33,6 @@ public class AutoSnake {
 
         }
 
-
     }
 
     public Food getCloserFood(Background background, Snake snake){
@@ -117,21 +116,21 @@ public class AutoSnake {
         }
         if(snake.getDirection() == 0 || snake.getDirection() == 180) // se a cobra estiver numa direção horizontal
         {
-            if (path.getPontos()[count].getY() < snake.getHead().getCentroide().getY() && !background.getGrid().getCells()[row-1][col].getContent().equals(Content.OBSTACLE) && !background.getGrid().getCells()[row-1][col].getContent().equals(Content.TAIL)) // se o y do 2º ponto está em cima da snake
+            if (path.getPontos()[count].getY() < snake.getHead().getCentroide().getY() && !background.getGrid().getCells()[row-1][col].isDangerous()) // se o y do 2º ponto está em cima da snake
             {
                 snake.rotate(90);
-            } else if (path.getPontos()[count].getY() > snake.getHead().getCentroide().getY() && !background.getGrid().getCells()[row+1][col].getContent().equals(Content.OBSTACLE) && !background.getGrid().getCells()[row+1][col].getContent().equals(Content.TAIL)) // se o y do 2º ponto está abaixo da snake
+            } else if (path.getPontos()[count].getY() > snake.getHead().getCentroide().getY() && !background.getGrid().getCells()[row+1][col].isDangerous()) // se o y do 2º ponto está abaixo da snake
             {
                 snake.rotate(270);
             }
         }
         else
         {
-            if(path.getPontos()[count].getX() < snake.getHead().getCentroide().getX() && !background.getGrid().getCells()[row][col-1].getContent().equals(Content.OBSTACLE) && !background.getGrid().getCells()[row][col-1].getContent().equals(Content.TAIL)) // se o x do 2º ponto está à esquerda da snake
+            if(path.getPontos()[count].getX() < snake.getHead().getCentroide().getX() && !background.getGrid().getCells()[row][col-1].isDangerous()) // se o x do 2º ponto está à esquerda da snake
             {
                 snake.rotate(180);
             }
-            else if(path.getPontos()[count].getX() > snake.getHead().getCentroide().getX() && !background.getGrid().getCells()[row][col+1].getContent().equals(Content.OBSTACLE) && !background.getGrid().getCells()[row][col+1].getContent().equals(Content.TAIL)) // se o x do 2º ponto está à direita da snake
+            else if(path.getPontos()[count].getX() > snake.getHead().getCentroide().getX() && !background.getGrid().getCells()[row][col+1].isDangerous()) // se o x do 2º ponto está à direita da snake
             {
                 snake.rotate(0);
             }
@@ -143,10 +142,10 @@ public class AutoSnake {
         int col = grid.returnColFromPoint(snake.getHead().getCentroide());
         if(snake.getDirection() == 0)
         {
-            if(grid.getCells()[row][col+1].getContent().equals(Content.OBSTACLE)||grid.getCells()[row][col+1].getContent().equals(Content.BORDER)||grid.getCells()[row][col+1].getContent().equals(Content.TAIL))
+            if(grid.getCells()[row][col+1].isDangerous())
             {
                 this.avoiding = true;
-                if(grid.getCells()[row-1][col].getContent().equals(Content.OBSTACLE) ||grid.getCells()[row-1][col].getContent().equals(Content.BORDER) ||grid.getCells()[row-1][col].getContent().equals(Content.TAIL) )
+                if(grid.getCells()[row-1][col].isDangerous())
                 {
                     snake.rotate(270);
                 }
@@ -158,10 +157,10 @@ public class AutoSnake {
         }
         else if(snake.getDirection() == 180)
         {
-            if(grid.getCells()[row][col-1].getContent().equals(Content.OBSTACLE)||grid.getCells()[row][col-1].getContent().equals(Content.BORDER) ||grid.getCells()[row][col-1].getContent().equals(Content.TAIL))
+            if(grid.getCells()[row][col-1].isDangerous())
             {
                 this.avoiding = true;
-                if(grid.getCells()[row-1][col].getContent().equals(Content.OBSTACLE) || grid.getCells()[row-1][col].getContent().equals(Content.BORDER) || grid.getCells()[row-1][col].getContent().equals(Content.TAIL))
+                if(grid.getCells()[row-1][col].isDangerous())
                 {
                     snake.rotate(270);
                 }
@@ -172,10 +171,10 @@ public class AutoSnake {
                 this.avoiding = false;
 
         } else if (snake.getDirection() == 90) {
-            if(grid.getCells()[row-1][col].getContent().equals(Content.OBSTACLE) || grid.getCells()[row-1][col].getContent().equals(Content.BORDER) || grid.getCells()[row-1][col].getContent().equals(Content.TAIL))
+            if(grid.getCells()[row-1][col].isDangerous())
             {
                 this.avoiding = true;
-                if(grid.getCells()[row][col-1].getContent().equals(Content.OBSTACLE) || grid.getCells()[row][col-1].getContent().equals(Content.BORDER) || grid.getCells()[row][col-1].getContent().equals(Content.TAIL))
+                if(grid.getCells()[row][col-1].isDangerous())
                 {
                     snake.rotate(0);
                 }
@@ -188,10 +187,10 @@ public class AutoSnake {
         }
         else
         {
-            if(grid.getCells()[row+1][col].getContent().equals(Content.OBSTACLE) || grid.getCells()[row+1][col].getContent().equals(Content.BORDER) || grid.getCells()[row+1][col].getContent().equals(Content.TAIL))
+            if(grid.getCells()[row+1][col].isDangerous())
             {
                 this.avoiding = true;
-                if(grid.getCells()[row][col-1].getContent().equals(Content.OBSTACLE) || grid.getCells()[row][col-1].getContent().equals(Content.BORDER) || grid.getCells()[row][col-1].getContent().equals(Content.TAIL))
+                if(grid.getCells()[row][col-1].isDangerous())
                 {
                     snake.rotate(0);
                 }

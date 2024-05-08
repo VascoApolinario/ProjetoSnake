@@ -40,4 +40,8 @@ public class Cell extends Quadrado {
         return super.getCentroide().toString2();
     }
 
+    public boolean isDangerous(){
+        return this.getContent() == Content.OBSTACLE || this.getContent() == Content.TAIL || this.getContent() == Content.BORDER || this.getContent() == Content.DINAMICO;
+    }
+
 }
