@@ -330,6 +330,11 @@ class Textual extends JPanel implements IGraficos{
         }
     }
 
+    /**
+     * Para um ponto "p" verifica que elemento de jogo se encontra naquela zona
+     * @param p
+     * @return
+     */
     private Content getContentFromPointArea(Ponto p) {
         Quadrado q =  new Quadrado(p, new Ponto(p.getX()+11,p.getY()+11));
         Cell c = bg.getGrid().returnCellFromPoint(p);
@@ -339,15 +344,6 @@ class Textual extends JPanel implements IGraficos{
             {
                 return Content.OBSTACLE;
             }
-            /*Segmento[] arestas = obstacle.getPoligono().getArestas();
-            for(Segmento segQuad : arestas)
-            {
-                for(Segmento segObs : obstacle.getPoligono().getArestas())
-                {
-                    if(segQuad.cruzamentoIncluiSeg(segObs))
-                        return Content.OBSTACLE;
-                }
-            }*/
         }
         for(Segmento seg : bg.getSnake().getHead().getArestas())
         {
