@@ -29,6 +29,10 @@ public class InitialPanel extends JPanel implements ActionListener {
     private JComboBox<String> levelComboBox;
     private JCheckBox activateAutoSnake;
 
+    /**
+     * Construtor do Painel inicial, recebe uma cópia da leaderboard para poder apresentá-la
+     * @param leaderboardCopy
+     */
     public InitialPanel(Leaderboard leaderboardCopy){
         startGame = false;
         janela = new JFrame();
@@ -88,15 +92,8 @@ public class InitialPanel extends JPanel implements ActionListener {
         janela.add(levelComboBox);
 
 
-
-
-
-
-
-
         leaderboardText = new JLabel("LEADERBOARD");
         leaderboardText.setFont(new Font("Courier New", Font.BOLD, 70));
-
 
 
         SpinnerModel model = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1) {
@@ -146,10 +143,13 @@ public class InitialPanel extends JPanel implements ActionListener {
         janela.add(leaderboardSpinner);
         janela.add(players);
         janela.add(printLeaderboardScroll);
-        //janela.add(printLeaderboardScroll);
-        //janela.pack();
         janela.setVisible(true);
     }
+
+    /**
+     * Processa o que é para acontecer no painel incial caso ocorra algum evento "e"
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == startGameButton)
@@ -174,10 +174,18 @@ public class InitialPanel extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Devolve o nível selecionado pelo jogadore
+     * @pos return this.selectedLevel
+     */
     public String getSelectedLevel() {
         return selectedLevel;
     }
 
+    /**
+     * Devolve o nome do jogador selecionado pelo jogador
+     * @pos return this.playerName
+     */
     public String getPlayerName() {
         return playerName;
     }
@@ -186,6 +194,10 @@ public class InitialPanel extends JPanel implements ActionListener {
         return startGame;
     }
 
+    /**
+     * Retorna se o jogador selecionou para iniciar no modo automático
+     * @pos result = autoSnake
+     */
     public boolean getAutoSnake() {
         return autoSnake;
     }

@@ -9,12 +9,21 @@ public class Player implements Comparable<Player> {
     private final String nome;
     private int bestScore;
 
+    /**
+     * Construtor de Player
+     * @param name
+     * @param bestScore
+     */
     public Player(String name, int bestScore) {
         this.score = 0;
         this.nome = name;
         this.bestScore = bestScore;
     }
 
+    /**
+     * Construtor de Player, quando não há BestScore (é um novo jogador) o bestScore é 0
+     * @param name
+     */
     public Player(String name) {
         this(name,0);
     }
@@ -56,11 +65,22 @@ public class Player implements Comparable<Player> {
         this.bestScore = newScore;
     }
 
+    /**
+     * Método para transformar um jogador em String
+     * @return
+     */
+
     @Override
     public String toString()
     {
         return this.nome + " : " + this.bestScore;
     }
+
+    /**
+     * Compara dois jogadores, retorna o inteiro resultante da comparação a partir dos seus bestScores
+     * @param o the object to be compared.
+     * @return
+     */
 
     @Override
     public int compareTo(Player o) {

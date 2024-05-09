@@ -1,6 +1,7 @@
 a 2147483647
 asdasd 2147483647
 Diogo 2147483647
+asdad 2147483647
 PlayerGamer 420
 Jogador01 100
 asd 51
@@ -11,7 +12,6 @@ TESTE 22
 asdsad 19
 Andre 16
 asdasdasd 10
-asdad 6
 jskmdasd 5
 o 5
 pila 5
@@ -34,3 +34,4 @@ sa 0
 aasd 0
 qwe 0
 asdasdasdsad 0
+asdadasd 0
