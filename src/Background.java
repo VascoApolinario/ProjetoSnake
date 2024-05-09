@@ -8,6 +8,12 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Classe responsável por representar o Background e guardar/atualizar todos os elementos de jogo.
+ * @author [André Guerreiro 79809, Diogo Almeida 79810, Vasco Apolinário 79944]
+ * @version 1.0
+ */
+
 public class Background {
     private ArrayList<Obstacle> obstaculos;
     private ArrayList<Food> comida;
@@ -20,7 +26,13 @@ public class Background {
     private boolean activateAutoSnake;
     private int Width;
     private int Height;
-
+    /**
+     * Construtor da classe Background.
+     * @param Width largura da grid
+     * @param Height altura da grid
+     * @param playername nome do jogador
+     * @param activateAutoSnake valor booleano que representa se a snake se deve mover em modo automatico ou não
+     */
     public Background(int Width, int Height, String playername, Boolean activateAutoSnake) {
         this.grid = new Grid(Width,Height,40);
         this.snake = new Snake(40, this.grid.returnCellFromPoint(new Ponto(40,300)));
@@ -38,6 +50,12 @@ public class Background {
         this.activateAutoSnake = activateAutoSnake;
     }
 
+    /**
+     * Construtor da classe Background para ficheiros.
+     * @param filename nome do ficheiro nivel a carregar
+     * @param playername nome do jogador
+     * @param activateAutoSnake valor booleano que representa se a snake se deve mover em modo automatico ou não
+     */
     public Background(String filename, String playername, boolean activateAutoSnake) {
         this.obstaculos = new ArrayList<>();
         this.comida = new ArrayList<>();
@@ -84,7 +102,10 @@ public class Background {
         this.autoSnake = new AutoSnake();
     }
 
-
+    /**
+     * Metodo que atualiza todos os objetos do jogo.
+     * @post Objetos de jogo atualizados
+     */
     public void updateAll() {
         if(!gameOver) {
             if(activateAutoSnake)
@@ -125,39 +146,82 @@ public class Background {
         }
     }
 
+    /**
+     * Setter do atributo "updateLeaderboard"
+     * @param updateLeaderBoard booleano atualizado
+     */
     public void setUpdateLeaderBoard(boolean updateLeaderBoard) {
         this.updateLeaderBoard = updateLeaderBoard;
     }
 
+    /**
+     * Getter do atributo "updateLeaderboard"
+     * @return updateLeaderBoard
+     */
     public boolean getUpdateLeaderBoard() {
         return updateLeaderBoard;
     }
 
+    /**
+     * Getter do atributo "snake"
+     * @return Snake
+     */
     public Snake getSnake() {
         return snake;
     }
 
+    /**
+     * Getter do atributo "grid"
+     * @return grid
+     */
     public Grid getGrid() {
         return grid;
     }
 
+    /**
+     * Getter do atributo "comida"
+     * @return comida
+     */
     public ArrayList<Food> getComida() {
         return comida;
     }
 
-    public ArrayList<Obstacle> getObstaculos() { return obstaculos;}
+    /**
+     * Getter do atributo "obstaculos"
+     * @return obstaculos
+     */
+    public ArrayList<Obstacle> getObstaculos() {
+        return obstaculos;
+    }
 
+    /**
+     * Getter do atributo "player"
+     * @return player
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * Getter do atributo "gameOver"
+     * @return gameOver
+     */
     public boolean getGameOver() {
         return gameOver;
     }
 
+    /**
+     * Getter do atributo "Width"
+     * @return Width
+     */
     public int getWidth() {
         return this.Width;
     }
+
+    /**
+     * Getter do atributo "Height"
+     * @return Height
+     */
     public int getHeight() {
         return this.Height;
     }
