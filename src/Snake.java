@@ -6,6 +6,7 @@ import java.util.Random;
 /**
  * Classe que representa a cobra
  * @author [André Guerreiro 79809, Diogo Almeida 79810, Vasco Apolinário 79944]
+ * @inv O lado da cabeça da cobra tem de ter o mesmo comprimento do lado da célula da grid
  */
 
 public class Snake extends Objeto {
@@ -16,20 +17,18 @@ public class Snake extends Objeto {
     private Status status;
     boolean increaseScore;
     private boolean rotateDelay;
-    /**
-     * Construtor
-     */
-    public Snake(int headSize, int direction, Ponto spawn)
-    {
-        Quadrado cabeca = new FigurasGeo.Quadrado(headSize);
-        this.direction = direction;
-        this.head = (Quadrado) cabeca.moveCentroid((int)spawn.getX(),(int)spawn.getY());
-        this.tail = new ArrayList<>();
-        this.ate = false;
-    }
 
+    /**
+     * Construtor da classe Snake
+     * @param headSize tamanho do lado da cabeça
+     * @param spawn célula onde a cobra irá dar spawn
+     */
     public Snake(int headSize, Cell spawn)
     {
+        if(headSize != spawn.getSide())
+        {
+            throw new IllegalArgumentException("Snake: vi");
+        }
         Quadrado cabeca = new FigurasGeo.Quadrado(headSize);
         this.direction = getRandomDirection();
         this.head = (Quadrado) cabeca.moveCentroid((int)spawn.getCentroide().getX(),(int)spawn.getCentroide().getY());

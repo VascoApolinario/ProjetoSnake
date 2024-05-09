@@ -1,6 +1,11 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Classe responsável por receber e administrar o input do usuário durante o jogo. implementa a interface KeyListener
+ *  * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
+ *  * @version 1.0 09/05/2024
+ */
 public class InputHandler implements KeyListener {
     private Game game;
 

@@ -6,7 +6,7 @@ import java.util.Random;
 /**
  * Classe responsável por representar uma grelha.
  * @author [André Guerreiro 79809, Diogo Almeida 79810, Vasco Apolinário 79944]
- * @inv width > 0, height > 0, squaresize > 0, width % squaresize = 0, height % squaresize = 0
+ * @inv width > 0, height > 0, squaresize > 0, width % squaresize = 0, height % squaresize = 0, squaresize % 10 = 0
  * @version 1.0
  */
 
@@ -27,7 +27,7 @@ public class Grid {
         if(width <= 0 || height <= 0 || squaresize <= 0) {
             throw new IllegalArgumentException("Grid: vi");
         }
-        if(width%squaresize != 0 && height % squaresize != 0) {
+        if(squaresize%10 != 0 && width%squaresize != 0 && height % squaresize != 0) {
             throw new IllegalArgumentException("Grid: vi");
         }
         this.width = width;
