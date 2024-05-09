@@ -22,17 +22,12 @@ public class InitialPanel extends JPanel implements ActionListener {
     private String selectedLevel;
     public boolean startGame;
     public boolean autoSnake;
-    private JLabel insertUserName;
     private JLabel nameRestriction;
-    private JLabel leaderboardText;
     private JTextArea printLeaderboard;
-    private JScrollPane printLeaderboardScroll;
     private JSpinner leaderboardSpinner;
-    private JLabel showTopPlayers;
-    private JLabel players;
-    private JLabel selectLevel;
     private JComboBox<String> levelComboBox;
-    private JCheckBox activateAutoSnake;
+    private JComboBox<String> renderComboBox;
+    private boolean renderFill;
 
     /**
      * Construtor do Painel inicial, recebe uma cópia da leaderboard para poder apresentá-la
@@ -48,10 +43,10 @@ public class InitialPanel extends JPanel implements ActionListener {
         janela.setTitle("OBJECT ORIENTED PROGRAMMED SNAKE");
         playerName = "";
 
-        insertUserName = new JLabel("INSERT PLAYER NAME: ");
+        JLabel insertUserName = new JLabel("INSERT PLAYER NAME: ");
         insertUserName.setFont(new Font("Courier New", Font.BOLD, 16));
         nameRestriction = new JLabel("NOTE: Your name should not contain space characters!!");
-        activateAutoSnake = new JCheckBox("Enable Automatic Mode");
+        JCheckBox activateAutoSnake = new JCheckBox("Enable Automatic Mode");
         activateAutoSnake.setFont(new Font("Courier New", Font.PLAIN, 25));
         activateAutoSnake.addItemListener(new ItemListener() {
             @Override
@@ -83,7 +78,7 @@ public class InitialPanel extends JPanel implements ActionListener {
         janela.add(nameRestriction);
         janela.add(activateAutoSnake);
 
-        selectLevel = new JLabel("Select Level: ");
+        JLabel selectLevel = new JLabel("Select Level: ");
         selectLevel.setFont(new Font("Courier New", Font.PLAIN, 30));
 
         String[] levels = new String[]{"level1", "level2", "level3"};
@@ -93,11 +88,23 @@ public class InitialPanel extends JPanel implements ActionListener {
         levelComboBox.setFont(new Font("Courier New", Font.PLAIN, 18));
         levelComboBox.setSelectedIndex(0);
 
+        String[] renderModes = new String[]{"Border", "Fill"};
+
+        renderComboBox = new JComboBox<>(renderModes);
+        renderComboBox.addActionListener(this);
+        renderComboBox.setFont(new Font("Courier New", Font.PLAIN, 18));
+        renderComboBox.setSelectedIndex(0);
+        renderFill = false;
+
+        JLabel selectRenderMode = new JLabel("Select Render Mode: ");
+        selectRenderMode.setFont(new Font("Courier New", Font.PLAIN, 30));
+
         janela.add(selectLevel);
         janela.add(levelComboBox);
+        janela.add(selectRenderMode);
+        janela.add(renderComboBox);
 
-
-        leaderboardText = new JLabel("LEADERBOARD");
+        JLabel leaderboardText = new JLabel("LEADERBOARD");
         leaderboardText.setFont(new Font("Courier New", Font.BOLD, 70));
 
 
@@ -115,7 +122,7 @@ public class InitialPanel extends JPanel implements ActionListener {
             }
         };
 
-        showTopPlayers = new JLabel("Show the top ");
+        JLabel showTopPlayers = new JLabel("Show the top ");
         showTopPlayers.setFont(new Font("Courier New", Font.PLAIN, 20));
 
         printLeaderboard = new JTextArea();
@@ -133,11 +140,11 @@ public class InitialPanel extends JPanel implements ActionListener {
         });
         leaderboardSpinner.setValue(10);
 
-        players = new JLabel(" players.");
+        JLabel players = new JLabel(" players.");
         players.setFont(new Font("Courier New", Font.PLAIN, 20));
 
 
-        printLeaderboardScroll = new JScrollPane(printLeaderboard);
+        JScrollPane printLeaderboardScroll = new JScrollPane(printLeaderboard);
         printLeaderboardScroll.setPreferredSize(new Dimension(550,200));
         printLeaderboardScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
@@ -177,6 +184,10 @@ public class InitialPanel extends JPanel implements ActionListener {
         {
             selectedLevel = (String) levelComboBox.getSelectedItem();
         }
+        if(e.getSource() == renderComboBox)
+        {
+            renderFill = renderComboBox.getSelectedIndex() != 0;
+        }
     }
 
     /**
@@ -205,6 +216,11 @@ public class InitialPanel extends JPanel implements ActionListener {
      */
     public boolean getAutoSnake() {
         return autoSnake;
+    }
+
+    public boolean getRenderFill()
+    {
+        return renderFill;
     }
 
 }

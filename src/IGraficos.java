@@ -31,11 +31,12 @@ public interface IGraficos {
 
 class Grafica extends JPanel implements IGraficos {
     private Background bg;
+    private int renderFill;
 
 
-
-    public Grafica(int width, int height,Background bg, InputHandler inputHandler) {
+    public Grafica(int width, int height,Background bg, InputHandler inputHandler, int renderFill) {
         this.bg = bg;
+        this.renderFill = renderFill;
         drawPanel(width,height,inputHandler);
     }
 
@@ -217,10 +218,12 @@ class Grafica extends JPanel implements IGraficos {
 
 class Textual extends JPanel implements IGraficos{
     private Background bg;
+    private boolean renderFill;
 
-    public Textual(int width, int height,Background bg,InputHandler inputHandler)
+    public Textual(int width, int height,Background bg,InputHandler inputHandler, boolean renderFill)
     {
         this.bg = bg;
+        this.renderFill = renderFill;
         drawPanel(width,height,inputHandler);
     }
 
@@ -291,9 +294,23 @@ class Textual extends JPanel implements IGraficos{
 
     }
 
-
+    /**
+     * Função responsavel por escolher entre o metodo de rasterização com preenchimento de obstaculos ou apenas com borders
+     * @param g
+     */
     @Override
     public void drawGrid(Graphics g) {
+        if(!this.renderFill)
+        {
+            drawGridBorder(g);
+        }
+        else
+        {
+            drawGridFill(g);
+        }
+    }
+
+    public void drawGridBorder(Graphics g) {
         Grid grid = bg.getGrid();
         for (int x = 0; x < this.getWidth(); x+=10) {
             for (int y = 0; y < this.getHeight()- grid.getSquaresize(); y+=10) {
@@ -384,10 +401,7 @@ class Textual extends JPanel implements IGraficos{
     }
 
 
-
-
-    /*@Override
-    public void drawGrid(Graphics g) {
+    public void drawGridFill(Graphics g) {
         Grid grid = bg.getGrid();
         for (int x = 0; x < this.getWidth(); x+=10) {
             for (int y = 0; y < this.getHeight()- grid.getSquaresize(); y+=10) {
@@ -421,7 +435,7 @@ class Textual extends JPanel implements IGraficos{
 
             }
         }
-    }*/
+    }
 
     @Override
     public void drawScore(Graphics g) {
