@@ -1,5 +1,6 @@
 package FigurasGeo;
 import javax.swing.text.AbstractDocument;
+import java.awt.*;
 import java.sql.SQLData;
 import java.util.Objects;
 
@@ -147,6 +148,36 @@ public class Ponto {
     public boolean isInside(Quadrado q)
     {
         return this.x >= q.getDownLeft().getX() && this.x <= q.getTopRight().getX()  && this.y >= q.getDownLeft().getY() && this.y <= q.getTopRight().getY();
+    }
+
+    public boolean isInside(Poligono p)
+    {
+        double maxX = new PreProcessamento(p).getTopRight().getX();
+        int count = 0;
+        Segmento line = null;
+        if(this.getX() != maxX) {
+            line = new Segmento(this, new Ponto(maxX, this.getY()));
+        }
+        else
+            return true;
+        for(Segmento a : p.getArestas())
+        {
+            if(a.pertenceSeg(this))
+                return true;
+
+            if(line != null && a.cruzamento(line))
+            {
+                count++;
+            }
+        }
+        for(Ponto vertices : p.getPontos())
+        {
+            if(line.pertenceSeg(vertices))
+            {
+                count++;
+            }
+        }
+        return count%2 != 0; //se for impar significa que está dentro do poligono, se for par ta fora
     }
 
 
