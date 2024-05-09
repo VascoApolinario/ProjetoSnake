@@ -3,24 +3,32 @@ import FigurasGeo.Quadrado;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
 
 public class AutoSnake {
     private Path snakepath;
     private boolean searching;
     private boolean avoiding;
     private int count;
+    private long timer;
 
     public AutoSnake() {
         this.searching = true;
         this.avoiding = false;
+        this.timer = System.currentTimeMillis();
         this.count = 1;
     }
 
     public void Start(Snake snake, Background background){
         avoidObstacle(snake,background.getGrid());
+        if(System.currentTimeMillis() - timer > 10000){
+            snakepath =null;
+            searching = true;
+        }
         if (searching) {
             this.snakepath = Search(background,snake);
             this.searching = false;
+            this.timer = System.currentTimeMillis();
 
         } else {
 
@@ -32,6 +40,7 @@ public class AutoSnake {
             }
 
         }
+
 
     }
 
@@ -50,8 +59,8 @@ public class AutoSnake {
     public Path Search(Background bg, Snake snake){
         Path path = null;
         Random random = new Random();
-        //Food food = bg.getComida().get(random.nextInt(bg.getComida().size()));
-        Food food = getCloserFood(bg,snake);
+        Food food = bg.getComida().get(random.nextInt(bg.getComida().size()));
+        //Food food = getCloserFood(bg,snake);
         double x = 0;
         double y = 0;
         ArrayList<Ponto> pontos = new ArrayList<>();
