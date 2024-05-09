@@ -1,8 +1,12 @@
 
 import FigurasGeo.*;
-
 import java.util.ArrayList;
 import java.util.Random;
+
+/**
+ * Classe que representa a cobra
+ * @author [André Guerreiro 79809, Diogo Almeida 79810, Vasco Apolinário 79944]
+ */
 
 public class Snake extends Objeto {
     private Quadrado head;
@@ -37,6 +41,10 @@ public class Snake extends Objeto {
         this.status = Status.START;
     }
 
+    /**
+     * Método que devolve uma direção aleatória para a snake
+     * @return 0, 90, 180 ou 270
+     */
     public int getRandomDirection()
     {
         Random rand = new Random();
@@ -82,7 +90,8 @@ public class Snake extends Objeto {
     }*/
 
     /**
-     * Metodo que faz a cobra mover-se
+     * Metodo que faz a cobra mover-se e atualiza a grid por onde passa.
+     * @param g grid a ser atualizada
      */
     @Override
     public void move(Grid g)
@@ -105,7 +114,6 @@ public class Snake extends Objeto {
             this.head = new Quadrado(new Ponto(x1,y1+getHead().getSide()),new Ponto(x2,y2+getHead().getSide()));
         }
         if (this.checkCollisions(g)) {
-            //System.out.println("Game Over!");
             this.die();
         }
         g.returnCellFromPoint(this.head.getCentroide()).updateCell(false,Content.HEAD);
@@ -137,6 +145,7 @@ public class Snake extends Objeto {
 
     /**
      * Metodo que faz a cobra virar de direção
+     * @param degrees direção em graus desejada.
      */
     @Override
     void rotate(int degrees) {
@@ -161,8 +170,8 @@ public class Snake extends Objeto {
     }
 
     /**
-     * Metodo que verifica se a cobra consumiu comida. Caso tenha comido ate = 1;
-     * @param f -> Comida a ser comida
+     * Metodo que verifica se a cobra consumiu comida. Caso tenha chama o metodo grow();
+     * @param f -> Comida a ser consumida
      */
     public void eat(Food f, Grid grid)
     {
@@ -189,7 +198,7 @@ public class Snake extends Objeto {
 
     /**
      * Metodo que verifica se a cobra colidiu com o proprio rabo
-     * @return
+     * @return true se colidiu, false se não
      */
     public boolean collisionWithTail()
     {

@@ -1,8 +1,13 @@
 import FigurasGeo.Ponto;
 import FigurasGeo.Quadrado;
-
 import java.util.ArrayList;
 import java.util.Random;
+
+/**
+ * Classe responsável por representar uma grelha.
+ * @author [André Guerreiro 79809, Diogo Almeida 79810, Vasco Apolinário 79944]
+ * @inv width > 0, height > 0, squaresize > 0
+ */
 
 public class Grid {
     private Cell[][] cells;
@@ -11,6 +16,12 @@ public class Grid {
     private final int height;
     private final int squaresize;
 
+    /**
+     * Construtor da classe Grid.
+     * @param width largura da grid
+     * @param height altura da grid
+     * @param squaresize tyamanho do lado de cada célula da grid
+     */
     public Grid(int width, int height, int squaresize) {
         this.width = width;
         this.height = height;
@@ -34,16 +45,10 @@ public class Grid {
         }
     }
 
-    public Grid(int width, int height, int squaresize, int[] rows, int[] cols)
-    {
-        this(width, height, squaresize);
-
-
-        this.getCells()[1][2].updateCell(false,Content.OBSTACLE);
-
-    }
-
-
+    /**
+     * Metodo que retorna uma célula vazia aleatória.
+     * @return celula vazia.
+     */
     public Cell pickSpawnPoint(){
         Random rand = new Random();
         boolean selected = false;
@@ -97,6 +102,10 @@ public class Grid {
         }
     }
 
+    /**
+     * Metodo que verifica se existem células vazias na grid.
+     * @return true se existir celulas vazias, false se não
+     */
     public boolean cellAvaiable(){
         boolean check = false;
         Cell[][] cells = this.getCells();
@@ -110,16 +119,31 @@ public class Grid {
         return check;
     }
 
+    /**
+     * Metodo que retorna a célula em que o ponto se encontra
+     * @param p ponto
+     * @return celula baseado nas coordenadas do ponto
+     */
     public Cell returnCellFromPoint(Ponto p){
         int row =returnRowFromPoint(p);
         int col =returnColFromPoint(p);
         return this.getCells()[row][col];
     }
 
+    /**
+     * Metodo que retorna a Linha da grelha onde se encontra o ponto.
+     * @param p ponto
+     * @return Linha baseado nas coordenadas do ponto
+     */
     public int returnRowFromPoint(Ponto p){
         return (int) p.getY()/this.squaresize;
     }
 
+    /**
+     * Metodo que retorna a Coluna da grelha onde se encontra o ponto.
+     * @param p ponto
+     * @return Coluna baseado nas coordenadas do ponto
+     */
     public int returnColFromPoint(Ponto p){
         return (int) p.getX()/this.squaresize;
     }
