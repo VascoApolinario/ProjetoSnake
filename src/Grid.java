@@ -24,7 +24,12 @@ public class Grid {
      * @param squaresize tamanho do lado de cada célula da grid
      */
     public Grid(int width, int height, int squaresize) {
-
+        if(width <= 0 || height <= 0 || squaresize <= 0) {
+            throw new IllegalArgumentException("Grid: vi");
+        }
+        if(width%squaresize != 0 && height % squaresize != 0) {
+            throw new IllegalArgumentException("Grid: vi");
+        }
         this.width = width;
         this.height = height;
         this.squaresize = squaresize;
