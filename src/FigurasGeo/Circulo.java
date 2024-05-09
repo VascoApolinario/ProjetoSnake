@@ -2,7 +2,7 @@ package FigurasGeo;
 import javax.swing.text.Segment;
 
 /** Classe responsável em representar um círculo.
- * @author [Diogo Almeida 79810]
+ * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
  * @version 1.0 09/05/2024
  * @inv raio tem que ser superior a 0.
  *

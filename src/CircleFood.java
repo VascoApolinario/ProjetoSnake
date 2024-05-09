@@ -28,7 +28,7 @@ public class CircleFood extends Objeto implements Food{
     }
 
     /**
-     * Método chamado quando a CircleFood é consumida
+     * Método chamado quando a CircleFood é consumida.
      * @param grid grid do jogo
      */
     @Override
@@ -44,7 +44,7 @@ public class CircleFood extends Objeto implements Food{
 
     /**
      * Metodo que altera as coordenadas do CircleFood
-     * @param c celula onde o centroide do novo
+     * @param c celula
      */
     @Override
     public void spawn(Cell c) {
@@ -54,6 +54,10 @@ public class CircleFood extends Objeto implements Food{
 
     }
 
+    /**
+     * Método que retorna o centro da CircleFood
+     * @return centro do circulo
+     */
     @Override
     public Ponto getLocation() {
         return this.circulo.getCenter();
@@ -80,6 +84,10 @@ public class CircleFood extends Objeto implements Food{
         return "";
     }
 
+    /**
+     * Getter da classe CircleFood que retorna o Circulo da CircleFood
+     * @return Circulo
+     */
     public Circulo getCirculo() {
         return circulo;
     }
