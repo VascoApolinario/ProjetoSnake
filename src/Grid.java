@@ -24,6 +24,7 @@ public class Grid {
      * @param squaresize tamanho do lado de cada célula da grid
      */
     public Grid(int width, int height, int squaresize) {
+
         this.width = width;
         this.height = height;
         this.squaresize = squaresize;

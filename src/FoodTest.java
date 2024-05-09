@@ -14,7 +14,7 @@ class FoodTest {
         Obstacle obstacle6 = new Obstacle("Quadrado 1 2 2 2 2 3 1 3",false,0);
         Obstacle obstacle7 = new Obstacle("Quadrado 2 2 3 2 3 3 2 3",false,0);
         Player player = new Player("jogador");
-        CircleFood food = new CircleFood(grid.getCells()[1][1],0.5);
+        CircleFood food = new CircleFood(grid.getCells()[1][1],0.5,grid.getSquaresize());
         food.consumir(grid);
         assertEquals("(2.5,1.5)",food.getCirculo().getCenter());
         Obstacle obstacle8 = new Obstacle("Quadrado 1 1 2 1 2 2 1 2",false,0);

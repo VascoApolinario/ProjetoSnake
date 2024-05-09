@@ -21,7 +21,10 @@ public class CircleFood extends Objeto implements Food{
      * @pre receber uma Cell e raio válidos
      * @post cria nova instância da classe CircleFood
      */
-    public CircleFood(Cell spawn, double raio) {
+    public CircleFood(Cell spawn, double raio, int SnakeHeadSize) {
+        if(raio*2 > SnakeHeadSize){
+            throw new IllegalArgumentException("Circle Food: vi");
+        }
         this.circulo = new Circulo(new Ponto(spawn.getCentroide().getX(),spawn.getCentroide().getY()),raio);
         spawn.updateCell(false,Content.FOOD);
 

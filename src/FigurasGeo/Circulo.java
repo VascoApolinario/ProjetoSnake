@@ -21,6 +21,10 @@ public class Circulo {
      * @post cria uma nova instância de circulo
      */
     public Circulo(Ponto center, double radius) {
+        if(radius <= 0)
+        {
+            throw new IllegalArgumentException("Circulo: vi. Radius must be greater than 0");
+        }
         this.center = new Ponto(center.getX(), center.getY());
         this.radius = radius;
     }

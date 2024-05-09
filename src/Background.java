@@ -42,8 +42,8 @@ public class Background {
         this.obstaculos.add(new Obstacle("Poligono 3 400 300 450 350 330 150", true, 45));
         this.obstaculos.add(new Obstacle("Poligono 3 80 80 80 60 120 60", true, 45));
         this.grid.update(obstaculos);
-        this.comida.add(new CircleFood(this.grid.pickSpawnPoint(), 15));
-        this.comida.add(new SquareFood(30,this.grid.pickSpawnPoint()));
+        this.comida.add(new CircleFood(this.grid.pickSpawnPoint(), 15,(int)this.snake.getHead().getSide()));
+        this.comida.add(new SquareFood(30,this.grid.pickSpawnPoint(),(int)this.snake.getHead().getSide()));
         this.gameOver = false;
         this.updateLeaderBoard = false;
         this.autoSnake = new AutoSnake();
@@ -87,10 +87,10 @@ public class Background {
                     this.snake = new Snake(cellsize, this.grid.pickSpawnPoint());
                 } else if (line.startsWith("CircleFood")) {
                     int radius = Integer.parseInt(line.replace("CircleFood,", "").trim());
-                    this.comida.add(new CircleFood(this.grid.pickSpawnPoint(), radius));
+                    this.comida.add(new CircleFood(this.grid.pickSpawnPoint(), radius,cellsize));
                 } else if (line.startsWith("SquareFood")) {
                     int size = Integer.parseInt(line.replace("SquareFood,", "").trim());
-                    this.comida.add(new SquareFood(size, this.grid.pickSpawnPoint()));
+                    this.comida.add(new SquareFood(size, this.grid.pickSpawnPoint(),cellsize));
                 }
             }
         } catch (FileNotFoundException e) {
