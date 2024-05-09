@@ -2,7 +2,7 @@ package FigurasGeo;
 
 /**
  * Classe responsável para representar um segmento de reta.
- * @author [Diogo Almeida 79810]
+ * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
  * @version 1.3 ,04/03/2024
  * @inv Os dois pontos que definem o segmento têm de ter coordenadas diferentes.
 */

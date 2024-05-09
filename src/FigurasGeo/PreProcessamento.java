@@ -2,7 +2,7 @@ package FigurasGeo;
 
 /**
  * Classe responsável para representar um retângulo que envolve um poligono. É usado no pre-processamento para ver se dois poligonos se intersetam.
- * @author [Diogo Almeida 79810]
+ * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
  * @version 1.0 , 04/03/2024
  */
 public class PreProcessamento {

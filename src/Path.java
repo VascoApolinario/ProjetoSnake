@@ -6,7 +6,7 @@ import FigurasGeo.Segmento;
 import java.util.ArrayList;
 /**
  * Classe responsável em representar uma trajetoria.
- * @author [Diogo Almeida 79810]
+ * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
  * @version 2.1 , 22/02/2024
  * @inv O array de pontos que define a trajetoria tem que conter mais do que 1 ponto.
  */

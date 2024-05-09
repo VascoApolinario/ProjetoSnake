@@ -4,6 +4,12 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Scanner;
 
+/**
+ * Classe da Leaderboard para guardar informações sobre os melhores jogadores
+ * @author [André Guerreiro 79809, Diogo Almeida 79810, Vasco Apolinário 79944]
+ * @version 1.0 22/04/2024
+ */
+
 public class Leaderboard implements Iterable<Player>{
     private ArrayList<Player> leaderboard;
     private String filename;

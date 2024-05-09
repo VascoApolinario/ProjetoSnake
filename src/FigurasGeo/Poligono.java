@@ -5,7 +5,7 @@ import java.util.Objects;
 
 /**
  * Classe responsável para representar um poligono.
- * @author [Diogo Almeida 79810, André Guerreiro 79809]
+ * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
  * @version 2 , 26/03/2024
  * @inv O array de pontos que define o poligono tem que conter mais do que 2 pontos.
  * @inv Não pode existir 3 pontos consecutivos colineares.
