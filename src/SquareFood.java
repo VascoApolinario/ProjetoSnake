@@ -17,8 +17,11 @@ public class SquareFood extends Objeto implements Food{
      * @param size
      * @param spawnPoint
      */
-    public SquareFood(int size,Cell spawnPoint)
+    public SquareFood(int size,Cell spawnPoint, int SnakeHeadSize)
     {
+        if(size > SnakeHeadSize){
+            throw new IllegalArgumentException("Square Food: vi");
+        }
         this.quadrado = new Quadrado(size);
         spawn(spawnPoint);
     }
