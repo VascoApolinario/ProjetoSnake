@@ -7,6 +7,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+/**
+ * Classe que contém o painel inicial do jogo onde podem ser configuradas as definições de inicialização.
+ * @author [André Guerreiro 79809, Diogo Almeida 79810, Vasco Apolinário 79944]
+ * @Version 1.0 04/05/2024
+ */
 
 public class InitialPanel extends JPanel implements ActionListener {
 

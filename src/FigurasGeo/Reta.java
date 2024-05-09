@@ -2,7 +2,7 @@ package FigurasGeo;
 
 /**
  * Classe responsável em representar uma reta.
- * @author [Diogo Almeida 79810]
+ * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
  * @version 1.1 , 22/02/2024
  * @inv Os dois pontos que são usados para calcular a equação da reta têm de ter coordenadas diferentes.
  */

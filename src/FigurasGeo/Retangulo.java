@@ -3,7 +3,7 @@ package FigurasGeo;
 import java.util.Arrays;
 /**
  * Classe responsável para representar um retangulo.
- * @author [Diogo Almeida 79810]
+ * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
  * @version 1.0 , 26/03/2024
  * @inv O array de pontos que define o retangulo tem que conter 4 pontos.
  * @inv Não pode existir 3 pontos consecutivos colineares.
