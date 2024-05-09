@@ -6,7 +6,8 @@ import java.util.Random;
 /**
  * Classe responsável por representar uma grelha.
  * @author [André Guerreiro 79809, Diogo Almeida 79810, Vasco Apolinário 79944]
- * @inv width > 0, height > 0, squaresize > 0
+ * @inv width > 0, height > 0, squaresize > 0, width % squaresize = 0, height % squaresize = 0
+ * @version 1.0
  */
 
 public class Grid {
@@ -20,7 +21,7 @@ public class Grid {
      * Construtor da classe Grid.
      * @param width largura da grid
      * @param height altura da grid
-     * @param squaresize tyamanho do lado de cada célula da grid
+     * @param squaresize tamanho do lado de cada célula da grid
      */
     public Grid(int width, int height, int squaresize) {
         this.width = width;
@@ -70,12 +71,19 @@ public class Grid {
         return c;
     }
 
+    /** Metodo de update a grid com base nos obstaculos
+     * @param obstacles ArrayList de obstaculos
+     * @post Celulas que intersetam os obstaculos ou uma rotação do obstaculo são marcadas como ocupadas
+     */
     public void update(ArrayList<Obstacle> obstacles) {
         for (Obstacle o : obstacles) {
             this.update(o);
         }
     }
-
+    /** Metodo de update a grid para um obstaculo individual
+     * @param o Obstaculo
+     * @post Celulas que intersetam o obstaculo ou uma rotação do obstaculo são marcadas como ocupadas
+     */
     public void update(Obstacle o) {
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
@@ -90,15 +98,6 @@ public class Grid {
                     }
                 }
             }
-        }
-    }
-
-
-    public void update(Snake snake) {
-
-        this.returnCellFromPoint(snake.getHead().getCentroide()).updateCell(true, Content.EMPTY);
-        for (Quadrado q : snake.getTail()) {
-            this.returnCellFromPoint(q.getCentroide()).updateCell(true, Content.EMPTY);
         }
     }
 
@@ -148,8 +147,27 @@ public class Grid {
         return (int) p.getX()/this.squaresize;
     }
 
+    /**
+     * Getter da altura da grid
+     * @return atributo int Height (Altura)
+     */
     public int getHeight() {return height;}
+
+    /**
+     * Getter da largura da grid
+     * @return atributo int Width (Largura)
+     */
     public int getWidth() {return width;}
+
+    /**
+     * Getter das celulas da grid
+     * @return atributo Cells[][] cells (matriz de celulas)
+     */
     public Cell[][] getCells() {return cells;}
+
+    /**
+     * Getter das dimensões das celulas da grid
+     * @return atributo int squaresize (tamanho das celulas)
+     */
     public int getSquaresize() {return squaresize;}
 }

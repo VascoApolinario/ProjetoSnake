@@ -1,26 +1,46 @@
 import FigurasGeo.Ponto;
 import FigurasGeo.Quadrado;
-
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
 
+/**
+ * Classe que implementa o modo automático da Snake
+ *  * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
+ *  * @version 1.0 09/05/2024
+ */
 public class AutoSnake {
     private Path snakepath;
     private boolean searching;
     private boolean avoiding;
     private int count;
+    private long timer;
 
+    /**
+     * Construtor da classe AutoSnake
+     */
     public AutoSnake() {
         this.searching = true;
         this.avoiding = false;
+        this.timer = System.currentTimeMillis();
         this.count = 1;
     }
 
+    /**
+     * Metodo que é chamado a cada instante de jogo e implementa a lógica da automatização da snake
+     * @param snake
+     * @param background
+     */
     public void Start(Snake snake, Background background){
         avoidObstacle(snake,background.getGrid());
+        if(System.currentTimeMillis() - timer > 10000){
+            snakepath =null;
+            searching = true;
+        }
         if (searching) {
             this.snakepath = Search(background,snake);
             this.searching = false;
+            this.timer = System.currentTimeMillis();
 
         } else {
 
@@ -32,6 +52,7 @@ public class AutoSnake {
             }
 
         }
+
 
     }
 
@@ -46,12 +67,17 @@ public class AutoSnake {
         return food;
     }
 
-
+    /**
+     * Método que devolve, se possível, um caminho da cobra até a uma comida aleatória seguro
+     * @param bg background onde está a ocorrer a ação do jogo
+     * @param snake cobra do jogo
+     * @return Path que da cabeça da cobra até à comida
+     */
     public Path Search(Background bg, Snake snake){
         Path path = null;
         Random random = new Random();
-        //Food food = bg.getComida().get(random.nextInt(bg.getComida().size()));
-        Food food = getCloserFood(bg,snake);
+        Food food = bg.getComida().get(random.nextInt(bg.getComida().size()));
+        //Food food = getCloserFood(bg,snake);
         double x = 0;
         double y = 0;
         ArrayList<Ponto> pontos = new ArrayList<>();
@@ -86,7 +112,12 @@ public class AutoSnake {
     }
 
 
-
+    /**
+     * Metodo que verifica se um caminho não interseta com obstáculos ou cauda da cobra
+     * @param p Path a ser verificado
+     * @param bg background onde está a ocorrer a ação do jogo
+     * @return true se não intersetar, false se intersetar
+     */
     public boolean validPath(Path p,Background bg){
         for (Obstacle obstacle : bg.getObstaculos()) {
             if(p.interseta(obstacle.getPoligono()) == 1)
@@ -100,7 +131,12 @@ public class AutoSnake {
         return true;
     }
 
-
+    /**
+     * Metodo que faz com que a snake siga um Path
+     * @param snake
+     * @param path
+     * @param background
+     */
     public void followPath(Snake snake,Path path,Background background){
         int row = background.getGrid().returnRowFromPoint(snake.getHead().getCentroide());
         int col = background.getGrid().returnColFromPoint(snake.getHead().getCentroide());
@@ -137,6 +173,11 @@ public class AutoSnake {
         }
     }
 
+    /**
+     * Metodo quer faz com que a snake desvie-se de obstáculos, da borda e da sua própria cauda.
+     * @param snake
+     * @param grid
+     */
     public void avoidObstacle(Snake snake,Grid grid){
         int row = grid.returnRowFromPoint(snake.getHead().getCentroide());
         int col = grid.returnColFromPoint(snake.getHead().getCentroide());
