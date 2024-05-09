@@ -8,13 +8,15 @@ public class Leaderboard implements Iterable<Player>{
     private ArrayList<Player> leaderboard;
     private String filename;
 
-
+    /**
+     * Constructor method for LeaderboardClass
+     * @param filename
+     */
     public Leaderboard(String filename) {
         this.filename = "leaderboard.txt";
         this.leaderboard = new ArrayList<>();
         File file = new File(this.filename);
         if(file.exists()) {
-            //System.out.println("File exists");
             try {
                 loadFromFile();
             }
@@ -23,18 +25,19 @@ public class Leaderboard implements Iterable<Player>{
             }
         }
         else{
-        //System.out.println("File does not exist");
             try {
                 file.createNewFile();
             }
             catch(Exception e) {
-                System.out.println("File does not exist");
+                System.out.println("Cannot be created");
             }
         }
-
-        //System.out.println(leaderboard.size());
     }
 
+    /**
+     * Retorna iterator para leaderboard, itera sobre os players.
+     * @return Iterator<Player>
+     */
     public Iterator<Player> iterator() {
         return new LeaderboardIterator(this);
     }
@@ -43,15 +46,27 @@ public class Leaderboard implements Iterable<Player>{
         private int currentIndex = 0;
         private final Leaderboard leaderboard;
 
+        /**
+         * Construtor do iterador para classe Leaderboard
+         * @param leaderboard
+         */
         public LeaderboardIterator(Leaderboard leaderboard) {
             this.leaderboard = leaderboard;
         }
 
+        /**
+         * Verifica se existe um próximo elemento na coleação
+         * @return
+         */
         @Override
         public boolean hasNext() {
             return currentIndex < leaderboard.getLeaderboard().size();
         }
 
+        /**
+         * Retorna o próximo elemento da coleção
+         * @return
+         */
         @Override
         public Player next() {
             return leaderboard.getLeaderboard().get(currentIndex++);
@@ -59,30 +74,36 @@ public class Leaderboard implements Iterable<Player>{
     }
 
 
-    public void loadLeaderboard() throws FileNotFoundException {
-        File myFile = new File(this.filename);
-        Scanner myReader = new Scanner(myFile);
-        String numberOfPlayers = myReader.nextLine();
-        int numberOfPlayersNum = Integer.parseInt(numberOfPlayers);
-        for(int i = 0; i < numberOfPlayersNum; i++) {
-
-        }
-    }
-
+    /**
+     * Método para atualizar ficheiro leaderboard (recebe player, adiciona, faz sort e guarda no ficheiro)
+     * @param player
+     */
     public void update(Player player) {
         add(player);
         Collections.sort(leaderboard);
         saveToFile();
     }
 
+    /**
+     * Método para atualizar ficheiro leaderboard
+     */
     public void update() {
         saveToFile();
     }
 
+    /**
+     * Método para organizar leaderboard por player pontuação descendente (maior para o menor)
+     */
     public void sort(){
         Collections.sort(leaderboard);
     }
 
+    /**
+     * Dada uma string nome, compara com os nomes dos players da leaderboard e retorna o player com nome igual à string.
+     * @pre para funcionamento correto, "name" deve ter um nome igual ao nome de um Player existente
+     * @param name
+     * @pos name.Equals(Player.getNome())
+     */
     public Player findPlayer(String name) {
         for (Player player : leaderboard) {
             if (player.getNome().equals(name)) {
@@ -92,25 +113,31 @@ public class Leaderboard implements Iterable<Player>{
         return null;
     }
 
+    /**
+     * A partir do nome do ficheiro de texto desta instancia, carrega para função o texto e formata-o para preencher a Leaderboard com Player's
+     * @pre filePath da "filename" existe e é um ficheiro válido com dados de uma Leaderboard.
+     * @throws IOException
+     */
     private void loadFromFile() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(filename));
             String line;
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(" ");
                 if (data.length >= 2) {
-                    //System.out.println("SAVING PLAYER NAME AND BEST SCORE");
-                    //System.out.println(data[1]);
                     Player player = new Player(data[0], Integer.parseInt(data[1]));
                     leaderboard.add(player);
                 }
                 if(data.length == 1) {
-                    //System.out.println("SAVING ONLY PLAYER NAME");
                     Player player = new Player(data[0]);
                     leaderboard.add(player);
                 }
             }
     }
 
+    /**
+     * A partir do nome do ficheiro de texto desta instancia, carrega para o ficheiro o estado atual da Leaderboard em texto, com a sintaxe apropriada para poder ser lida mais tarde
+     * @pre filePath da "filename" existe.
+     */
     public void saveToFile() {
         try (FileWriter fw = new FileWriter(filename)) {
             sort();
@@ -122,19 +149,21 @@ public class Leaderboard implements Iterable<Player>{
         }
     }
 
+    /**
+     * Adiciona player à Leaderboard, caso já exista permanece o com melhor pontuação
+     * @param player
+     */
     public void add(Player player) {
         boolean exists = false;
         int i;
         for(i = 0; i < leaderboard.size(); i++) {
             if(player.getNome().equals(leaderboard.get(i).getNome())) {
-                //System.out.println("Player already exists 1 ");
                 exists = true;
                 break;
             }
         }
         if(exists)
         {
-            //System.out.println("Player already exists 2 ");
             if(player.getBestScore() > leaderboard.get(i).getBestScore()) {
                 leaderboard.get(i).setBestScore(player.getBestScore());
             }
@@ -145,13 +174,11 @@ public class Leaderboard implements Iterable<Player>{
         saveToFile();
     }
 
-    public void printLeaderboard() {
-        this.sort();
-        for(Player player : leaderboard)
-        {
-            System.out.println(player.toString());
-        }
-    }
+    /**
+     * Devolve uma string com os melhores "n" Players da LeaderBoard
+     * @param n
+     * @return
+     */
 
     public String printLeaderboard(int n)
     {
@@ -166,18 +193,10 @@ public class Leaderboard implements Iterable<Player>{
         return result;
     }
 
-    /*
-    @Override
-    public String toString()
-    {
-        String result = "";
-        for(Player player : leaderboard) {
-            result = player.getNome() + " " + player.getBestScore() + "\n";
-        }
-        return result;
-    }
-    */
-
+    /**
+     * Getter do array de Players
+     * @return
+     */
     public ArrayList<Player> getLeaderboard() {
         return leaderboard;
     }
