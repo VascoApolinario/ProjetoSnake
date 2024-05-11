@@ -32,4 +32,18 @@ class PlayerTest {
         p1.setScore(20);
         assertEquals(p1.getScore(),20);
     }
+    @Test
+    void testComparable()
+    {
+        Player p1 = new Player("Jogador1", 170);
+        Player p2 = new Player("Jogador2", 150);
+        assert(p1.compareTo(p2) < 0);
+        assert(p2.compareTo(p1) > 0);
+        assert(p1.compareTo(p1) == 0);
+    }
+    @Test
+    void testToString(){
+        Player p1 = new Player("Jogador1", 150);
+        assertEquals(p1.toString(),"Jogador1 : 150");
+    }
 }
