@@ -19,7 +19,7 @@ public class Leaderboard implements Iterable<Player>{
      * @param filename
      */
     public Leaderboard(String filename) {
-        this.filename = "leaderboard.txt";
+        this.filename = filename;
         this.leaderboard = new ArrayList<>();
         File file = new File(this.filename);
         if(file.exists()) {

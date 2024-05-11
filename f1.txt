@@ -1,0 +1,9 @@
+Player4 150
+Player9 14
+Player8 13
+Player7 12
+Player6 11
+Player1 10
+Player5 10
+Player3 9
+Player2 1
