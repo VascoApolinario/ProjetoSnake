@@ -19,10 +19,13 @@ class ObstacleTest {
         assert(obs1.getPoligono().equals(new Poligono("Poligono 0 0 0 4 4 4 4 0").rotate(90)));
     }
 
+
     @Test
-    void testSpawn() {
-        Obstacle obs1 = new Obstacle("Poligono 0 0 0 4 4 4 4 0", new Ponto(0,0), true, 90);
-        assert(obs1.getPoligono().getCentroide().equals(new Ponto(0,0)));
+    void testisDinamico() {
+        Obstacle obs1 = new Obstacle("Poligono 0 0 0 4 4 4 4 0", true, 90);
+        Obstacle obs2 = new Obstacle("Poligono 0 0 0 4 4 4 4 0", false, 90);
+        assert(obs1.isDinamico());
+        assertFalse(obs2.isDinamico());
     }
 
     @Test
@@ -34,8 +37,21 @@ class ObstacleTest {
 
     @Test
     void testTipo() {
-        Obstacle obs1 = new Obstacle("Poligono 0 0 0 4 4 4 4 0", true, 90);
+        Obstacle obs1 = new Obstacle("Poligono 4 0 0 0 4 4 4 4 0", true, 90);
         assertEquals("Obstaculo", obs1.tipo());
+    }
+
+    @Test
+    void testgetPoligono() {
+        Obstacle obs1 = new Obstacle("Poligono 4 0 0 0 4 4 4 4 0", true, 90);
+        Poligono p = obs1.getPoligono();
+        assert(p.equals(obs1.getPoligono()));
+    }
+
+    @Test
+    void testgetDegree() {
+        Obstacle obs1 = new Obstacle("Poligono 4 0 0 0 4 4 4 4 0", true, 90);
+        assertEquals(90, obs1.getDegree());
     }
 
 }

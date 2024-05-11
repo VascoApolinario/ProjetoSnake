@@ -1,6 +1,6 @@
 1280,640,40
-Poligono 3 550 350 570 400 590 360, false, 0
-Poligono 3 300 200 310 230 340 210, true, 15
-Poligono 3 700 450 710 480 740 460, true, 45
+Poligono 3 555 355 575 405 595 365, false, 0
+Poligono 3 305 205 315 235 345 215, true, 15
+Poligono 3 705 455 715 485 745 465, true, 45
 Snake 80,280
 SquareFood,30
