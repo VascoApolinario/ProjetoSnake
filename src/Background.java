@@ -46,7 +46,7 @@ public class Background {
         this.comida.add(new SquareFood(30,this.grid.pickSpawnPoint(),(int)this.snake.getHead().getSide()));
         this.gameOver = false;
         this.updateLeaderBoard = false;
-        this.autoSnake = new AutoSnake();
+        this.autoSnake = new PathFindingStrategy();
         this.activateAutoSnake = activateAutoSnake;
     }
 
@@ -99,7 +99,7 @@ public class Background {
             System.out.println("Error reading file: " + e.getMessage());
         }
         this.activateAutoSnake = activateAutoSnake;
-        this.autoSnake = new AutoSnake();
+        this.autoSnake = new RandomStrategy();
     }
 
     /**

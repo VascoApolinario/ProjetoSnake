@@ -149,11 +149,12 @@ public class Ponto {
     {
         return this.x >= q.getDownLeft().getX() && this.x <= q.getTopRight().getX()  && this.y >= q.getDownLeft().getY() && this.y <= q.getTopRight().getY();
     }
-
+    /*
     public boolean isInside(Poligono p)
     {
         double maxX = new PreProcessamento(p).getTopRight().getX();
         int count = 0;
+        int countV = 0;
         Segmento line = null;
         if(this.getX() != maxX) {
             line = new Segmento(this, new Ponto(maxX, this.getY()));
@@ -165,7 +166,7 @@ public class Ponto {
             if(a.pertenceSeg(this))
                 return true;
 
-            if(line != null && a.cruzamento(line))
+            if(a.cruzamento(line))
             {
                 count++;
             }
@@ -174,11 +175,11 @@ public class Ponto {
         {
             if(line.pertenceSeg(vertices))
             {
-                count++;
+                countV++;
             }
         }
         return count%2 != 0; //se for impar significa que está dentro do poligono, se for par ta fora
-    }
+    }*/
 
 
 }

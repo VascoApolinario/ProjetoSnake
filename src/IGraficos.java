@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.util.ArrayList;
 
+/**
+ * Interface
+ */
 public interface IGraficos {
 
     void drawPanel(int width, int height, InputHandler inputHandler);
