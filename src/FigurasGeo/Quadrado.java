@@ -40,9 +40,20 @@ public class Quadrado extends Retangulo {
         this.downLeft = new Ponto(p1.getX(), p1.getY());
     }
 
+    /**
+     * Construtor de quadrado com argumento apenas tamanho
+     * @param size tamanho do lado do quadrado
+     */
     public Quadrado(int size) {
         this(createQuadrado(new Ponto(0,0), new Ponto(size,size)));
     }
+
+    /**
+     * A partir de 2 pontos que representem uma diagonal do quadrado, devolve os 4 pontos que representam o quadrado
+     * @param p1 ponto 1
+     * @param p2 ponto 2
+     * @return Pontos do quadrado
+     */
 
     private static Ponto[] createQuadrado(Ponto p1, Ponto p2) {
         Ponto[] vertices = new Ponto[4];
@@ -82,6 +93,11 @@ public class Quadrado extends Retangulo {
         }
     }
 
+    /**
+     * Set bottomLeft e ppperRight
+     * @param pontos pontos do quadrado
+     */
+
     private void setDiagonalPoints(Ponto[] pontos)
     {
         double minX = pontos[0].getX();
@@ -117,17 +133,34 @@ public class Quadrado extends Retangulo {
         return new Quadrado(pontos);
     }
 
+    /**
+     * Getter do tamanho do lado do quadrado
+     * @return tamanho do lado
+     */
     public double getSide() {
         return side;
     }
 
+    /**
+     * Getter do ponto mais abaixo à esquerda
+     * @return ponto mais abaixo à esquerda
+     */
     public Ponto getDownLeft() {
         return downLeft;
     }
 
+    /**
+     * Getter do ponto mais acima à direita
+     * @return ponto mais acima à direita
+     */
     public Ponto getTopRight() {
         return topRight;
     }
+
+    /**
+     * Verifica se este quadrado está dentro de um quadrado q
+     * @param q quadrado a verficar
+     */
 
     public boolean isInside(Quadrado q)
     {
@@ -136,6 +169,11 @@ public class Quadrado extends Retangulo {
 
         return this.downLeft.getX() <= q.downLeft.getX() && this.topRight.getX() >= q.topRight.getX() && this.downLeft.getY() <= q.downLeft.getY() && this.topRight.getY() >= q.topRight.getY();
     }
+
+    /**
+     * Verifica se este quadrado está dentro de um circulo c
+     * @param c circuloi a verificar
+     */
 
     public boolean isInside(Circulo c)
     {
