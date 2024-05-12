@@ -11,9 +11,9 @@ public class Segmento
     private final Ponto p1,p2;
     private final Reta r;
 
-    /**
-     * @param p1
-     * @param p2
+    /** Construtor de segmento a partir de 2 pontos
+     * @param p1 ponto 1
+     * @param p2 ponto 2
      */
     public Segmento(Ponto p1, Ponto p2)
     {
@@ -36,13 +36,28 @@ public class Segmento
         return this.p1.dist(this.p2);
     }
 
+    /**
+     * Devolve o primeiro ponto do segmento
+     * @return ponto1
+     */
+
     public Ponto getP1() {
         return p1;
     }
 
+    /**
+     * Devolve o segundo ponto do segmento
+     * @return ponto2
+     */
+
     public Ponto getP2() {
         return p2;
     }
+
+    /**
+     * Devolve a reta à qual este segmento pertence
+     * @return reta
+     */
 
     public Reta getR() {
         return r;
@@ -50,7 +65,7 @@ public class Segmento
 
     /**
      * Metodo usado para verificar se ocorre cruzamento com o segmento that.
-     * @param that
+     * @param that outro segmento a verificar
      * @return true se houver cruzamento, false se não.
      */
     public boolean cruzamento(Segmento that)
@@ -120,6 +135,11 @@ public class Segmento
         }
     }
 
+    /**
+     * Verifica se um ponto pertence a este segmento
+     * @param x Cordenadas X do ponto a verificar
+     * @param y Cordenadas Y do ponto a verificar
+     */
     public boolean pertenceSeg(double x, double y) {
         double Minx = Math.min(p1.getX(), p2.getX());
         double Maxx = Math.max(p1.getX(), p2.getX());
@@ -132,6 +152,10 @@ public class Segmento
         return dentroX && dentroY;
 
     }
+    /**
+     * Verifica se um ponto pertence a este segmento
+     * @param p Ponto a verificar
+     */
 
     public boolean pertenceSeg(Ponto p) {
         double x = p.getX();
