@@ -16,6 +16,7 @@ public class SquareFood extends Objeto implements Food{
      * Construtor da class SquareFood
      * @param size tamanho do quadrado
      * @param spawnPoint ponto onde a comida vai aparecer
+     * @param SnakeHeadSize tamanho da cabeça da snake
      */
     public SquareFood(int size,Cell spawnPoint, int SnakeHeadSize)
     {

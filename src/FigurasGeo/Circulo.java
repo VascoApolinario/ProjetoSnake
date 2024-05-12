@@ -57,6 +57,7 @@ public class Circulo {
 
     /**
      * Setter que altera o raio do círculo
+     * @param radius novo raio do círculo
      * @pre receber um raio valido.
      * @post altera o raio do circulo
      */

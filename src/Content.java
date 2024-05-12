@@ -6,50 +6,42 @@
 public enum Content {
 
     /**
-     * Enum que representa o conteudo que uma celula pode conter.
-     * @value HEAD Cabeça da cobra
+     * HEAD Enum que representa a cabeça da snake que uma celula pode conter.
      */
     HEAD,
 
     /**
-     * Enum que representa o conteudo que uma celula pode conter.
-     * @value TAIL Corpo da cobra
+     * TAIL Enum que representa a cauda da snake que uma celula pode conter.
      */
     TAIL,
 
     /**
-     * Enum que representa o conteudo que uma celula pode conter.
-     * @value OBSTACLE Obstáculo
+     * OBSTACLE Enum que representa o obstaculo que uma celula pode conter.
      */
     OBSTACLE,
 
     /**
-     * Enum que representa o conteudo que uma celula pode conter.
-     * @value FOOD Comida
+     * FOOD Enum que representa a food que uma celula pode conter.
      */
     FOOD,
 
     /**
-     * Enum que representa o conteudo que uma celula pode conter.
-     * @value EMPTY Celula vazia
+     * EMPTY Enum que representa uma celula vazia.
      */
     EMPTY,
 
     /**
-     * Enum que representa o conteudo que uma celula pode conter.
-     * @value DINAMICO Obstáculo dinâmico
+     * DINAMICO Enum que representa uma futura rotação de um objeto dinamico que uma celula pode conter.
      */
     DINAMICO,
 
     /**
-     * Enum que representa o conteudo que uma celula pode conter.
-     * @value BORDER Borda
+     * BORDER Enum que representa a fronteira do mapa que uma celula pode conter.
      */
     BORDER,
 
     /**
-     * Enum que representa o conteudo que uma celula pode conter.
-     * @value EATING cabeça a passar por cima da food
+     * EATING Enum que representa a cabeça da snake a comer que uma celula pode conter.
      */
     EATING
 }

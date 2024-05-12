@@ -19,43 +19,75 @@ public class InitialPanel extends JPanel implements ActionListener {
      * Janela JFrame onde o painel inicial é apresentado
      */
     private JFrame janela;
+
     /**
      * Botão para iniciar o jogo
      */
     private JButton startGameButton;
+
     /**
      * Campo de texto onde o jogador insere o seu nome
      */
     private JTextField playernameField;
+
+    /**
+     * Nome do jogador
+     */
     private String playerName;
+
+    /**
+     * Nível selecionado pelo jogador
+     */
     private String selectedLevel;
+
+    /**
+     * Booleano que indica se o jogo deve ser iniciado
+     */
     public boolean startGame;
+
+    /**
+     * Booleano que indica se o jogador selecionou o modo automático
+     */
     private boolean autoSnake;
+
+    /**
+     * Estratégia de movimento automático selecionada pelo jogador
+     */
     private int autoSnakeStrat;
+
     /**
      * Label que informa o jogador sobre as restrições do nome
      */
     private JLabel nameRestriction;
+
     /**
      * Area de texto onde é apresentada a leaderboard
      */
     private JTextArea printLeaderboard;
+
     /**
      * Spinner para subir e descer para ver os jogadores apresentados na leaderboard
      */
     private JSpinner leaderboardSpinner;
+
     /**
      * ComboBox para selecionar a estratégia de movimento automático
      */
     private JComboBox<String> autoSnakeStratComboBox;
+
     /**
      * ComboBox para selecionar o nível
      */
     private JComboBox<String> levelComboBox;
+
     /**
      * ComboBox para selecionar o modo de renderização
      */
     private JComboBox<String> renderComboBox;
+
+    /**
+     * Booleano que indica se o jogador selecionou o modo de renderização com preenchimento
+     */
     private boolean renderFill;
 
     /**
@@ -253,6 +285,10 @@ public class InitialPanel extends JPanel implements ActionListener {
         return playerName;
     }
 
+    /**
+     * Devolve se o jogador selecionou para iniciar o jogo
+     * @return se o jogador selecionou para iniciar o jogo
+     */
     public boolean getStartGameStatus() {
         return startGame;
     }

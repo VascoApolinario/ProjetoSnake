@@ -1,6 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Classe responsável por representar o frame do jogo.
+ * @author [André Guerreiro 79809, Diogo Almeida 79810, Vasco Apolinário 79944]
+ * @version 1.0
+ */
 public class GameFrame extends JFrame {
 
     /**
