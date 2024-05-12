@@ -31,23 +31,34 @@ public class Ponto {
         }
     }
 
+    /**
+     * Lança a excepção de que foi criado um ponto Inválido e para o programa
+     */
     public void invalidPoint()
     {
         System.out.println("FigurasGeo.Ponto:vi");
         System.exit(0);
     }
 
-
+    /**
+     * Getter do X do ponto
+     * @return X do ponto
+     */
     public double getX()
     {
         return this.x;
     }
-
+    /**
+     * Getter do Y do ponto
+     * @return Y do ponto
+     */
     public double getY()
     {
         return this.y;
     }
-
+    /**
+     * Setter do X do ponto
+     */
     public void setX(int x) {
         if(x < 0)
         {
@@ -57,7 +68,9 @@ public class Ponto {
             this.x = x;
         }
     }
-
+    /**
+     * Setter do Y do ponto
+     */
     public void setY(int y) {
         if(y < 0)
         {
@@ -70,7 +83,7 @@ public class Ponto {
 
     /**
      * metodo usado para calcular a distancia entre dois pontos
-     * @param  that
+     * @param  that ponto a para calcular a distancia
      * @return double com a distancia entre o ponto this e o ponto that
      */
     public double dist(Ponto that)
@@ -114,6 +127,10 @@ public class Ponto {
         return Double.compare(x, ponto.x) == 0 && Double.compare(y, ponto.y) == 0;
     }
 
+    /**
+     * Devolve o hashCode do ponto
+     * @return int hashCode
+     */
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
@@ -133,9 +150,8 @@ public class Ponto {
     /**
      * Metodo que roda o ponto em relação a um pivot.
      * @param angleDegrees ângulos
-     * @param pivotX
-     * @param pivotY
-     * @return
+     * @param pivotX coordenada X do centroide do pivot
+     * @param pivotY coordenada Y do centroide do pivot
      */
     public Ponto rotate(int angleDegrees, double pivotX, double pivotY) {
         // Translate the point to the origin
@@ -155,13 +171,21 @@ public class Ponto {
     }
 
 
-
-
+    /**
+     * Verifica se o ponto está dentro de um circulo
+     * @param c circulo a verificar
+     * @return resultado da verificação
+     */
     public boolean isInside(Circulo c)
     {
         return this.dist(c.getCenter()) <= c.getRadius();
     }
 
+    /**
+     * Verifica se o ponto está dentro de um quadrado
+     * @param q quadrado a verificar
+     * @return resultado da verificação
+     */
     public boolean isInside(Quadrado q)
     {
         return this.x >= q.getDownLeft().getX() && this.x <= q.getTopRight().getX()  && this.y >= q.getDownLeft().getY() && this.y <= q.getTopRight().getY();
