@@ -2,7 +2,7 @@ import FigurasGeo.*;
 /**
  * Classe que representa uma célula de uma grelha
  * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
- * @Version 1.0 09/05/2024
+ * @version  1.0 09/05/2024
  */
 
 public class Cell extends Quadrado {
