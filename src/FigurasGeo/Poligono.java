@@ -271,11 +271,17 @@ public class Poligono {
         int dy = newCentroidY - (int)this.centroide.getY();
         return move(dx,dy);
     }
-
+    /**
+     * Este método é usado para obter o centroide do polígono.
+     * @return o centroide do polígono
+     */
     public Ponto getCentroide() {
         return this.centroide;
     }
-
+    /**
+     * Este método é usado para obter as coordenadas x de todos os pontos do polígono.
+     * @return um array de inteiros contendo as coordenadas x de todos os pontos do polígono
+     */
     public int[] getxv() {
         int[] vx = new int[this.pontos.length];
         for (int i = 0; i < this.pontos.length; i++) {
@@ -283,7 +289,10 @@ public class Poligono {
         }
         return vx;
     }
-
+    /**
+     * Este método é usado para obter as coordenadas y de todos os pontos do polígono.
+     * @return um array de inteiros contendo as coordenadas y de todos os pontos do polígono
+     */
     public int[] getyv() {
         int[] vy = new int[this.pontos.length];
         for (int i = 0; i < this.pontos.length; i++) {

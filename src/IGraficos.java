@@ -86,7 +86,7 @@ public interface IGraficos {
 class Grafica extends JPanel implements IGraficos {
     private Background bg;
     private int renderFill;
-    
+
     public Grafica(int width, int height,Background bg, InputHandler inputHandler, int renderFill) {
         this.bg = bg;
         this.renderFill = renderFill;
@@ -287,7 +287,10 @@ class Textual extends JPanel implements IGraficos{
         this.renderFill = renderFill;
         drawPanel(width,height,inputHandler);
     }
-
+    /**
+     * Método para desenhar os componentes do jogo.
+     * @param g o objeto Graphics usado para desenhar
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -300,7 +303,12 @@ class Textual extends JPanel implements IGraficos{
         else
             drawGameOver(g);
     }
-
+    /**
+     * Desenha o painel do jogo.
+     * @param width a largura do painel
+     * @param height a altura do painel
+     * @param inputHandler o manipulador de entrada do jogo
+     */
     @Override
     public void drawPanel(int width, int height, InputHandler inputHandler) {
         this.setPreferredSize(new Dimension(width,height));
@@ -309,23 +317,37 @@ class Textual extends JPanel implements IGraficos{
         this.addKeyListener(inputHandler);
     }
 
-
+    /**
+     * Desenha a cobra no jogo.
+     * @param g o objeto Graphics usado para desenhar
+     */
     @Override
     public void drawSnake(Graphics g) {
 
     }
-
+    /**
+     * Desenha os obstáculos no jogo.
+     * @param g o objeto Graphics usado para desenhar
+     */
     @Override
     public void drawObstacles(Graphics g) {
 
     }
-
-
+    /**
+     * Desenha a comida no jogo.
+     * @param g o objeto Graphics usado para desenhar
+     */
     @Override
     public void drawFood(Graphics g) {
 
     }
 
+    /**
+     * Desenha a comida numa célula específica do jogo.
+     * @param g o objeto Graphics usado para desenhar
+     * @param c a célula onde a comida está localizada
+     * @param p o ponto onde a comida está localizada
+     */
     @Override
     public void drawFood(Graphics g,Cell c, Ponto p) {
         for(Food f : bg.getComida())
@@ -367,7 +389,10 @@ class Textual extends JPanel implements IGraficos{
         }
     }
 
-
+    /**
+     * Método para desenhar a grade do jogo com bordas.
+     * @param g o objeto Graphics usado para desenhar
+     */
     public void drawGridBorder(Graphics g) {
         Grid grid = bg.getGrid();
         for (int x = 0; x < this.getWidth(); x+=10) {
@@ -458,7 +483,10 @@ class Textual extends JPanel implements IGraficos{
         return Content.EMPTY;
     }
 
-
+    /**
+     * Método para desenhar a grade do jogo com preenchimento.
+     * @param g o objeto Graphics usado para desenhar
+     */
     public void drawGridFill(Graphics g) {
         Grid grid = bg.getGrid();
         for (int x = 0; x < this.getWidth(); x+=10) {
@@ -494,7 +522,10 @@ class Textual extends JPanel implements IGraficos{
             }
         }
     }
-
+    /**
+     * Desenha a pontuação do jogo.
+     * @param g o objeto Graphics usado para desenhar
+     */
     @Override
     public void drawScore(Graphics g) {
         int score = this.bg.getPlayer().getScore();
@@ -504,7 +535,10 @@ class Textual extends JPanel implements IGraficos{
         g.drawString("Pontos: " +score + " ",this.getWidth()-metrics.stringWidth("Pontos: " +score + " "),this.getHeight()-g.getFont().getSize()/3);
     }
 
-
+    /**
+     * Desenha a direção da cobra no jogo.
+     * @param g o objeto Graphics usado para desenhar
+     */
     @Override
     public void drawSnakeDirection(Graphics g) {
         int dir = this.bg.getSnake().getDirection();
@@ -514,7 +548,10 @@ class Textual extends JPanel implements IGraficos{
         g.drawString("Dir H: " + dir + " ",0,this.getHeight()-g.getFont().getSize()/3);
 
     }
-
+    /**
+     * Desenha a tela de fim de jogo.
+     * @param g o objeto Graphics usado para desenhar
+     */
     @Override
     public void drawGameOver(Graphics g) {
         g.setColor(Color.BLACK);
@@ -526,12 +563,18 @@ class Textual extends JPanel implements IGraficos{
         FontMetrics metrics1 = getFontMetrics(g.getFont());
         g.drawString("Score: " + this.bg.getPlayer().getScore() , (getWidth() - metrics1.stringWidth("Score: " + this.bg.getPlayer().getScore()))/2, (int) (getHeight()/1.5));
     }
-
+    /**
+     * Desenha a borda do jogo.
+     * @param g o objeto Graphics usado para desenhar
+     */
     @Override
     public void drawBorder(Graphics g) {
 
     }
-
+    /**
+     * Atualiza o fundo do jogo.
+     * @param bg o novo fundo do jogo
+     */
     @Override
     public void setBG(Background bg) {
         this.bg = bg;
