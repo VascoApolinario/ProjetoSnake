@@ -6,11 +6,6 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// Direction:
-// (0) -> para direita
-// (90) -> para cima
-// (180) -> para esquerda
-// (270) -> para baixo
 class SnakeTest {
 
     @Test
@@ -140,11 +135,11 @@ class SnakeTest {
     void collisionWithObstacleTest(){
         Grid grid = new Grid(200,200,10);
         Snake snake = new Snake(10,grid.getCells()[1][1],0);
-        Obstacle obstacle = new Obstacle("Triangulo 25 15 35 15 35 25",false,0);
+        Obstacle obstacle = new Obstacle("Poligono 3 25 15 35 15 35 25",false,0);
         grid.update(obstacle);
         assertFalse(snake.checkCollisions(grid));
         snake.move(grid);
-        assertTrue(snake.checkCollisions(grid));
+        assertTrue(snake.getStatus().equals(Status.DEAD));
     }
 
 

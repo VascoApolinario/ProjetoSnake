@@ -67,7 +67,10 @@ public class Cell extends Quadrado {
         this.empty = empty;
     }
 
-
+    /**
+     * Metodo que devolve a representação em String da Cell.
+     * @return String.
+     */
     @Override
     public String toString() {
         return super.getCentroide().toString2();

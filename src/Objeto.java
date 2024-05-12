@@ -9,15 +9,31 @@ import FigurasGeo.Ponto;
 
 public abstract class Objeto {
 
-    public final void criar(String formato, Ponto spawn) {
-        //spawn(spawn);
-    }
-
-
+    /**
+     * Metodo que atualiza o objeto de jogo correspondente (equivale a diferentes mudanças consoante o objeto
+     */
     abstract void update();
-    //abstract void spawn(Ponto p);
+
+    /**
+     * Metodo que move o objeto na grid g
+     * @param g a grid onde mover o objeto
+     */
     abstract void move(Grid g);
+
+    /**
+     * Metodo que roda o objeto por uma quantidade determinada de graus
+     * @param degrees a quantidade de graus a rodar o objeto
+     */
     abstract void rotate(int degrees);
+
+    /**
+     * Metodo cria um poligono do objeto com o formato dado
+     * @param formato String que corresponde ao formato do objeto
+     */
     abstract Poligono format(String formato);
+
+    /**
+     * Metodo que retorna o tipo de objeto em formato string
+     */
     abstract String tipo();
 }

@@ -2,7 +2,6 @@ import FigurasGeo.Poligono;
 import FigurasGeo.Ponto;
 import FigurasGeo.Quadrado;
 import FigurasGeo.Segmento;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,22 +10,74 @@ import java.awt.event.KeyAdapter;
 import java.util.ArrayList;
 
 /**
- * Interface
+ * Interface que é responsável pela GUI do jogo. Incluí métodos para desenhar os vários elementos que compõem o jogo.
+ * @author [André Guerreiro 79809, Diogo Almeida 79810, Vasco Apolinário 79944]
+ * @version 1.0
  */
 public interface IGraficos {
-
+    /**
+     * Desenha o painel do jogo.
+     * @param width a largura do painel
+     * @param height a altura do painel
+     * @param inputHandler o manipulador de entrada do jogo
+     */
     void drawPanel(int width, int height, InputHandler inputHandler);
-    void drawGameElements();
+    /**
+     * Desenha a cobra no jogo.
+     * @param g o objeto Graphics usado para desenhar
+     */
     void drawSnake(Graphics g);
+    /**
+     * Desenha os obstáculos no jogo.
+     * @param g o objeto Graphics usado para desenhar
+     */
     void drawObstacles(Graphics g);
+    /**
+     * Desenha a comida no jogo.
+     * @param g o objeto Graphics usado para desenhar
+     */
     void drawFood(Graphics g);
+    /**
+     * Desenha a comida numa célula específica do jogo.
+     * @param g o objeto Graphics usado para desenhar
+     * @param c a célula onde a comida está localizada
+     * @param p o ponto onde a comida está localizada
+     */
     void drawFood(Graphics g,Cell c,Ponto p);
+    /**
+     * Desenha a grade do jogo.
+     * @param g o objeto Graphics usado para desenhar
+     */
     void drawGrid(Graphics g);
+    /**
+     * Desenha a pontuação do jogo.
+     * @param g o objeto Graphics usado para desenhar
+     */
     void drawScore(Graphics g);
+    /**
+     * Desenha a direção da cobra no jogo.
+     * @param g o objeto Graphics usado para desenhar
+     */
     void drawSnakeDirection(Graphics g);
+    /**
+     * Desenha a tela de fim de jogo.
+     * @param g o objeto Graphics usado para desenhar
+     */
     void drawGameOver(Graphics g);
+    /**
+     * Desenha a borda do jogo.
+     * @param g o objeto Graphics usado para desenhar
+     */
     void drawBorder(Graphics g);
+
+    /**
+     * Repinta o painel.
+     */
     void repaint();
+    /**
+     * Atualiza o fundo do jogo.
+     * @param bg o novo fundo do jogo
+     */
     void setBG(Background bg);
 
 }
@@ -35,8 +86,7 @@ public interface IGraficos {
 class Grafica extends JPanel implements IGraficos {
     private Background bg;
     private int renderFill;
-
-
+    
     public Grafica(int width, int height,Background bg, InputHandler inputHandler, int renderFill) {
         this.bg = bg;
         this.renderFill = renderFill;
@@ -69,10 +119,6 @@ class Grafica extends JPanel implements IGraficos {
 
     }
 
-    @Override
-    public void drawGameElements() {
-
-    }
 
     @Override
     public void drawSnake(Graphics g) {
@@ -218,11 +264,23 @@ class Grafica extends JPanel implements IGraficos {
 }
 
 
-
+/**
+ * Classe encarregue na interface textual do jogo. Podendo ser rasterizada com contornos ou com preenchimento.
+ * @author [André Guerreiro 79809, Diogo Almeida 79810, Vasco Apolinário 79944]
+ * @version 1.0
+ */
 class Textual extends JPanel implements IGraficos{
     private Background bg;
     private boolean renderFill;
 
+    /**
+     * Construtor da classe Textual
+     * @param width
+     * @param height
+     * @param bg
+     * @param inputHandler
+     * @param renderFill
+     */
     public Textual(int width, int height,Background bg,InputHandler inputHandler, boolean renderFill)
     {
         this.bg = bg;
@@ -251,10 +309,6 @@ class Textual extends JPanel implements IGraficos{
         this.addKeyListener(inputHandler);
     }
 
-    @Override
-    public void drawGameElements() {
-
-    }
 
     @Override
     public void drawSnake(Graphics g) {
@@ -312,6 +366,7 @@ class Textual extends JPanel implements IGraficos{
             drawGridFill(g);
         }
     }
+
 
     public void drawGridBorder(Graphics g) {
         Grid grid = bg.getGrid();

@@ -26,6 +26,7 @@ public class Background {
     private boolean activateAutoSnake;
     private int Width;
     private int Height;
+
     /**
      * Construtor da classe Background.
      * @param Width largura da grid
@@ -99,7 +100,7 @@ public class Background {
             System.out.println("Error reading file: " + e.getMessage());
         }
         this.activateAutoSnake = activateAutoSnake;
-        this.autoSnake = new RandomStrategy();
+        this.autoSnake = new PathFindingStrategy();
     }
 
     /**
@@ -110,7 +111,7 @@ public class Background {
         if(!gameOver) {
             if(activateAutoSnake)
             {
-                autoSnake.Start(this.snake,this);
+                autoSnake.update(this.snake,this);
             }
             if(snake.getStatus().equals(Status.ALIVE))
                 snake.move(this.grid);

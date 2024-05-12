@@ -191,7 +191,7 @@ public class InitialPanel extends JPanel implements ActionListener {
     }
 
     /**
-     * Devolve o nível selecionado pelo jogadore
+     * Devolve o nível selecionado pelo jogador
      * @pos return this.selectedLevel
      */
     public String getSelectedLevel() {

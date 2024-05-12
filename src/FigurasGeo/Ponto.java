@@ -90,6 +90,10 @@ public class Ponto {
         return String.format("(%d,%d)", (int)x, (int)y);
     }
 
+    /**
+     * Método que cria uma representação em String de um ponto
+     * @return string que representa um ponto
+     */
     public String toString2()
     {
         return String.format("%d %d", (int)x, (int)y);
@@ -115,11 +119,24 @@ public class Ponto {
         return Objects.hash(x, y);
     }
 
+    /**
+     * Metodo que translada o ponto.
+     * @param dx desvio horizontal
+     * @param dy desvio vertical
+     * @return novo ponto com as coordenadas do ponto após a translação
+     */
     public Ponto translate(int dx, int dy)
     {
         return new Ponto(this.x + dx, this.y + dy);
     }
 
+    /**
+     * Metodo que roda o ponto em relação a um pivot.
+     * @param angleDegrees ângulos
+     * @param pivotX
+     * @param pivotY
+     * @return
+     */
     public Ponto rotate(int angleDegrees, double pivotX, double pivotY) {
         // Translate the point to the origin
         double newX = this.getX() - pivotX;
@@ -149,37 +166,7 @@ public class Ponto {
     {
         return this.x >= q.getDownLeft().getX() && this.x <= q.getTopRight().getX()  && this.y >= q.getDownLeft().getY() && this.y <= q.getTopRight().getY();
     }
-    /*
-    public boolean isInside(Poligono p)
-    {
-        double maxX = new PreProcessamento(p).getTopRight().getX();
-        int count = 0;
-        int countV = 0;
-        Segmento line = null;
-        if(this.getX() != maxX) {
-            line = new Segmento(this, new Ponto(maxX, this.getY()));
-        }
-        else
-            return true;
-        for(Segmento a : p.getArestas())
-        {
-            if(a.pertenceSeg(this))
-                return true;
 
-            if(a.cruzamento(line))
-            {
-                count++;
-            }
-        }
-        for(Ponto vertices : p.getPontos())
-        {
-            if(line.pertenceSeg(vertices))
-            {
-                countV++;
-            }
-        }
-        return count%2 != 0; //se for impar significa que está dentro do poligono, se for par ta fora
-    }*/
 
 
 }

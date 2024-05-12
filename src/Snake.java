@@ -265,7 +265,6 @@ public class Snake extends Objeto {
     {
         this.tail.clear();
         this.status = Status.DEAD;
-        //TODO
     }
     public Status getStatus() {
         return status;

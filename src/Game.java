@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.io.File;
 
 /**
- * Classe que compõe o jogo e inicializa os diferentes painéis, encarrega se de juntar a infromação visível com a não visivel.
+ * Classe que compõe o jogo e inicializa os diferentes painéis, encarrega se de juntar a informação visível com a não visivel.
  * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
  * @Version 1.0 21/04/2024
  */
@@ -20,6 +20,9 @@ public class Game implements ActionListener {
     private IGraficos graficos;
     private InitialPanel painelInicial;
 
+    /**
+     * Contrutor da classe Game.
+     */
     public Game() {
         leaderboard = new Leaderboard("leaderboard.txt");
         //leaderboard.printLeaderboard();
@@ -47,6 +50,10 @@ public class Game implements ActionListener {
 
     }
 
+    /**
+     * Metodo que verifica se o ficheiro de nível existe.
+     * @return true se existir, false se não
+     */
     public boolean checkLevelFile(){
         String level = this.painelInicial.getSelectedLevel();
         level = level + ".txt";
@@ -54,11 +61,18 @@ public class Game implements ActionListener {
         return levelFile.exists();
     }
 
+    /**
+     * Metodo que começa o jogo.
+     */
     public void StartGame() {
         timer.start();
     }
 
-
+    /**
+     * Este método é chamado sempre que ocorre um evento de ação.
+     * Atualiza todos os objetos do jogo, verifica se é necessário atualizar a tabela de classificação e repinta os gráficos.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -72,9 +86,11 @@ public class Game implements ActionListener {
             leaderboard.update(background.getPlayer());
         }
         this.graficos.repaint();
-        //reset();
     }
-
+    /**
+     * Este método é usado para reiniciar o jogo.
+     * Atualiza a tabela de classificação, cria um novo fundo e define o novo fundo nos gráficos.
+     */
     public void reset(){
 
         leaderboard.update(background.getPlayer());
@@ -85,6 +101,10 @@ public class Game implements ActionListener {
         this.graficos.setBG(this.background);
     }
 
+    /**
+     * Getter da classe Game que devolve o background.
+     * @return background
+     */
     public Background getBackground() {
         return background;
     }

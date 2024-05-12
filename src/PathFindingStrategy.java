@@ -6,8 +6,8 @@ import java.util.Timer;
 
 /**
  * Classe que implementa o modo automático que procura um Path até à comida da Snake
- *  * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
- *  * @version 1.0 09/05/2024
+ * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
+ * @version 1.0 09/05/2024
  */
 public class PathFindingStrategy implements AutoSnake {
     private Path snakepath;
@@ -31,7 +31,7 @@ public class PathFindingStrategy implements AutoSnake {
      * @param snake
      * @param background
      */
-    public void Start(Snake snake, Background background){
+    public void update(Snake snake, Background background){
         avoidObstacle(snake,background.getGrid());
         if(System.currentTimeMillis() - timer > 10000){
             snakepath =null;
@@ -56,16 +56,6 @@ public class PathFindingStrategy implements AutoSnake {
 
     }
 
-    public Food getCloserFood(Background background, Snake snake){
-        Food food = background.getComida().getFirst();
-        Double dist = background.getComida().getFirst().getLocation().dist(snake.getHead().getCentroide());
-        for(int i = 0; i < background.getComida().size();i++)
-        {
-            if(background.getComida().get(i).getLocation().dist(snake.getHead().getCentroide()) < dist)
-                food = background.getComida().get(i);
-        }
-        return food;
-    }
 
     /**
      * Método que devolve, se possível, um caminho da cobra até a uma comida aleatória seguro

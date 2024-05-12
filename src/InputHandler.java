@@ -9,15 +9,24 @@ import java.awt.event.KeyListener;
 public class InputHandler implements KeyListener {
     private Game game;
 
+    /**
+     * Construtor da classe InputHandler
+     * @param game que será controlado pelo inputhandler
+     */
     public InputHandler(Game game) {
         this.game = game;
     }
+
 
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
 
+    /**
+     * Metodo que responde a teclas premidas, alterando a direção da snake.
+     * @param e the event to be processed
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
