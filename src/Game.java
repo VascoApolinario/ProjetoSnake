@@ -7,7 +7,7 @@ import java.io.File;
 /**
  * Classe que compõe o jogo e inicializa os diferentes painéis, encarrega se de juntar a informação visível com a não visivel.
  * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
- * @Version 1.0 21/04/2024
+ * @version 1.0 21/04/2024
  */
 
 public class Game implements ActionListener {

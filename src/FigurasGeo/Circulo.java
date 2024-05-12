@@ -38,6 +38,7 @@ public class Circulo {
 
     /**
      * Setter que altera o centro do círculo
+     * @param center novo centro do círculo
      * @pre receber um ponto valido.
      * @post altera o centro para o ponto recebido
      */

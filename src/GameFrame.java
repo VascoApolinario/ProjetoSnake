@@ -3,6 +3,10 @@ import java.awt.*;
 
 public class GameFrame extends JFrame {
 
+    /**
+     * Construtor da classe GameFrame
+     * @param graficos interface gráfica do jogo
+     */
     public GameFrame(IGraficos graficos) {
         this.add((Component) graficos);
         this.setTitle("SNAKE");

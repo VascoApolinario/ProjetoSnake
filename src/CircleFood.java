@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Classe que representa Comida em formato Circular
  * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
- * @Version 1.0 09/05/2024
+ * @version  1.0 09/05/2024
  * @inv o diâmetro não pode ser superior ao lado da cabeça da snake.
  */
 
@@ -18,6 +18,7 @@ public class CircleFood extends Objeto implements Food{
      * Construtor da classe CircleFood
      * @param spawn celula cujo o centroide será o centro da comida
      * @param raio raio da comida
+     * @param SnakeHeadSize tamanho da cabeça da snake
      * @pre receber uma Cell e raio válidos
      * @post cria nova instância da classe CircleFood
      */

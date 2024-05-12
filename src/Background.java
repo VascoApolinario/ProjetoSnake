@@ -33,6 +33,7 @@ public class Background {
      * @param Height altura da grid
      * @param playername nome do jogador
      * @param activateAutoSnake valor booleano que representa se a snake se deve mover em modo automatico ou não
+     * @param autoSnakeStrat estratégia de movimento automático
      */
     public Background(int Width, int Height, String playername, Boolean activateAutoSnake,int autoSnakeStrat) {
         this.grid = new Grid(Width,Height,40);
@@ -60,6 +61,7 @@ public class Background {
      * @param filename nome do ficheiro nivel a carregar
      * @param playername nome do jogador
      * @param activateAutoSnake valor booleano que representa se a snake se deve mover em modo automatico ou não
+     * @param autoSnakeStrat estratégia de movimento automático
      */
     public Background(String filename, String playername, boolean activateAutoSnake, int autoSnakeStrat) {
         this.obstaculos = new ArrayList<>();

@@ -160,6 +160,7 @@ public class Quadrado extends Retangulo {
     /**
      * Verifica se este quadrado está dentro de um quadrado q
      * @param q quadrado a verficar
+     * @return valor booleano que representa se este quadrado está dentro de q
      */
 
     public boolean isInside(Quadrado q)
@@ -175,6 +176,11 @@ public class Quadrado extends Retangulo {
      * @param c circuloi a verificar
      */
 
+    /**
+     * Método que verifica se um circulo está dentro de um quadrado
+     * @param c circulo a verificar
+     * @return valor booleano que representa se o circulo está dentro do quadrado
+     */
     public boolean isInside(Circulo c)
     {
         double leftLimit = c.getCenter().getX() - c.getRadius();

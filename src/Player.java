@@ -11,8 +11,8 @@ public class Player implements Comparable<Player> {
 
     /**
      * Construtor de Player
-     * @param name
-     * @param bestScore
+     * @param name nome do jogador
+     * @param bestScore melhor pontuação do jogador
      */
     public Player(String name, int bestScore) {
         this.score = 0;
@@ -22,7 +22,7 @@ public class Player implements Comparable<Player> {
 
     /**
      * Construtor de Player, quando não há BestScore (é um novo jogador) o bestScore é 0
-     * @param name
+     * @param name nome do jogador
      */
     public Player(String name) {
         this(name,0);
@@ -33,7 +33,9 @@ public class Player implements Comparable<Player> {
      * @return int score
      */
     public int getScore() {return score;}
+
     /** Setter do nome
+     * @param set int score
      */
     public void setScore(int set) {this.score = set;}
 
@@ -46,7 +48,7 @@ public class Player implements Comparable<Player> {
 
     /**
      * Getter da melhor pontuação daquele jogador
-     * @return
+     * @return int bestScore
      */
     public int getBestScore()
     {
@@ -55,7 +57,7 @@ public class Player implements Comparable<Player> {
 
     /**
      * Atualiza a melhor pontuação do jogador atual (seria impossivel manipular o score de outros jogadores a partir do jogo)
-     * @param newScore
+     * @param newScore nova melhor pontuação
      * @pre newScore >= this.bestScore
      * @post bestScore == newScore
      */
@@ -67,7 +69,7 @@ public class Player implements Comparable<Player> {
 
     /**
      * Método para transformar um jogador em String
-     * @return
+     * @return String com o nome e a melhor pontuação do jogador
      */
 
     @Override
@@ -79,7 +81,7 @@ public class Player implements Comparable<Player> {
     /**
      * Compara dois jogadores, retorna o inteiro resultante da comparação a partir dos seus bestScores
      * @param o the object to be compared.
-     * @return
+     * @return o valor correspondente a comparação entre os dois jogadores do comparator
      */
 
     @Override

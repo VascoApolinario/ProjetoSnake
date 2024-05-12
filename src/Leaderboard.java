@@ -16,7 +16,7 @@ public class Leaderboard implements Iterable<Player>{
 
     /**
      * Constructor method for LeaderboardClass
-     * @param filename
+     * @param filename nome do ficheiro
      */
     public Leaderboard(String filename) {
         this.filename = filename;
@@ -42,19 +42,22 @@ public class Leaderboard implements Iterable<Player>{
 
     /**
      * Retorna iterator para leaderboard, itera sobre os players.
-     * @return Iterator<Player>
+     * @return Iterator<Player> iterator
      */
     public Iterator<Player> iterator() {
         return new LeaderboardIterator(this);
     }
 
+    /**
+     * Classe interna para iterar sobre os players da leaderboard
+     */
     public class LeaderboardIterator implements Iterator<Player> {
         private int currentIndex = 0;
         private final Leaderboard leaderboard;
 
         /**
          * Construtor do iterador para classe Leaderboard
-         * @param leaderboard
+         * @param leaderboard leaderboard a iterar
          */
         public LeaderboardIterator(Leaderboard leaderboard) {
             this.leaderboard = leaderboard;
@@ -62,7 +65,7 @@ public class Leaderboard implements Iterable<Player>{
 
         /**
          * Verifica se existe um próximo elemento na coleação
-         * @return
+         * @return true se existir, false caso contrário
          */
         @Override
         public boolean hasNext() {
@@ -71,7 +74,7 @@ public class Leaderboard implements Iterable<Player>{
 
         /**
          * Retorna o próximo elemento da coleção
-         * @return
+         * @return Player próximo elemento
          */
         @Override
         public Player next() {
@@ -82,7 +85,7 @@ public class Leaderboard implements Iterable<Player>{
 
     /**
      * Método para atualizar ficheiro leaderboard (recebe player, adiciona, faz sort e guarda no ficheiro)
-     * @param player
+     * @param player jogador a adicionar
      */
     public void update(Player player) {
         add(player);
@@ -107,8 +110,9 @@ public class Leaderboard implements Iterable<Player>{
     /**
      * Dada uma string nome, compara com os nomes dos players da leaderboard e retorna o player com nome igual à string.
      * @pre para funcionamento correto, "name" deve ter um nome igual ao nome de um Player existente
-     * @param name
+     * @param name nome do jogador a encontrar
      * @pos name.Equals(Player.getNome())
+     * @return Player com nome igual a "name"
      */
     public Player findPlayer(String name) {
         for (Player player : leaderboard) {
@@ -157,7 +161,7 @@ public class Leaderboard implements Iterable<Player>{
 
     /**
      * Adiciona player à Leaderboard, caso já exista permanece o com melhor pontuação
-     * @param player
+     * @param player jogador a adicionar
      */
     public void add(Player player) {
         boolean exists = false;
@@ -182,8 +186,8 @@ public class Leaderboard implements Iterable<Player>{
 
     /**
      * Devolve uma string com os melhores "n" Players da LeaderBoard
-     * @param n
-     * @return
+     * @param n número de jogadores a mostrar
+     * @return String com os melhores "n" Players da LeaderBoard
      */
 
     public String printLeaderboard(int n)
@@ -201,7 +205,7 @@ public class Leaderboard implements Iterable<Player>{
 
     /**
      * Getter do array de Players
-     * @return
+     * @return ArrayList<Player> leaderboard
      */
     public ArrayList<Player> getLeaderboard() {
         return leaderboard;

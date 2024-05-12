@@ -16,7 +16,7 @@ public class Path {
 
     /**
      * Construtor da classe Path
-     * @param pontos
+     * @param pontos array de pontos que define a trajetoria
      */
     public Path(Ponto[] pontos)
     {
@@ -55,7 +55,7 @@ public class Path {
 
     /**
      * metodo que verifica se alguma linha da trajetoria interseta alguma aresta do poligono
-     * @param that
+     * @param that poligono
      * @return 1 se houver intersecção, 0 se não
      */
     public int interseta(Poligono that)
@@ -72,6 +72,10 @@ public class Path {
         return 0;
     }
 
+    /**
+     * Metodo que retorna o array de pontos da trajetoria
+     * @return array de pontos da trajetoria
+     */
     public Ponto[] getPontos() {
         return pontos;
     }

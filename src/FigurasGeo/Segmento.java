@@ -139,6 +139,7 @@ public class Segmento
      * Verifica se um ponto pertence a este segmento
      * @param x Cordenadas X do ponto a verificar
      * @param y Cordenadas Y do ponto a verificar
+     * @return  true se pertencer, false caso contrário
      */
     public boolean pertenceSeg(double x, double y) {
         double Minx = Math.min(p1.getX(), p2.getX());
@@ -155,6 +156,7 @@ public class Segmento
     /**
      * Verifica se um ponto pertence a este segmento
      * @param p Ponto a verificar
+     * @return  true se pertencer, false caso contrário
      */
 
     public boolean pertenceSeg(Ponto p) {

@@ -4,7 +4,7 @@ import FigurasGeo.Quadrado;
 /**
  * Classe que representa Comida em formato de Quadrado
  * @author [Diogo Almeida 79810, André Guerreiro 79809, Vasco Apolinário 79944]
- * @Version 1.0 09/05/2024
+ * @version 1.0 09/05/2024
  * @inv o lado do quadrado da comida não pode ser superior ao lado da cabeça da snake.
  */
 
@@ -14,8 +14,8 @@ public class SquareFood extends Objeto implements Food{
 
     /**
      * Construtor da class SquareFood
-     * @param size
-     * @param spawnPoint
+     * @param size tamanho do quadrado
+     * @param spawnPoint ponto onde a comida vai aparecer
      */
     public SquareFood(int size,Cell spawnPoint, int SnakeHeadSize)
     {
@@ -56,30 +56,50 @@ public class SquareFood extends Objeto implements Food{
         return this.quadrado.getCentroide();
     }
 
+    /**
+     * Método Não implementado da classe abstrata objeto
+     */
     @Override
     void update() {
 
     }
 
+    /**
+     * Método Não implementado da classe abstrata objeto
+     * @param g a grid onde mover o objeto
+     */
     @Override
     void move(Grid g) {
 
     }
 
+    /**
+     * Método Não implementado da classe abstrata objeto
+     * @param degrees a quantidade de graus a rodar o objeto
+     */
     @Override
     void rotate(int degrees) {
 
     }
 
+    /**
+     * Método Não implementado da classe abstrata objeto
+     * @param formato String que corresponde ao formato do objeto
+     * @return null
+     */
     @Override
     Poligono format(String formato) {
 
         return null;
     }
 
+    /**
+     * Método que retorna o tipo da SquareFood em formato string
+     * @return tipo da SquareFood
+     */
     @Override
     String tipo() {
-        return "";
+        return "SquareFood";
     }
 
     /**

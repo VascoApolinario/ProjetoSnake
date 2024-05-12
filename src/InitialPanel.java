@@ -15,25 +15,52 @@ import java.awt.event.ItemListener;
 
 public class InitialPanel extends JPanel implements ActionListener {
 
+    /**
+     * Janela JFrame onde o painel inicial é apresentado
+     */
     private JFrame janela;
+    /**
+     * Botão para iniciar o jogo
+     */
     private JButton startGameButton;
+    /**
+     * Campo de texto onde o jogador insere o seu nome
+     */
     private JTextField playernameField;
     private String playerName;
     private String selectedLevel;
     public boolean startGame;
     private boolean autoSnake;
     private int autoSnakeStrat;
+    /**
+     * Label que informa o jogador sobre as restrições do nome
+     */
     private JLabel nameRestriction;
+    /**
+     * Area de texto onde é apresentada a leaderboard
+     */
     private JTextArea printLeaderboard;
+    /**
+     * Spinner para subir e descer para ver os jogadores apresentados na leaderboard
+     */
     private JSpinner leaderboardSpinner;
+    /**
+     * ComboBox para selecionar a estratégia de movimento automático
+     */
     private JComboBox<String> autoSnakeStratComboBox;
+    /**
+     * ComboBox para selecionar o nível
+     */
     private JComboBox<String> levelComboBox;
+    /**
+     * ComboBox para selecionar o modo de renderização
+     */
     private JComboBox<String> renderComboBox;
     private boolean renderFill;
 
     /**
      * Construtor do Painel inicial, recebe uma cópia da leaderboard para poder apresentá-la
-     * @param leaderboardCopy
+     * @param leaderboardCopy cópia da leaderboard
      */
     public InitialPanel(Leaderboard leaderboardCopy){
         startGame = false;
@@ -211,6 +238,7 @@ public class InitialPanel extends JPanel implements ActionListener {
     /**
      * Devolve o nível selecionado pelo jogador
      * @pos return this.selectedLevel
+     * @return o nível selecionado pelo jogador
      */
     public String getSelectedLevel() {
         return selectedLevel;
@@ -219,6 +247,7 @@ public class InitialPanel extends JPanel implements ActionListener {
     /**
      * Devolve o nome do jogador selecionado pelo jogador
      * @pos return this.playerName
+     * @return o nome do jogador selecionado pelo jogador
      */
     public String getPlayerName() {
         return playerName;
@@ -231,16 +260,25 @@ public class InitialPanel extends JPanel implements ActionListener {
     /**
      * Retorna se o jogador selecionou para iniciar no modo automático
      * @pos result = autoSnake
+     * @return se o jogador selecionou para iniciar no modo automático
      */
     public boolean getAutoSnake() {
         return autoSnake;
     }
 
+    /**
+     * Método que devolve se o jogador selecionou para renderizar o jogo com preenchimento
+     * @return se o jogador selecionou para renderizar o jogo com preenchimento
+     */
     public boolean getRenderFill()
     {
         return renderFill;
     }
 
+    /**
+     * Método que devolve a estratégia de movimento automático selecionada pelo jogador
+     * @return a estratégia de movimento automático selecionada pelo jogador
+     */
     public int getAutoSnakeStrat()
     {
         return autoSnakeStrat;

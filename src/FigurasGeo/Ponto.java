@@ -58,6 +58,7 @@ public class Ponto {
     }
     /**
      * Setter do X do ponto
+     * @param x coordenada x do ponto
      */
     public void setX(int x) {
         if(x < 0)
@@ -70,6 +71,7 @@ public class Ponto {
     }
     /**
      * Setter do Y do ponto
+     * @param y coordenada y do ponto
      */
     public void setY(int y) {
         if(y < 0)
@@ -152,6 +154,7 @@ public class Ponto {
      * @param angleDegrees ângulos
      * @param pivotX coordenada X do centroide do pivot
      * @param pivotY coordenada Y do centroide do pivot
+     * @return novo ponto com as coordenadas do ponto após a rotação
      */
     public Ponto rotate(int angleDegrees, double pivotX, double pivotY) {
         // Translate the point to the origin

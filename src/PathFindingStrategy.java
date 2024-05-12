@@ -28,8 +28,8 @@ public class PathFindingStrategy implements AutoSnake {
 
     /**
      * Metodo que é chamado a cada instante de jogo e implementa a lógica da automatização da snake
-     * @param snake
-     * @param background
+     * @param snake cobra do jogo
+     * @param background background onde está a ocorrer a ação do jogo
      */
     public void update(Snake snake, Background background){
         avoidObstacle(snake,background.getGrid());
@@ -123,9 +123,9 @@ public class PathFindingStrategy implements AutoSnake {
 
     /**
      * Metodo que faz com que a snake siga um Path
-     * @param snake
-     * @param path
-     * @param background
+     * @param snake cobra do jogo
+     * @param path Path a ser seguido
+     * @param background background onde está a ocorrer a ação do jogo
      */
     public void followPath(Snake snake,Path path,Background background){
         int row = background.getGrid().returnRowFromPoint(snake.getHead().getCentroide());
@@ -165,8 +165,8 @@ public class PathFindingStrategy implements AutoSnake {
 
     /**
      * Metodo quer faz com que a snake desvie-se de obstáculos, da borda e da sua própria cauda.
-     * @param snake
-     * @param grid
+     * @param snake cobra do jogo
+     * @param grid grid onde está a ocorrer a ação do jogo
      */
     @Override
     public void avoidObstacle(Snake snake,Grid grid){

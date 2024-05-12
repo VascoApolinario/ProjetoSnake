@@ -6,6 +6,7 @@ import java.util.Random;
 /**
  * Classe que representa a cobra
  * @author [André Guerreiro 79809, Diogo Almeida 79810, Vasco Apolinário 79944]
+ * @version 1.0
  * @inv O lado da cabeça da cobra tem de ter o mesmo comprimento do lado da célula da grid
  */
 
@@ -81,18 +82,33 @@ public class Snake extends Objeto {
             return 270;
     }
 
+    /**
+     * Método que devolve a cabeça da snake
+     * @return cabeça da snake
+     */
     public Quadrado getHead() {
         return head;
     }
 
+    /**
+     * Método que devolve a direção atual da snake
+     * @return direção da snake
+     */
     public int getDirection() {
         return direction;
     }
 
+    /**
+     * Método que devolve a cauda da snake
+     * @return ArrayList com a cauda da snake
+     */
     public ArrayList<Quadrado> getTail() {
         return tail;
     }
 
+    /**
+     * Método que atualiza a Snake, verificando colisões com a cauda
+     */
     @Override
     void update() {
         if(collisionWithTail()) {
@@ -100,15 +116,16 @@ public class Snake extends Objeto {
         }
     }
 
+    /**
+     * Método não implementadado herdado da classe abstrata objeto
+     * @param formato String que corresponde ao formato do objeto
+     * @return null
+     */
     @Override
     Poligono format(String formato) {
         return null;
     }
-    /*
-    @Override
-    void spawn(Ponto p) {
 
-    }*/
 
     /**
      * Metodo que faz a cobra mover-se e atualiza a grid por onde passa.
@@ -177,9 +194,13 @@ public class Snake extends Objeto {
         }
     }
 
+    /**
+     * Método que retorna o tipo de objeto
+     * @return String: "Snake"
+     */
     @Override
     String tipo() {
-        return "";
+        return "Snake";
     }
 
     /**
@@ -193,6 +214,7 @@ public class Snake extends Objeto {
     /**
      * Metodo que verifica se a cobra consumiu comida. Caso tenha chama o metodo grow();
      * @param f -> Comida a ser consumida
+     * @param grid -> Grid onde a cobra se encontra
      */
     public void eat(Food f, Grid grid)
     {
@@ -235,6 +257,8 @@ public class Snake extends Objeto {
 
     /**
      * Metodo que verifica todas as colisões.
+     * @param currentGameGrid Grid atual de jogo
+     * @return Valor booleano que representa se houve uma colisão na grid atual de jogo com a snake.
      */
     public boolean checkCollisions(Grid currentGameGrid)
     {
@@ -266,10 +290,19 @@ public class Snake extends Objeto {
         this.tail.clear();
         this.status = Status.DEAD;
     }
+
+    /**
+     * Método que retorna o estado atual da snake
+     * @return estado da snake
+     */
     public Status getStatus() {
         return status;
     }
 
+    /**
+     * Método que altera o estado da snake
+     * @param status estado da snake
+     */
     public void setStatus(Status status) {
         this.status = status;
     }
