@@ -13,8 +13,10 @@ public class Reta {
 
 
     /**
-     * @param p1
-     * @param p2
+     * Construtor de reta
+     * @param p1 ponto da reta
+     * @param p2 ponto da reta
+     * @pre os dois pontos não têm as mesmas coordenadas
      */
     public Reta(Ponto p1, Ponto p2)
     {
@@ -35,16 +37,28 @@ public class Reta {
         }
     }
 
+    /**
+     * Getter do declive da reta
+     * @return declive da reta
+     */
     public double getDeclive()
     {
         return this.declive;
     }
 
+    /**
+     * Getter da ordenada na origem da reta
+     * @return ordenada na origem
+     */
     public double getB()
     {
         return this.b;
     }
 
+    /**
+     * Getter da variavel vertical  (indica se a reta é vertical ou nao)
+     * @return variavel vertical
+     */
     public boolean getVertical()
     {
         return this.vertical;
@@ -52,7 +66,7 @@ public class Reta {
 
     /**
      * metodo para verificar se duas retas têm o mesmo declive (ou se ambas são verticais)
-     * @param that
+     * @param that reta a comparar
      * @return true se tiverem o mesmo declive, false se não
      */
     public boolean sameSlope(Reta that)

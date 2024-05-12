@@ -32,7 +32,7 @@ public class Triangulo extends Poligono {
 
     /**
      * Método que verifica se as invariantes da classe são respeitadas
-     * @param pontos
+     * @param pontos Pontos do triangulo
      */
     private void verificarInvariantes(Ponto[] pontos)
     {

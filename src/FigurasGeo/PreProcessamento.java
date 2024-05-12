@@ -10,10 +10,11 @@ public class PreProcessamento {
 
 
     /**
-     * @param minX
-     * @param maxX
-     * @param minY
-     * @param maxY
+     * Metodo Construtor
+     * @param minX x minimo
+     * @param maxX x maximo
+     * @param minY y minimo
+     * @param maxY y maximo
      */
     public PreProcessamento(int minX, int maxX, int minY, int maxY)
     {
@@ -21,7 +22,10 @@ public class PreProcessamento {
         this.topRight = new Ponto(maxX,maxY);
     }
 
-
+    /**
+     * Construtor a partir de um poligono
+     * @param poligono poligono a verificar a construir o retangulo envovlente
+     */
     public PreProcessamento(Poligono poligono)
     {
         Ponto[] pontosPoligono = poligono.getPontos();
@@ -48,7 +52,7 @@ public class PreProcessamento {
 
     /**
      * Metodo usado para verificar se dois retângulos se cruzam
-     * @param that
+     * @param that retangulo a verificar
      * @return true se houver cruzamento, false se não.
      */
     public boolean rectIntercept(PreProcessamento that)
@@ -59,10 +63,18 @@ public class PreProcessamento {
             return false;
     }
 
+    /**
+     * Getter do ponto mais abaixo à esquerda
+     * @return ponto mais abaixo à esquerda
+     */
     public Ponto getDownLeft() {
         return downLeft;
     }
 
+    /**
+     * Getter do ponto mais acima à direita
+     * @return ponto mais acima à direita
+     */
     public Ponto getTopRight() {
         return topRight;
     }
