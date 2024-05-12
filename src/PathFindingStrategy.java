@@ -17,7 +17,7 @@ public class PathFindingStrategy implements AutoSnake {
     private long timer;
 
     /**
-     * Construtor da classe AutoSnake
+     * Construtor da classe PathFindingStrategy
      */
     public PathFindingStrategy() {
         this.searching = true;

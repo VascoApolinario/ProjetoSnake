@@ -1,6 +1,7 @@
 
 public interface AutoSnake {
     void Start(Snake snake,Background background);
+
     default void avoidObstacle(Snake snake,Grid grid){
         int row = grid.returnRowFromPoint(snake.getHead().getCentroide());
         int col = grid.returnColFromPoint(snake.getHead().getCentroide());

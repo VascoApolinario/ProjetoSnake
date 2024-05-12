@@ -15,7 +15,7 @@ public class Path {
     private final ArrayList<Segmento> linhas;
 
     /**
-     *
+     * Construtor da classe Path
      * @param pontos
      */
     public Path(Ponto[] pontos)

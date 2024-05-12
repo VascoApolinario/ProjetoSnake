@@ -40,10 +40,6 @@ public class CircleFood extends Objeto implements Food{
         this.spawn(spawnPoint);
     }
 
-    @Override
-    public void update() {
-        
-    }
 
     /**
      * Metodo que altera as coordenadas do CircleFood
@@ -64,6 +60,11 @@ public class CircleFood extends Objeto implements Food{
     @Override
     public Ponto getLocation() {
         return this.circulo.getCenter();
+    }
+
+    @Override
+    void update() {
+
     }
 
     @Override

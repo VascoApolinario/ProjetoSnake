@@ -41,6 +41,29 @@ public class Snake extends Objeto {
     }
 
     /**
+     * Construtor da classe Snake (usado nos testes JUnit)
+     * @param headSize tamanho do lado da cabeça
+     * @param spawn célula onde a cobra irá dar spawn
+     * @param direction direção da snake
+     */
+    public Snake(int headSize, Cell spawn, int direction)
+    {
+        if(headSize != spawn.getSide())
+        {
+            throw new IllegalArgumentException("Snake: vi");
+        }
+        Quadrado cabeca = new FigurasGeo.Quadrado(headSize);
+        this.direction = direction;
+        this.head = (Quadrado) cabeca.moveCentroid((int)spawn.getCentroide().getX(),(int)spawn.getCentroide().getY());
+        spawn.setEmpty(false);
+        spawn.setContent(Content.HEAD);
+        this.tail = new ArrayList<Quadrado>();
+        this.ate = false;
+        this.rotateDelay = false;
+        this.status = Status.ALIVE;
+    }
+
+    /**
      * Método que devolve uma direção aleatória para a snake
      * @return 0, 90, 180 ou 270
      */
@@ -72,7 +95,6 @@ public class Snake extends Objeto {
 
     @Override
     void update() {
-        //this.move();
         if(collisionWithTail()) {
             die();
         }
@@ -210,29 +232,12 @@ public class Snake extends Objeto {
         return false;
     }
 
-    /**
-     * Metodo que verifica se a cobra colidiu com um obstáculo
-     * @param o
-     * @return
-     */
-    public boolean collisionWithObstacle(Obstacle o)
-    {
-        //TODO
-        return false;
-    }
 
     /**
      * Metodo que verifica todas as colisões.
      */
     public boolean checkCollisions(Grid currentGameGrid)
     {
-        /*
-        for(Quadrado t : this.tail)
-        {
-            if (this.head.isInside(t))
-                return true;
-        }
-         */
         if (currentGameGrid.returnCellFromPoint(head.getCentroide()).getContent() == Content.OBSTACLE) {
             return true;
         }

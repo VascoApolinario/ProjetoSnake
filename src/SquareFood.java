@@ -37,11 +37,6 @@ public class SquareFood extends Objeto implements Food{
         this.spawn(spawnPoint);
     }
 
-    @Override
-    public void update() {
-        
-    }
-
     /**
      * Metodo que altera as coordenadas do SquareFood
      * @param c celula
@@ -59,6 +54,11 @@ public class SquareFood extends Objeto implements Food{
     @Override
     public Ponto getLocation() {
         return this.quadrado.getCentroide();
+    }
+
+    @Override
+    void update() {
+
     }
 
     @Override
