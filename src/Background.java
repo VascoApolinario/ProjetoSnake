@@ -36,6 +36,8 @@ public class Background {
      * @param autoSnakeStrat estratégia de movimento automático
      */
     public Background(int Width, int Height, String playername, Boolean activateAutoSnake,int autoSnakeStrat) {
+        this.Width = Width;
+        this.Height = Height;
         this.grid = new Grid(Width,Height,40);
         this.snake = new Snake(40, this.grid.returnCellFromPoint(new Ponto(40,300)));
         this.player = new Player(playername);
