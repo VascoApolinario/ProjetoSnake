@@ -21,10 +21,12 @@ public class InitialPanel extends JPanel implements ActionListener {
     private String playerName;
     private String selectedLevel;
     public boolean startGame;
-    public boolean autoSnake;
+    private boolean autoSnake;
+    private int autoSnakeStrat;
     private JLabel nameRestriction;
     private JTextArea printLeaderboard;
     private JSpinner leaderboardSpinner;
+    private JComboBox<String> autoSnakeStratComboBox;
     private JComboBox<String> levelComboBox;
     private JComboBox<String> renderComboBox;
     private boolean renderFill;
@@ -37,7 +39,7 @@ public class InitialPanel extends JPanel implements ActionListener {
         startGame = false;
         janela = new JFrame();
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        janela.setSize(600, 500);
+        janela.setSize(600, 600);
         janela.setLayout(new FlowLayout());
         janela.setLocationRelativeTo(null);
         janela.setTitle("OBJECT ORIENTED PROGRAMMED SNAKE");
@@ -78,6 +80,15 @@ public class InitialPanel extends JPanel implements ActionListener {
         janela.add(nameRestriction);
         janela.add(activateAutoSnake);
 
+        JLabel selectASstrat = new JLabel("AutoSnake Strategy: ");
+        selectASstrat.setFont(new Font("Courier New", Font.PLAIN, 30));
+
+        String[] autoSnakeStrats = new String[]{"PathFinding", "Random"};
+        autoSnakeStratComboBox = new JComboBox<>(autoSnakeStrats);
+        autoSnakeStratComboBox.addActionListener(this);
+        autoSnakeStratComboBox.setFont(new Font("Courier New", Font.PLAIN, 18));
+        autoSnakeStratComboBox.setSelectedIndex(0);
+
         JLabel selectLevel = new JLabel("Select Level: ");
         selectLevel.setFont(new Font("Courier New", Font.PLAIN, 30));
 
@@ -99,6 +110,9 @@ public class InitialPanel extends JPanel implements ActionListener {
         JLabel selectRenderMode = new JLabel("Select Render Mode: ");
         selectRenderMode.setFont(new Font("Courier New", Font.PLAIN, 30));
 
+
+        janela.add(selectASstrat);
+        janela.add(autoSnakeStratComboBox);
         janela.add(selectLevel);
         janela.add(levelComboBox);
         janela.add(selectRenderMode);
@@ -188,6 +202,10 @@ public class InitialPanel extends JPanel implements ActionListener {
         {
             renderFill = renderComboBox.getSelectedIndex() != 0;
         }
+        if(e.getSource() == autoSnakeStratComboBox)
+        {
+            autoSnakeStrat = autoSnakeStratComboBox.getSelectedIndex();
+        }
     }
 
     /**
@@ -221,6 +239,11 @@ public class InitialPanel extends JPanel implements ActionListener {
     public boolean getRenderFill()
     {
         return renderFill;
+    }
+
+    public int getAutoSnakeStrat()
+    {
+        return autoSnakeStrat;
     }
 
 }

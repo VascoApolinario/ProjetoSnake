@@ -34,7 +34,7 @@ public class Background {
      * @param playername nome do jogador
      * @param activateAutoSnake valor booleano que representa se a snake se deve mover em modo automatico ou não
      */
-    public Background(int Width, int Height, String playername, Boolean activateAutoSnake) {
+    public Background(int Width, int Height, String playername, Boolean activateAutoSnake,int autoSnakeStrat) {
         this.grid = new Grid(Width,Height,40);
         this.snake = new Snake(40, this.grid.returnCellFromPoint(new Ponto(40,300)));
         this.player = new Player(playername);
@@ -49,6 +49,10 @@ public class Background {
         this.updateLeaderBoard = false;
         this.autoSnake = new PathFindingStrategy();
         this.activateAutoSnake = activateAutoSnake;
+        if(autoSnakeStrat == 0)
+            this.autoSnake = new PathFindingStrategy();
+        else
+            this.autoSnake = new RandomStrategy();
     }
 
     /**
@@ -57,7 +61,7 @@ public class Background {
      * @param playername nome do jogador
      * @param activateAutoSnake valor booleano que representa se a snake se deve mover em modo automatico ou não
      */
-    public Background(String filename, String playername, boolean activateAutoSnake) {
+    public Background(String filename, String playername, boolean activateAutoSnake, int autoSnakeStrat) {
         this.obstaculos = new ArrayList<>();
         this.comida = new ArrayList<>();
         this.gameOver = false;
@@ -100,7 +104,10 @@ public class Background {
             System.out.println("Error reading file: " + e.getMessage());
         }
         this.activateAutoSnake = activateAutoSnake;
-        this.autoSnake = new PathFindingStrategy();
+        if(autoSnakeStrat == 0)
+            this.autoSnake = new PathFindingStrategy();
+        else
+            this.autoSnake = new RandomStrategy();
     }
 
     /**

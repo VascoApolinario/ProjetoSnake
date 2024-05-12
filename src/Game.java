@@ -37,9 +37,9 @@ public class Game implements ActionListener {
 
         //background = new Background(Width, Height, painelInicial.getPlayerName()); //MAIS TARDE TEMOS DE ADICIONAR UM ARGUMENTO QUE DIGA AS POSIÇOES CERTAS DA GRID E DOS OBSTACULOS, ETC.
         if(checkLevelFile())
-            background = new Background(painelInicial.getSelectedLevel() + ".txt", painelInicial.getPlayerName(),painelInicial.getAutoSnake());
+            background = new Background(painelInicial.getSelectedLevel() + ".txt", painelInicial.getPlayerName(),painelInicial.getAutoSnake(),painelInicial.getAutoSnakeStrat());
         else
-            background = new Background(800,600, painelInicial.getPlayerName(),painelInicial.getAutoSnake());
+            background = new Background(800,600, painelInicial.getPlayerName(),painelInicial.getAutoSnake(),painelInicial.getAutoSnakeStrat());
         inputHandler = new InputHandler(this);
         this.graficos = new Textual(background.getWidth(), background.getHeight(), this.background, inputHandler, painelInicial.getRenderFill());
         this.gameFrame = new GameFrame(this.graficos);
@@ -95,9 +95,9 @@ public class Game implements ActionListener {
 
         leaderboard.update(background.getPlayer());
         if(checkLevelFile())
-            background = new Background(painelInicial.getSelectedLevel() + ".txt", painelInicial.getPlayerName(),painelInicial.getAutoSnake());
+            background = new Background(painelInicial.getSelectedLevel() + ".txt", painelInicial.getPlayerName(),painelInicial.getAutoSnake(),painelInicial.getAutoSnakeStrat());
         else
-            background = new Background(800,600, painelInicial.getPlayerName(),painelInicial.getAutoSnake());
+            background = new Background(800,600, painelInicial.getPlayerName(),painelInicial.getAutoSnake(),painelInicial.getAutoSnakeStrat());
         this.graficos.setBG(this.background);
     }
 
