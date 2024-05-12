@@ -48,11 +48,21 @@ public class Poligono {
         this.centroide = new Ponto(centroideX,centroideY);
     }
 
+    /**
+     * Construtor do poligono a partir de uma string
+     * @param str string para construir o poligono
+     */
+
     public Poligono(String str)
     {
         this(stringToPoints(str));
-
     }
+
+    /**
+     * A partir de uma string returna um array de pontos com as coordenadas na string
+     * @param str string a trasnformar em pontos
+     * @return Array de pontos
+     */
 
     private static Ponto[] stringToPoints (String str)
     {
@@ -67,12 +77,10 @@ public class Poligono {
         return pts;
     }
 
-
-
     /**
      * Método que verifica se as invariantes da classe são respeitadas
-     * @param pontos
-     * @param arestas
+     * @param pontos Pontos do Poligono a verificar
+     * @param arestas Arestas do Poligono a verificar
      */
     private void verificarInvariantes(Ponto[] pontos, Segmento[] arestas)
     {
@@ -98,7 +106,7 @@ public class Poligono {
 
     /**
      * Metodo chamado pelo construtor para verificar se existem 3 pontos colineares consecutivos.
-     * @param pontos
+     * @param pontos Pontos a verificar
      */
     private void tresPontosColineares(Ponto[] pontos)
     {
@@ -135,10 +143,19 @@ public class Poligono {
         return (int)sum;
     }
 
+    /**
+     * Getter dos pontos do poligono
+     * @return Array de Pontos do poligono
+     */
     public Ponto[] getPontos()
     {
         return this.pontos;
     }
+
+    /**
+     * Getter das arestas do poligono
+     * @return Array de Segmentos do poligono
+     */
     public Segmento[] getArestas()
     {
         return this.arestas;
@@ -181,8 +198,11 @@ public class Poligono {
         return new Poligono(pontos);
     }
 
-
-
+    /**
+     * Dado um poligono verifica se este poligono é igual
+     * @param o Poligono a comparar
+     * @return Resultado entre a verificação
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -207,6 +227,10 @@ public class Poligono {
         return b;
     }
 
+    /**
+     * Retorna o hashCode de um poligono.
+     * @return hashCode
+     */
     @Override
     public int hashCode() {
         int result = Objects.hash(centroide);
