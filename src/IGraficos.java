@@ -85,9 +85,9 @@ public interface IGraficos {
 
 class Grafica extends JPanel implements IGraficos {
     private Background bg;
-    private int renderFill;
+    private boolean renderFill;
 
-    public Grafica(int width, int height,Background bg, InputHandler inputHandler, int renderFill) {
+    public Grafica(int width, int height,Background bg, InputHandler inputHandler, boolean renderFill) {
         this.bg = bg;
         this.renderFill = renderFill;
         drawPanel(width,height,inputHandler);
@@ -106,7 +106,7 @@ class Grafica extends JPanel implements IGraficos {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         if(!bg.getGameOver()) {
-            drawGrid(g);
+            //drawGrid(g);
             drawBorder(g);
             drawFood(g);
             drawSnake(g);
@@ -126,14 +126,20 @@ class Grafica extends JPanel implements IGraficos {
         int headSize = (int)snake.getHead().getSide();
         int x = (int)snake.getHead().getDownLeft().getX();
         int y = (int)snake.getHead().getDownLeft().getY();
-        g.setColor(new Color(24, 197, 15, 255));
+        if(renderFill){
+            g.setColor(new Color(19, 53, 2, 255));
+            g.fillRect(x,y,headSize,headSize);
+        }
+        g.setColor(new Color(42, 128, 2, 255));
         g.drawRect(x,y,headSize,headSize);
-        g.setColor(new Color(20, 57, 2, 255));
-        g.fillRect(x,y,headSize,headSize);
         if(!snake.getTail().isEmpty()) {
             for (Quadrado t : snake.getTail()) {
+                if(renderFill) {
+                    g.setColor(new Color(7, 92, 0, 255));
+                    g.fillRect((int) t.getDownLeft().getX(), (int) t.getDownLeft().getY(), (int) t.getSide(), (int) t.getSide());
+                }
                 g.setColor(new Color(24, 197, 15, 255));
-                g.fillRect((int) t.getDownLeft().getX(), (int) t.getDownLeft().getY(), (int) t.getSide(), (int) t.getSide());
+                g.drawRect((int) t.getDownLeft().getX(), (int) t.getDownLeft().getY(), (int) t.getSide(), (int) t.getSide());
             }
         }
 
@@ -144,9 +150,11 @@ class Grafica extends JPanel implements IGraficos {
         ArrayList<Obstacle> obstacles = bg.getObstaculos();
         for (Obstacle o : obstacles) {
             Poligono po = o.getPoligono();
+            if (renderFill) {
+                g.setColor(new Color(0, 149, 255, 255));
+                g.fillPolygon(po.getxv(), po.getyv(), po.getPontos().length);
+            }
             g.setColor(new Color(1, 23, 255, 255));
-            g.fillPolygon(po.getxv(),po.getyv(),po.getPontos().length);
-            g.setColor(new Color(0, 0, 0, 255));
             g.drawPolygon(po.getxv(),po.getyv(),po.getPontos().length);
         }
     }
@@ -156,19 +164,30 @@ class Grafica extends JPanel implements IGraficos {
         ArrayList<Food> food = bg.getComida();
         for(Food f : food)
         {
-            g.setColor(new Color(227, 8, 8));
+
             if(f instanceof CircleFood)
             {
                 int radius = (int) ((CircleFood) f).getCirculo().getRadius();
                 int x = (int) (((CircleFood) f).getCirculo().getCenter().getX()-radius);
                 int y = (int) (((CircleFood) f).getCirculo().getCenter().getY()-radius);
-                g.fillOval(x,y,2*radius,2*radius);
+                if(renderFill)
+                {
+                    g.setColor(new Color(246, 38, 38));
+                    g.fillOval(x,y,2*radius,2*radius);
+                }
+                g.setColor(new Color(227, 8, 8));
+                g.drawOval(x,y,2*radius,2*radius);
             }
             else if (f instanceof SquareFood) {
                 int side = (int) ((SquareFood) f).getQuadrado().getSide();
                 int x = (int) ((SquareFood) f).getQuadrado().getDownLeft().getX();
                 int y = (int) ((SquareFood) f).getQuadrado().getDownLeft().getY();
-                g.fillRect(x,y,side,side);
+                if(renderFill) {
+                    g.setColor(new Color(246, 38, 38));
+                    g.fillRect(x,y,side,side);
+                }
+                g.setColor(new Color(227, 8, 8));
+                g.drawRect(x,y,side,side);
 
             }
         }
