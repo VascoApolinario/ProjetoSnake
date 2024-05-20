@@ -84,11 +84,22 @@ public class InitialPanel extends JPanel implements ActionListener {
      * ComboBox para selecionar o modo de renderização
      */
     private JComboBox<String> renderComboBox;
+    /**
+     *  ComboBox para selecionar o modo gráfico
+     */
+    private JComboBox<String> graphicComboBox;
 
     /**
      * Booleano que indica se o jogador selecionou o modo de renderização com preenchimento
      */
     private boolean renderFill;
+
+
+    /**
+     *  Booleano que inidica se o jogador selecionou o modo grafico ou textual
+     */
+
+    private boolean graphicsMode;
 
     /**
      * Construtor do Painel inicial, recebe uma cópia da leaderboard para poder apresentá-la
@@ -169,6 +180,17 @@ public class InitialPanel extends JPanel implements ActionListener {
         JLabel selectRenderMode = new JLabel("Select Render Mode: ");
         selectRenderMode.setFont(new Font("Courier New", Font.PLAIN, 30));
 
+        JLabel selectGraphicMode = new JLabel("Select Graphic Mode: ");
+        selectGraphicMode.setFont(new Font("Courier New", Font.PLAIN, 30));
+
+        String[] graphicModes = new String[]{"Graphic", "Textual"};
+
+        graphicComboBox = new JComboBox<>(graphicModes);
+        graphicComboBox.addActionListener(this);
+        graphicComboBox.setFont(new Font("Courier New", Font.PLAIN, 18));
+        graphicComboBox.setSelectedIndex(0);
+        graphicsMode = true;
+
 
         janela.add(selectASstrat);
         janela.add(autoSnakeStratComboBox);
@@ -176,6 +198,8 @@ public class InitialPanel extends JPanel implements ActionListener {
         janela.add(levelComboBox);
         janela.add(selectRenderMode);
         janela.add(renderComboBox);
+        janela.add(selectGraphicMode);
+        janela.add(graphicComboBox);
 
         JLabel leaderboardText = new JLabel("LEADERBOARD");
         leaderboardText.setFont(new Font("Courier New", Font.BOLD, 70));
@@ -265,6 +289,10 @@ public class InitialPanel extends JPanel implements ActionListener {
         {
             autoSnakeStrat = autoSnakeStratComboBox.getSelectedIndex();
         }
+        if(e.getSource() == graphicComboBox)
+        {
+            graphicsMode = graphicComboBox.getSelectedIndex() == 0;
+        }
     }
 
     /**
@@ -318,6 +346,10 @@ public class InitialPanel extends JPanel implements ActionListener {
     public int getAutoSnakeStrat()
     {
         return autoSnakeStrat;
+    }
+
+    public boolean getGraphicsMode(){
+        return graphicsMode;
     }
 
 }

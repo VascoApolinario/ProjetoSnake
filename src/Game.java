@@ -41,7 +41,15 @@ public class Game implements ActionListener {
         else
             background = new Background(800,600, painelInicial.getPlayerName(),painelInicial.getAutoSnake(),painelInicial.getAutoSnakeStrat());
         inputHandler = new InputHandler(this);
-        this.graficos = new Grafica(background.getWidth(), background.getHeight(), this.background, inputHandler, painelInicial.getRenderFill());
+        if(painelInicial.getGraphicsMode())
+        {
+            this.graficos = new Grafica(background.getWidth(), background.getHeight(), this.background, inputHandler, painelInicial.getRenderFill());
+        }
+        else
+        {
+            this.graficos = new Textual(background.getWidth(), background.getHeight(), this.background, inputHandler, painelInicial.getRenderFill());
+        }
+
         this.gameFrame = new GameFrame(this.graficos);
         timer = new Timer(100, this);
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
